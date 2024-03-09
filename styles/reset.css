@@ -1,0 +1,50 @@
+@layer reset {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    color-scheme: light dark;
+    hanging-punctuation: first last;
+
+    h1, h2, h3, h4, h5, h6 {
+      text-wrap: balance;
+    }
+    
+    p {
+      max-width: 75ch;
+      text-wrap: pretty;
+    }
+
+    input,
+    textarea{
+      resize: none;
+      font-family: var(--input-textarea-font-family);
+
+      &::placeholder {
+        font-family: var(--input-textarea-font-family);
+        opacity: 1;
+      }
+
+      &::-webkit-input-placeholder {
+        font-family: var(--input-textarea-font-family);
+      }
+      
+      &:-ms-input-placeholder {
+        font-family: var(--input-textarea-font-family);
+      }
+
+      &::-ms-input-placeholder {
+        font-family: var(--input-textarea-font-family);
+      }
+      
+      &:-moz-placeholder {
+        font-family: var(--input-textarea-font-family);
+      }
+      
+      &::-moz-placeholder {
+        font-family: var(--input-textarea-font-family);
+      }
+    }
+  }
+}

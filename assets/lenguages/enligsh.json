@@ -1,0 +1,130 @@
+{
+  "pageTitle": "Aurelio Ochoa",
+  "heroSection": {
+    "title": "Aurelio Ochoa",
+    "subtitle": "Full-Stack Developer"
+  },
+  "socialMediaSection": {
+    "title": "Social Media & CV"
+  },
+  "experienceSection": {
+    "title": "Experience",
+    "experiences": [
+      {
+        "title": "Summer Intern",
+        "subtitle": "JustClick Media · Part-time",
+        "dateRange": "Feb. 2020 - Mar. 2020",
+        "duration": "2 months",
+        "description": "Learned basic concepts of HTML, CSS, and JavaScript by building real projects. Worked as a team member in a collaborative and fast-paced environment."
+      },
+      {
+        "title": "Software Developer",
+        "subtitle": "JustClick Media · Full-time",
+        "dateRange": "May. 2021 - May. 2022",
+        "duration": "1 year 1 month",
+        "description": "Worked as part of the quality control team. Tested and debugged one of the company's main custom platforms. Created and maintained various features and designs for the company's main platform using Angular.js."
+      },
+      {
+        "title": "Front-end Developer Intern",
+        "subtitle": "Universidad de Europea del Atlantico · Part-time",
+        "dateRange": "Sept. 2022 - Sept. 2023",
+        "duration": "1 year 1 month",
+        "description": "Publication, editing, and content management. Maintenance and implementation of new features in custom WordPress themes. Automation of various processes using Google AppScript. Development of web applications with React.js."
+      },
+      {
+        "title": "Systems Administration Intern",
+        "subtitle": "Universidad de Europea del Atlantico · Part-time",
+        "dateRange": "Sept. 2023 - Feb. 2024",
+        "duration": "6 months",
+        "description": "Experience in on-site server management with Linux, including infrastructure maintenance and deployment using Jenkins. Extensive experience in creating cloud infrastructure on Google Cloud Platform."
+      }
+    ]
+  },
+  "technologiesSection": {
+    "title": "Technologies I use",
+    "technologies": [
+      {
+        "title": "HTML",
+        "description": "As a web developer, HTML is fundamental. It provides the structure and backbone of every web page, allowing me to create semantic and accessible content easily."
+      },
+      {
+        "title": "CSS",
+        "description": "CSS enables me to style HTML elements, bringing life and aesthetics to web pages. With CSS3 features, I can create modern and responsive designs efficiently."
+      },
+      {
+        "title": "JavaScript",
+        "description": "JavaScript powers interactivity on the web. With its versatility and broad ecosystem, I leverage it to create dynamic user interfaces and add functionality to web applications."
+      },
+      {
+        "title": "React",
+        "description": "React is my go-to library for building user interfaces. Its component-based architecture and virtual DOM make development smooth and efficient, enabling me to create scalable and reusable UI components."
+      },
+      {
+        "title": "Angular",
+        "description": "Angular provides a comprehensive framework for building robust web applications. With its powerful features like two-way data binding and dependency injection, I can create complex and scalable projects with ease."
+      },
+      {
+        "title": "Vue",
+        "description": "Vue.js is a progressive JavaScript framework that allows me to build interactive user interfaces with ease. Its simplicity and flexibility make it a great choice for developing modern web applications."
+      },
+      {
+        "title": "Sass",
+        "description": "Sass enhances my CSS workflow with features like variables, nesting, and mixins. It helps me write cleaner and more maintainable stylesheets, saving time and effort in large-scale projects."
+      },
+      {
+        "title": "Bootstrap",
+        "description": "Bootstrap is a powerful front-end framework that speeds up development with its pre-designed components and responsive grid system. It allows me to create sleek and mobile-friendly websites quickly."
+      },
+      {
+        "title": "NodeJs",
+        "description": "Node.js enables me to build scalable and high-performance server-side applications using JavaScript. Its non-blocking I/O and event-driven architecture make it ideal for building real-time web applications and APIs."
+      },
+      {
+        "title": "MySQL & MongoDB",
+        "description": "MySQL and MongoDB are both essential databases in my toolkit. MySQL offers relational database capabilities, while MongoDB provides flexibility with its NoSQL document-oriented approach. I use them based on project requirements."
+      },
+      {
+        "title": "Laravel",
+        "description": "Laravel is a powerful PHP framework that simplifies web development with its elegant syntax and expressive features. It streamlines common tasks like authentication, routing, and caching, allowing me to focus on building great applications."
+      },
+      {
+        "title": "Wordpress",
+        "description": "WordPress is a versatile content management system that empowers me to create anything from simple blogs to complex e-commerce websites. Its extensive plugin ecosystem and user-friendly interface make it a popular choice for web development."
+      },
+      {
+        "title": "Linux System Administration",
+        "description": "Linux system administration skills are crucial for deploying and managing web applications. With expertise in Linux, I can configure servers, troubleshoot issues, and ensure the smooth operation of web services."
+      },
+      {
+        "title": "Git",
+        "description": "Git is an indispensable tool for version control in my workflow. It allows me to track changes, collaborate with team members, and revert to previous states effortlessly, ensuring the integrity and stability of my codebase."
+      },
+      {
+        "title": "Jenkins",
+        "description": "Jenkins is a powerful automation server that streamlines the continuous integration and delivery process. With Jenkins, I can automate build, test, and deployment tasks, ensuring the quality and reliability of my software projects."
+      },
+      {
+        "title": "Docker",
+        "description": "Docker revolutionizes my development workflow by containerizing applications and dependencies. It provides consistency across different environments and simplifies deployment, making it easier to build and ship software."
+      },
+      {
+        "title": "Java",
+        "description": "Java is a versatile programming language that I use for building enterprise-scale web applications. Its strong typing, robust ecosystem, and platform independence make it a reliable choice for developing scalable and secure software solutions."
+      },
+      {
+        "title": "PHP",
+        "description": "PHP is a server-side scripting language that powers a large portion of the web. With PHP, I can build dynamic and interactive web applications, leveraging its rich set of libraries and frameworks like Laravel and Symfony."
+      },
+      {
+        "title": "Python",
+        "description": "Python is my preferred language for web development due to its simplicity and readability. It's great for building scalable web applications, handling data processing tasks, and powering backend services with frameworks like Django and Flask."
+      }
+    ]
+  },
+  "contactSection": {
+    "title": "Let's work together!"
+  },
+  "footerSection": {
+    "website": "Check out my website"
+  }
+}

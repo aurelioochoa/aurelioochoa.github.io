@@ -1,0 +1,177 @@
+@layer mimoid, fraunces, oceanus, emotional, twenty-three;
+
+@layer mimoid {
+  @font-face {
+    font-family: 'Mimoid';
+    src: url(../assets/fonts/MimoidVF.ttf) format('opentype');
+  }
+  
+  @keyframes mimoid{
+    0% {
+        font-variation-settings: 'wght' 100;
+    }
+    100% {
+        font-variation-settings: 'wght' -100;
+    }
+  }
+  
+  .mimoid {
+    font-family: 'Mimoid';
+    font-variation-settings: 'wght' 10;
+  }
+  
+  .mimoid-animated {
+    font-family: 'Mimoid';
+    animation: mimoid 2s ease 0s infinite alternate both;
+  }
+  
+  .mimoid-hover{
+    font-family: 'Mimoid';
+    font-variation-settings: 'wght' 100;
+    transition: font-variation-settings 0.3s ease;
+    &:hover {
+      font-variation-settings: 'wght' -100;
+    }
+  }
+}
+
+@layer fraunces {
+  @font-face {
+    font-family: 'Fraunces';
+    src: url(../assets/fonts/FrauncesSOFT,WONK,opsz,wght.ttf) format('opentype');
+  }
+  
+  @font-face {
+    font-family: 'Fraunces Italic';
+    src: url(../assets/fonts/Fraunces-ItalicSOFT,WONK,opsz,wght.ttf) format('opentype');
+  }
+  
+  @keyframes fraunces {
+    0% {
+        font-variation-settings: 'SOFT' 0;
+        font-variation-settings: 'wght' 100;
+    }
+    100% {
+        font-variation-settings: 'SOFT' 100;
+        font-variation-settings: 'wght' 900;
+    }
+  }
+  
+  .fraunces {
+    font-family: 'Fraunces';
+    font-variation-settings:
+      'SOFT' 100,
+      'wght' 100,
+      'WONK' 1,
+      'opsz' 48;
+  }
+  
+  .fraunces-animated {
+    font-family: 'Fraunces';
+    font-variation-settings: 'WONK' 0;
+    animation: fraunces 3s ease 0s infinite alternate both;
+  }
+  
+  .fraunces-italic {
+    font-family: 'Fraunces Italic';
+    font-variation-settings: 'SOFT' 100;
+    font-variation-settings: 'WONK' 1;
+  }
+  
+  .fraunces-italic-animated {
+    font-family: 'Fraunces Italic';
+    font-variation-settings: 'SOFT' 100;
+    font-variation-settings: 'WONK' 1;
+    animation: fraunces 3s ease 0s infinite alternate both;
+  }
+}
+
+@layer emotional {
+  @font-face {
+    font-family: 'Emotional Type';
+    src: url(../assets/fonts/emotional-VF.ttf) format('opentype');
+  }
+  
+  @keyframes emotional {
+    0% {
+      font-variation-settings: 'wght' 1000;
+    }
+    100% {
+      font-variation-settings: 'wght' -1000;
+    }
+  }
+  
+  .emotional {
+    font-family: 'Emotional Type';
+    font-variation-settings: 'wght' 1000;
+  }
+  
+  .emotional-complete {
+    font-family: 'Emotional Type', 'Fraunces Italic';
+    font-variation-settings:
+      'SOFT' 100,
+      'WONK' 1,
+      'opsz' 22,
+      'wght' 400;
+  }
+  
+  .emotional-animated {
+    font-family: 'Emotional Type';
+    animation: emotional 5s ease 0s infinite alternate both;
+  }
+  
+  .emotional-hover {
+    font-family: 'Emotional Type';
+    font-variation-settings: 'wght' 1000;
+    transition: font-variation-settings 0.3s ease;
+    &:hover {
+      font-variation-settings: 'wght' -1000;
+    }
+  }
+}
+
+@layer oceanus {
+  @font-face {
+    font-family: 'Oceanus';
+    src: url(../assets/fonts/Oceanus_Variable.ttf) format('opentype');
+  }
+  
+  @keyframes oceanus {
+    0% {
+      font-variation-settings: 'wght' 100;
+    }
+    100% {
+      font-variation-settings: 'wght' 250;
+    }
+  }
+  
+  .oceanus {
+    font-family: 'Oceanus';
+    font-variation-settings: 'wght' 120;
+  }
+  
+  .oceanus-animated {
+    font-family: 'Oceanus';
+    animation: oceanus 5s ease 0s infinite alternate both;
+  }
+  
+  .oceanus-hover {
+    font-family: 'Oceanus';
+    font-variation-settings: 'wght' 120;
+    transition: font-variation-settings 0.3s ease;
+    &:hover {
+      font-variation-settings: 'wght' 250;
+    }
+  }
+}
+
+@layer twenty-three {
+  @font-face {
+    font-family: '23.59';
+    src: url(../assets/fonts/23.59.ttf) format('truetype');
+  }
+
+  .twenty-three {
+    font-family: '23.59';
+  }
+}

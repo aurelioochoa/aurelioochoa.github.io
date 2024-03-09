@@ -1,0 +1,130 @@
+{
+  "pageTitle": "Aurelio Ochoa",
+  "heroSection": {
+    "title": "Aurelio Ochoa",
+    "subtitle": "Desarrollador Full-Stack"
+  },
+  "socialMediaSection": {
+    "title": "Redes Sociales y CV"
+  },
+  "experienceSection": {
+    "title": "Experiencia",
+    "experiences": [
+      {
+        "title": "Pasante de Verano",
+        "subtitle": "JustClick Media · Tiempo parcial",
+        "dateRange": "Feb. 2020 - Mar. 2020",
+        "duration": "2 meses",
+        "description": "Aprendí conceptos básicos de HTML, CSS y JavaScript construyendo proyectos reales. Trabajé como miembro del equipo en un entorno colaborativo y dinámico."
+      },
+      {
+        "title": "Desarrollador de Software",
+        "subtitle": "JustClick Media · Tiempo completo",
+        "dateRange": "Mayo 2021 - Mayo 2022",
+        "duration": "1 año 1 mes",
+        "description": "Trabajé como parte del equipo de control de calidad. Probé y depuré una de las plataformas personalizadas principales de la empresa. Creé y mantuve varias funciones y diseños para la plataforma principal de la empresa utilizando Angular.js."
+      },
+      {
+        "title": "Pasante de Desarrollo Front-end",
+        "subtitle": "Universidad de Europea del Atlántico · Tiempo parcial",
+        "dateRange": "Sept. 2022 - Sept. 2023",
+        "duration": "1 año 1 mes",
+        "description": "Publicación, edición y gestión de contenido. Mantenimiento e implementación de nuevas características en temas personalizados de WordPress. Automatización de varios procesos utilizando Google AppScript. Desarrollo de aplicaciones web con React.js."
+      },
+      {
+        "title": "Pasante de Administración de Sistemas",
+        "subtitle": "Universidad de Europea del Atlántico · Tiempo parcial",
+        "dateRange": "Sept. 2023 - Feb. 2024",
+        "duration": "6 meses",
+        "description": "Experiencia en gestión de servidores en el sitio con Linux, incluido mantenimiento e implementación de infraestructura utilizando Jenkins. Amplia experiencia en la creación de infraestructura en la nube en Google Cloud Platform."
+      }
+    ]
+  },
+  "technologiesSection": {
+    "title": "Tecnologías que Utilizo",
+    "technologies": [
+      {
+        "title": "HTML",
+        "description": "Como desarrollador web, HTML es fundamental. Proporciona la estructura y base de cada página web, lo que me permite crear contenido semántico y accesible fácilmente."
+      },
+      {
+        "title": "CSS",
+        "description": "CSS me permite dar estilo a los elementos HTML, dando vida y estética a las páginas web. Con las características de CSS3, puedo crear diseños modernos y receptivos de manera eficiente."
+      },
+      {
+        "title": "JavaScript",
+        "description": "JavaScript impulsa la interactividad en la web. Con su versatilidad y amplio ecosistema, lo aprovecho para crear interfaces de usuario dinámicas y agregar funcionalidades a las aplicaciones web."
+      },
+      {
+        "title": "React",
+        "description": "React es mi biblioteca preferida para construir interfaces de usuario. Su arquitectura basada en componentes y DOM virtual hacen que el desarrollo sea suave y eficiente, lo que me permite crear componentes de UI escalables y reutilizables."
+      },
+      {
+        "title": "Angular",
+        "description": "Angular proporciona un marco completo para construir aplicaciones web robustas. Con sus potentes características como enlace de datos bidireccional e inyección de dependencias, puedo crear proyectos complejos y escalables con facilidad."
+      },
+      {
+        "title": "Vue",
+        "description": "Vue.js es un marco de JavaScript progresivo que me permite construir interfaces de usuario interactivas con facilidad. Su simplicidad y flexibilidad lo convierten en una excelente opción para desarrollar aplicaciones web modernas."
+      },
+      {
+        "title": "Sass",
+        "description": "Sass mejora mi flujo de trabajo CSS con características como variables, anidamiento y mixins. Me ayuda a escribir hojas de estilo más limpias y mantenibles, ahorrando tiempo y esfuerzo en proyectos a gran escala."
+      },
+      {
+        "title": "Bootstrap",
+        "description": "Bootstrap es un potente marco de front-end que acelera el desarrollo con sus componentes pre-diseñados y sistema de rejilla receptiva. Me permite crear sitios web elegantes y amigables para dispositivos móviles rápidamente."
+      },
+      {
+        "title": "NodeJs",
+        "description": "Node.js me permite construir aplicaciones de servidor escalables y de alto rendimiento utilizando JavaScript. Su E/S no bloqueante y su arquitectura basada en eventos lo hacen ideal para construir aplicaciones web y API en tiempo real."
+      },
+      {
+        "title": "MySQL & MongoDB",
+        "description": "MySQL y MongoDB son bases de datos esenciales en mi conjunto de herramientas. MySQL ofrece capacidades de base de datos relacionales, mientras que MongoDB proporciona flexibilidad con su enfoque orientado a documentos NoSQL. Los uso según los requisitos del proyecto."
+      },
+      {
+        "title": "Laravel",
+        "description": "Laravel es un potente marco de PHP que simplifica el desarrollo web con su sintaxis elegante y características expresivas. Simplifica tareas comunes como autenticación, enrutamiento y almacenamiento en caché, lo que me permite concentrarme en construir grandes aplicaciones."
+      },
+      {
+        "title": "Wordpress",
+        "description": "WordPress es un sistema de gestión de contenido versátil que me permite crear desde simples blogs hasta sitios web de comercio electrónico complejos. Su extenso ecosistema de complementos e interfaz fácil de usar lo convierten en una opción popular para el desarrollo web."
+      },
+      {
+        "title": "Administración de Sistemas Linux",
+        "description": "Las habilidades de administración de sistemas Linux son cruciales para implementar y administrar aplicaciones web. Con experiencia en Linux, puedo configurar servidores, solucionar problemas y garantizar el funcionamiento correcto de los servicios web."
+      },
+      {
+        "title": "Git",
+        "description": "Git es una herramienta indispensable para el control de versiones en mi flujo de trabajo. Me permite rastrear cambios, colaborar con miembros del equipo y volver a estados anteriores sin esfuerzo, asegurando la integridad y estabilidad de mi base de código."
+      },
+      {
+        "title": "Jenkins",
+        "description": "Jenkins es un potente servidor de automatización que simplifica el proceso de integración y entrega continua. Con Jenkins, puedo automatizar tareas de construcción, prueba y implementación, garantizando la calidad y confiabilidad de mis proyectos de software."
+      },
+      {
+        "title": "Docker",
+        "description": "Docker revoluciona mi flujo de trabajo de desarrollo al contenerizar aplicaciones y dependencias. Proporciona consistencia en diferentes entornos y simplifica la implementación, facilitando la construcción y distribución de software."
+      },
+      {
+        "title": "Java",
+        "description": "Java es un lenguaje de programación versátil que uso para construir aplicaciones web a escala empresarial. Su fuerte tipado, ecosistema robusto e independencia de plataforma lo convierten en una opción confiable para desarrollar soluciones de software escalables y seguras."
+      },
+      {
+        "title": "PHP",
+        "description": "PHP es un lenguaje de script del lado del servidor que impulsa una gran parte de la web. Con PHP, puedo construir aplicaciones web dinámicas e interactivas, aprovechando su rico conjunto de bibliotecas y marcos como Laravel y Symfony."
+      },
+      {
+        "title": "Python",
+        "description": "Python es mi lenguaje preferido para el desarrollo web debido a su simplicidad y legibilidad. Es excelente para construir aplicaciones web escalables, manejar tareas de procesamiento de datos y alimentar servicios backend con marcos como Django y Flask."
+      }
+    ]
+  },
+  "contactSection": {
+    "title": "¡Trabajemos juntos!"
+  },
+  "footerSection": {
+    "website": "Visita mi sitio web"
+  }
+}

@@ -1,0 +1,185 @@
+@layer atrules, bento, bento-animation, bento-responsive;
+
+@layer atrules {
+  @property --gradient-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+  
+  @keyframes rotation {
+    0% { --gradient-angle: 0deg; }
+    100% { --gradient-angle: 360deg; }
+  }
+
+  @keyframes bento-title {
+    0% {
+      top: -1rem;
+      z-index: -1;
+    }
+    50% {
+      top: -2rem;
+      z-index: 0; 
+    }
+    100% {
+      top: -1rem;
+      z-index: 1;
+    }
+  }
+}
+
+@layer bento {
+  .bento {
+    display: grid;
+    gap: 1rem;
+    padding: 3rem 5rem 3rem 5rem;
+    margin: 0 auto;
+    place-content: center;
+    grid-auto-flow: dense;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 10rem), 1fr));
+    grid-auto-columns: 20rem;
+    grid-template-rows: repeat(minmax(min(100%, 4rem), 1fr));
+    grid-auto-rows: 9rem;
+
+    @media screen and (max-width: 495px) {
+      gap: 1rem 1rem;
+      padding: 2rem 1rem;
+    }
+
+    @media screen and (max-width: 368px) {
+      gap: 1rem 1rem;
+      padding: 2rem 0rem;
+    }
+
+    @media screen and (max-width: 335px) {
+      gap: 1rem 0rem;
+    }
+
+    .one-by-two {
+      grid-row: span 2;
+    }
+
+    .one-by-three {
+      grid-row: span 3;
+    }
+
+    .two-by-one {
+      grid-column: span 2;
+    }
+
+    .two-by-two {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .two-by-three {
+      grid-column: span 2;
+      grid-row: span 3;
+    }
+
+    .three-by-one {
+      grid-column: span 3;
+    }
+
+    .three-by-two {
+      grid-column: span 3;
+      grid-row: span 2;
+    }
+
+    .three-by-three {
+      grid-column: span 3;
+      grid-row: span 3;
+    }
+
+    .bento-title {
+      display: none;
+      position: absolute;
+      top: -1rem;
+      &::before {
+        content: '';
+        position: absolute;
+        inset: -0.1rem;
+        z-index: -1;
+
+        border-radius: 5px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5.9px);
+        -webkit-backdrop-filter: blur(5.9px);
+      }
+    }
+
+    .timeline {
+      padding: 2rem !important;
+      h1 {
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+      }
+      h2 {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+@layer bento-animation {
+  .bento > * {
+    padding: 1rem;
+    position: relative;
+    border-radius: 16px;
+    background: var(--bento-div-background-color);
+    
+    &::before, 
+    &::after {
+      content: "";
+      position: absolute;
+      inset: -0.1rem;
+      z-index: -1;
+      background: conic-gradient(
+        from var(--gradient-angle),
+        var(--bento-gradient-color-1),
+        var(--bento-gradient-color-2),
+        var(--bento-gradient-color-3),
+        var(--bento-gradient-color-4),
+        var(--bento-gradient-color-5),
+        var(--bento-gradient-color-4),
+        var(--bento-gradient-color-3),
+        var(--bento-gradient-color-2),
+        var(--bento-gradient-color-1)
+      );
+      border-radius: inherit;
+      animation: rotation var(--bento-animation-delay) linear alternate;
+    }
+    
+    &::after { filter: blur(1rem); }
+
+    &:hover {
+      .bento-title {
+        display: block;
+        animation: bento-title 0.5s ease-in-out alternate;
+        transition: ease-in-out 1s;
+        z-index: 1;
+      }
+    }
+  }
+}
+
+@layer bento-responsive {
+  .responsive {
+    @media (min-width: 672px) and (max-width: 848px) {
+      .two-by-one,
+      .two-by-two,
+      .two-by-three {
+        grid-column: span 3;
+      }
+    }
+
+    @media screen and (max-width: 672px) {
+      .three-by-one,
+      .three-by-two,
+      .three-by-three {
+        grid-column: span 2;
+      }
+    }
+
+  }
+}

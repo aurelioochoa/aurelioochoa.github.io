@@ -1,0 +1,72 @@
+@layer variables {
+
+  @property --gradient-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  @keyframes rotation {
+    0% { --gradient-angle: 0deg; }
+    100% { --gradient-angle: 360deg; }
+  } 
+
+  :root{
+    --font-color: white;
+    --font-families: 'Fraunces', 'Fraunces italic', '23.59', 'Emotional Type', 'Oceanus', 'Mimoid';
+    --input-textarea-font-family: var(--font-families);
+
+    --background-color: #1b1920;
+    
+    --footer-background-color: #3b252e;
+    --speech-bubble-color: #fbbe49;
+    --speech-bubble-font-color: #253324;
+  
+    --persian-indigo: rgba(01, 0, 05, 0.95);
+  
+    --bento-animation-delay: 10s;
+    --bento-div-background-color: var(--persian-indigo);
+
+    --bento-gradient-color-1: var(--english-violet);
+    --bento-gradient-color-2: var(--dim-gray);
+    --bento-gradient-color-3: var(--sage);
+    --bento-gradient-color-4: var(--light-green);
+    --bento-gradient-color-5: var(--sunset);
+
+    --licorice: #1a090dff;
+    --english-violet: #4a314dff;
+    --dim-gray: #6b6570ff;
+    --sage: #a8ba9aff;
+    --light-green: #ace894ff;
+      
+    --eggshell: #f4f1deff;
+    --burnt-sienna: #e07a5fff;
+    --delft-blue: #3d405bff;
+    --cambridge-blue: #81b29aff;
+    --sunset: #f2cc8fff;
+
+    --rose: #f72585ff;
+    --grape: #7209b7ff;
+    --zaffre: #3a0ca3ff;
+    --neon-blue: #4361eeff;
+    --vivid-sky-blue: #4cc9f0ff;
+
+    --bright-pink-crayola: #ef476fff;
+    --sunglow: #ffd166ff;
+    --emerald: #06d6a0ff;
+    --blue-ncs: #118ab2ff;
+    --midnight-green: #073b4cff;
+
+    --russian-violet: #3c1642ff;
+    --caribbean-current: #086375ff;
+    --turquoise: #1dd3b0ff;
+    --green-yellow: #affc41ff;
+    --light-green: #b2ff9eff;
+
+    --celadon: #b9e3c6ff;
+    --mint: #59c9a5ff;
+    --raspberry: #d81e5bff;
+    --delft-blue: #23395bff;
+    --mindaro: #fffd98ff;
+  }
+}

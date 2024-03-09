@@ -1,0 +1,130 @@
+{
+  "pageTitle": "Aurelio Ochoa",
+  "heroSection": {
+    "title": "Aurelio Ochoa",
+    "subtitle": "Full-Stack Entwickler"
+  },
+  "socialMediaSection": {
+    "title": "Soziale Medien & Lebenslauf"
+  },
+  "experienceSection": {
+    "title": "Erfahrung",
+    "experiences": [
+      {
+        "title": "Sommerpraktikum",
+        "subtitle": "JustClick Media · Teilzeit",
+        "dateRange": "Feb. 2020 - Mär. 2020",
+        "duration": "2 Monate",
+        "description": "Grundlegende Konzepte von HTML, CSS und JavaScript durch den Bau realer Projekte erlernt. Als Teammitglied in einer kooperativen und schnelllebigen Umgebung gearbeitet."
+      },
+      {
+        "title": "Softwareentwickler",
+        "subtitle": "JustClick Media · Vollzeit",
+        "dateRange": "Mai 2021 - Mai 2022",
+        "duration": "1 Jahr 1 Monat",
+        "description": "Als Teil des Qualitätskontrollteams gearbeitet. Eine der Hauptplattformen des Unternehmens getestet und debuggt. Verschiedene Funktionen und Designs für die Hauptplattform des Unternehmens unter Verwendung von Angular.js erstellt und gewartet."
+      },
+      {
+        "title": "Front-End Entwickler Praktikum",
+        "subtitle": "Universidad de Europea del Atlantico · Teilzeit",
+        "dateRange": "Sept. 2022 - Sept. 2023",
+        "duration": "1 Jahr 1 Monat",
+        "description": "Veröffentlichung, Bearbeitung und Inhaltsverwaltung. Wartung und Implementierung neuer Funktionen in benutzerdefinierten WordPress-Themen. Automatisierung verschiedener Prozesse mit Google AppScript. Entwicklung von Webanwendungen mit React.js."
+      },
+      {
+        "title": "Systemadministration Praktikum",
+        "subtitle": "Universidad de Europea del Atlantico · Teilzeit",
+        "dateRange": "Sept. 2023 - Feb. 2024",
+        "duration": "6 Monate",
+        "description": "Erfahrung in der Vor-Ort-Serververwaltung mit Linux, einschließlich Infrastrukturwartung und Bereitstellung mit Jenkins. Umfangreiche Erfahrung in der Erstellung von Cloud-Infrastrukturen auf der Google Cloud Platform."
+      }
+    ]
+  },
+  "technologiesSection": {
+    "title": "Technologien, die ich verwende",
+    "technologies": [
+      {
+        "title": "HTML",
+        "description": "Als Webentwickler ist HTML fundamental. Es bietet die Struktur und das Rückgrat jeder Webseite und ermöglicht es mir, einfach semantischen und barrierefreien Inhalt zu erstellen."
+      },
+      {
+        "title": "CSS",
+        "description": "CSS ermöglicht es mir, HTML-Elemente zu gestalten und Webseiten Leben und Ästhetik zu verleihen. Mit CSS3-Funktionen kann ich moderne und reaktionsschnelle Designs effizient erstellen."
+      },
+      {
+        "title": "JavaScript",
+        "description": "JavaScript ermöglicht die Interaktivität im Web. Mit seiner Vielseitigkeit und dem breiten Ökosystem nutze ich es, um dynamische Benutzeroberflächen zu erstellen und Funktionalitäten zu Webanwendungen hinzuzufügen."
+      },
+      {
+        "title": "React",
+        "description": "React ist meine bevorzugte Bibliothek zur Erstellung von Benutzeroberflächen. Seine komponentenbasierte Architektur und virtuelle DOM machen die Entwicklung reibungslos und effizient, was es mir ermöglicht, skalierbare und wiederverwendbare UI-Komponenten zu erstellen."
+      },
+      {
+        "title": "Angular",
+        "description": "Angular bietet ein umfassendes Framework zur Erstellung robuster Webanwendungen. Mit seinen leistungsstarken Funktionen wie bidirektem Datenbindung und Abhängigkeitsinjektion kann ich komplexe und skalierbare Projekte mit Leichtigkeit erstellen."
+      },
+      {
+        "title": "Vue",
+        "description": "Vue.js ist ein fortschrittliches JavaScript-Framework, mit dem ich interaktive Benutzeroberflächen einfach erstellen kann. Seine Einfachheit und Flexibilität machen es zu einer großartigen Wahl für die Entwicklung moderner Webanwendungen."
+      },
+      {
+        "title": "Sass",
+        "description": "Sass verbessert meinen CSS-Workflow mit Funktionen wie Variablen, Verschachtelung und Mixins. Es hilft mir, sauberere und wartungsfähigere Stylesheets zu schreiben und Zeit und Aufwand in Projekten im großen Maßstab zu sparen."
+      },
+      {
+        "title": "Bootstrap",
+        "description": "Bootstrap ist ein leistungsstarkes Frontend-Framework, das die Entwicklung mit seinen vordefinierten Komponenten und dem responsiven Rastersystem beschleunigt. Es ermöglicht mir, schnell elegante und mobilfreundliche Websites zu erstellen."
+      },
+      {
+        "title": "NodeJs",
+        "description": "Node.js ermöglicht es mir, skalierbare und leistungsstarke serverseitige Anwendungen mit JavaScript zu erstellen. Seine nicht blockierende E/A und ereignisgesteuerte Architektur machen es ideal für die Erstellung von Echtzeit-Webanwendungen und APIs."
+      },
+      {
+        "title": "MySQL & MongoDB",
+        "description": "MySQL und MongoDB sind beide wesentliche Datenbanken in meinem Werkzeugkasten. MySQL bietet relationale Datenbankfunktionen, während MongoDB mit seinem dokumentenorientierten NoSQL-Ansatz Flexibilität bietet. Ich verwende sie je nach Projektanforderungen."
+      },
+      {
+        "title": "Laravel",
+        "description": "Laravel ist ein leistungsstarkes PHP-Framework, das die Webentwicklung mit seiner eleganten Syntax und ausdrucksstarken Funktionen vereinfacht. Es optimiert gemeinsame Aufgaben wie Authentifizierung, Routenbildung und Zwischenspeicherung und ermöglicht es mir, großartige Anwendungen zu entwickeln."
+      },
+      {
+        "title": "Wordpress",
+        "description": "WordPress ist ein vielseitiges Content-Management-System, das es mir ermöglicht, von einfachen Blogs bis hin zu komplexen E-Commerce-Websites alles zu erstellen. Sein umfangreiches Plugin-Ökosystem und die benutzerfreundliche Oberfläche machen es zu einer beliebten Wahl für die Webentwicklung."
+      },
+      {
+        "title": "Linux Systemadministration",
+        "description": "Linux-Systemadministrationsfähigkeiten sind entscheidend für die Bereitstellung und Verwaltung von Webanwendungen. Mit Fachkenntnissen in Linux kann ich Server konfigurieren, Probleme beheben und einen reibungslosen Betrieb der Webservices gewährleisten."
+      },
+      {
+        "title": "Git",
+        "description": "Git ist ein unverzichtbares Werkzeug für die Versionskontrolle in meinem Workflow. Es ermöglicht mir, Änderungen nachzuverfolgen, mit Teammitgliedern zusammenzuarbeiten und mühelos auf frühere Zustände zurückzukehren, um die Integrität und Stabilität meiner Codebasis zu gewährleisten."
+      },
+      {
+        "title": "Jenkins",
+        "description": "Jenkins ist ein leistungsstarker Automatisierungsserver, der den kontinuierlichen Integrations- und Bereitstellungsprozess rationalisiert. Mit Jenkins kann ich Build-, Test- und Bereitstellungsaufgaben automatisieren und so die Qualität und Zuverlässigkeit meiner Softwareprojekte sicherstellen."
+      },
+      {
+        "title": "Docker",
+        "description": "Docker revolutioniert meinen Entwicklung-Workflow, indem es Anwendungen und Abhängigkeiten containerisiert. Es sorgt für Konsistenz in verschiedenen Umgebungen und vereinfacht die Bereitstellung, wodurch es einfacher wird, Software zu erstellen und zu versenden."
+      },
+      {
+        "title": "Java",
+        "description": "Java ist eine vielseitige Programmiersprache, die ich für die Entwicklung von Unternehmenswebanwendungen verwende. Ihre starke Typisierung, ihr robustes Ökosystem und ihre plattformübergreifende Unabhängigkeit machen sie zu einer zuverlässigen Wahl für die Entwicklung skalierbarer und sicherer Softwarelösungen."
+      },
+      {
+        "title": "PHP",
+        "description": "PHP ist eine serverseitige Skriptsprache, die einen großen Teil des Webs antreibt. Mit PHP kann ich dynamische und interaktive Webanwendungen erstellen und dabei auf ihren reichen Satz von Bibliotheken und Frameworks wie Laravel und Symfony zurückgreifen."
+      },
+      {
+        "title": "Python",
+        "description": "Python ist meine bevorzugte Sprache für die Webentwicklung aufgrund ihrer Einfachheit und Lesbarkeit. Sie eignet sich hervorragend für die Erstellung skalierbarer Webanwendungen, die Verarbeitung von Datenverarbeitungsaufgaben und die Bereitstellung von Backend-Services mit Frameworks wie Django und Flask."
+      }
+    ]
+  },
+  "contactSection": {
+    "title": "Lass uns zusammenarbeiten!"
+  },
+  "footerSection": {
+    "website": "Besuche meine Website"
+  }
+}
