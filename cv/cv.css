@@ -69,8 +69,8 @@ aside h3 { font-size: 9.5pt; font-weight: 650; margin-top: 2mm; }
 
 ul.contact, ul.languages { list-style: none; }
 ul.contact li { margin-bottom: 1mm; overflow-wrap: anywhere; }
-ul.languages li { display: flex; justify-content: space-between; margin-bottom: 1mm; }
-.level { color: var(--muted); }
+ul.languages li { display: flex; justify-content: space-between; gap: 3mm; margin-bottom: 1mm; }
+.level { color: var(--muted); text-align: right; }
 
 article { margin-bottom: 2.5mm; }
 .role-line { display: flex; justify-content: space-between; align-items: baseline; }
