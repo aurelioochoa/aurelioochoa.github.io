@@ -82,12 +82,32 @@ cv/
 `node build.js` writes the three PDFs into `assets/pdf/`, overwriting the old
 ones. `cv/node_modules` is gitignored.
 
-## Website integration
+## Website integration: language switcher
 
-`index.html:31` hard-links `Resume Ochoa.pdf`. Change: add the CV filename (or
-path) to each language JSON in `assets/lenguages/`, and have `script.js` update
-the PDF icon's `href` when the language switches, so each visitor gets the CV
-in the site's current language.
+Investigation found the JSONs in `assets/lenguages/` are not wired into the
+site at all — there is no language switcher. User chose to build one as part
+of this project:
+
+- Rename `assets/lenguages/` → `assets/languages/` and the files to
+  `en.json`, `es.json`, `de.json` (nothing references them yet; also fixes the
+  "enligsh" typo).
+- On load: use `localStorage.lang` if valid, else the browser language
+  (`navigator.language` prefix-matched against en/es/de), else `en`.
+- A new `i18n.js` module fetches the JSON and applies it to the DOM **before**
+  the timeline/modal init in `script.js`: page title, `<html lang>`, hero,
+  section titles, timeline experience templates (rebuilt from JSON),
+  technology descriptions, contact form placeholders, footer, and the CV
+  link's `href` (new `socialMediaSection.cvFile` key per language).
+- A fixed EN·ES·DE toggle (top-right); clicking stores the choice in
+  `localStorage` and reloads the page.
+- The language JSONs gain the two new experience entries (Fumigasa, Mediacor
+  Plus) and new keys: `socialMediaSection.cvFile`,
+  `contactSection.form{name,email,message,send}`.
+- The malformed anchor nesting in `index.html` (globe link never closed,
+  CV link nested inside) gets fixed while touching that markup.
+- Testing: a Puppeteer script against a local static server asserts
+  auto-detection, toggle switching, persistence, and the language-aware CV
+  link.
 
 ## Error handling / testing
 
