@@ -5,7 +5,8 @@
     "subtitle": "Desarrollador Full-Stack"
   },
   "socialMediaSection": {
-    "title": "Redes Sociales y CV"
+    "title": "Redes Sociales y CV",
+    "cvFile": "Curriculum Ochoa.pdf"
   },
   "experienceSection": {
     "title": "Experiencia",
@@ -37,6 +38,20 @@
         "dateRange": "Sept. 2023 - Feb. 2024",
         "duration": "6 meses",
         "description": "Experiencia en gestión de servidores en el sitio con Linux, incluido mantenimiento e implementación de infraestructura utilizando Jenkins. Amplia experiencia en la creación de infraestructura en la nube en Google Cloud Platform."
+      },
+      {
+        "title": "Piloto de Dron Agrícola",
+        "subtitle": "Fumigasa · Tiempo completo",
+        "dateRange": "May 2024 - Actualidad",
+        "duration": "2+ años",
+        "description": "Misiones de fumigación agrícola de precisión pilotando drones DJI Agras T50 y actualmente DJI Agras T100. Planificación de vuelos, ejecución de misiones y mantenimiento y calibración de equipos."
+      },
+      {
+        "title": "Desarrollador Web y de Automatizaciones Freelance",
+        "subtitle": "Mediacor Plus · Por comisión",
+        "dateRange": "2025",
+        "duration": "",
+        "description": "Construí el sitio web de la empresa (mediacorplus.com) y desarrollé automatizaciones de servidor de correo que envían actualizaciones por suscripción de sus servicios de monitoreo de medios."
       }
     ]
   },
@@ -122,7 +137,8 @@
     ]
   },
   "contactSection": {
-    "title": "¡Trabajemos juntos!"
+    "title": "¡Trabajemos juntos!",
+    "form": { "name": "Nombre", "email": "Correo electrónico", "message": "Mensaje", "send": "Enviar" }
   },
   "footerSection": {
     "website": "Visita mi sitio web"

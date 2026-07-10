@@ -5,7 +5,8 @@
     "subtitle": "Full-Stack Entwickler"
   },
   "socialMediaSection": {
-    "title": "Soziale Medien & Lebenslauf"
+    "title": "Soziale Medien & Lebenslauf",
+    "cvFile": "Lebenslauf Ochoa.pdf"
   },
   "experienceSection": {
     "title": "Erfahrung",
@@ -37,6 +38,20 @@
         "dateRange": "Sept. 2023 - Feb. 2024",
         "duration": "6 Monate",
         "description": "Erfahrung in der Vor-Ort-Serververwaltung mit Linux, einschließlich Infrastrukturwartung und Bereitstellung mit Jenkins. Umfangreiche Erfahrung in der Erstellung von Cloud-Infrastrukturen auf der Google Cloud Platform."
+      },
+      {
+        "title": "Agrardrohnen-Pilot",
+        "subtitle": "Fumigasa · Vollzeit",
+        "dateRange": "Mai 2024 - heute",
+        "duration": "über 2 Jahre",
+        "description": "Präzise landwirtschaftliche Sprühflüge mit DJI Agras T50 und aktuell DJI Agras T100. Flugplanung, Missionsdurchführung sowie Wartung und Kalibrierung der Geräte."
+      },
+      {
+        "title": "Freiberuflicher Web- & Automatisierungsentwickler",
+        "subtitle": "Mediacor Plus · Auftragsarbeit",
+        "dateRange": "2025",
+        "duration": "",
+        "description": "Entwicklung der Unternehmenswebsite (mediacorplus.com) sowie Mailserver-Automatisierungen für abonnementbasierte Updates der Medienbeobachtungsdienste."
       }
     ]
   },
@@ -122,7 +137,8 @@
     ]
   },
   "contactSection": {
-    "title": "Lass uns zusammenarbeiten!"
+    "title": "Lass uns zusammenarbeiten!",
+    "form": { "name": "Name", "email": "E-Mail", "message": "Nachricht", "send": "Senden" }
   },
   "footerSection": {
     "website": "Besuche meine Website"
