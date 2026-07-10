@@ -54,6 +54,23 @@ try {
     'six experience entries'
   );
 
+  // 4. German fits on a phone: the long contact title must wrap, not
+  //    spill out of its card and force horizontal page overflow
+  const phone = await browser.newPage();
+  await phone.evaluateOnNewDocument(() => localStorage.setItem('lang', 'de'));
+  await phone.setViewport({ width: 400, height: 1200 });
+  await phone.goto(base, { waitUntil: 'networkidle0' });
+  const overflow = await phone.evaluate(() => ({
+    page: document.body.scrollWidth - document.documentElement.clientWidth,
+    title: (() => {
+      const h1 = document.querySelector('.contact h1');
+      return h1.scrollWidth - h1.clientWidth;
+    })(),
+  }));
+  assert.ok(overflow.title <= 1, `contact title overflows its card by ${overflow.title}px in German at 400px`);
+  assert.ok(overflow.page <= 1, `page overflows horizontally by ${overflow.page}px in German at 400px`);
+  await phone.close();
+
   console.log('site i18n e2e: all assertions passed');
 } finally {
   await browser.close();
