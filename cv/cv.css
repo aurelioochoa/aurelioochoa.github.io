@@ -25,7 +25,7 @@ body {
   min-height: 297mm;
   display: flex;
   flex-direction: column;
-  font: 9.5pt/1.45 "Inter", sans-serif;
+  font: 9pt/1.4 "Inter", sans-serif;
   color: var(--ink);
   -webkit-print-color-adjust: exact;
 }
@@ -49,7 +49,7 @@ h1 {
 aside { background: var(--rail-bg); padding: 4mm 6mm 8mm 12mm; }
 main { padding: 4mm 12mm 8mm 7mm; }
 
-section { margin-bottom: 4.5mm; }
+section { margin-bottom: 3.5mm; }
 
 h2 {
   font-family: "Fraunces", serif;
@@ -72,7 +72,7 @@ ul.contact li { margin-bottom: 1mm; overflow-wrap: anywhere; }
 ul.languages li { display: flex; justify-content: space-between; margin-bottom: 1mm; }
 .level { color: var(--muted); }
 
-article { margin-bottom: 3.5mm; }
+article { margin-bottom: 2.5mm; }
 .role-line { display: flex; justify-content: space-between; align-items: baseline; }
 .role-line h3 { font-size: 10.5pt; font-weight: 650; }
 .dates { color: var(--muted); font-size: 8.5pt; white-space: nowrap; margin-left: 4mm; }
