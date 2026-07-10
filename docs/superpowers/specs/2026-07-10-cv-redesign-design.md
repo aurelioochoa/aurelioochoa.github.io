@@ -1,7 +1,7 @@
 # CV / Resume Redesign — Design Spec
 
 **Date:** 2026-07-10
-**Status:** Approved pending open questions below
+**Status:** Approved
 
 ## Goal
 
@@ -30,13 +30,13 @@ development and UAS (drone) operations.
   Date of birth is dropped on EN and ES; kept on DE (local convention).
 - **Profile:** 2–3 line summary of the hybrid profile.
 - **Experience** (newest first):
-  1. **Agricultural Drone Pilot — Fumigasa**, Ecuador · 2024 – Present.
+  1. **Agricultural Drone Pilot — Fumigasa**, Ecuador · May 2024 – Present.
      Precision agricultural spraying operations piloting DJI Agras T50 and
      currently DJI Agras T100; flight planning and mission execution;
      equipment maintenance and calibration.
   2. **Freelance Web Developer & Automation Engineer — Mediacor Plus**
-     (mediacorplus.com) · during 2024–2026, alongside Fumigasa. Built the
-     company website; built mail-server automations delivering
+     (mediacorplus.com) · 2025, commissioned work alongside Fumigasa. Built
+     the company website; built mail-server automations delivering
      subscription-based updates from their media monitoring services.
   3. **Systems Administrator Intern — European University of the Atlantic**,
      Santander, Spain · Sep 2023 – Feb 2024 (bullets kept from old CV).
@@ -46,7 +46,7 @@ development and UAS (drone) operations.
      May 2021 – May 2022 (kept).
   6. **High School Professional Internship — Just Click Media** ·
      Feb 2020 – Mar 2020 (kept, compressed).
-- **Certifications:** Certified UAS Pilot — Ecuador.
+- **Certifications:** Certified UAS Pilot — DGAC Ecuador, 2025.
 - **Education:** High School Diploma — German Humboldt School of Guayaquil.
 - **Skills**, grouped: Web (HTML, CSS, Sass, JavaScript, React, Vue, Angular,
   Node.js, Express, Laravel, PHP, Bootstrap, WordPress) · Systems & DevOps
@@ -97,13 +97,13 @@ in the site's current language.
 - Text check: extract text from each generated PDF to confirm real text layer.
 - Site check: switch languages locally and confirm the PDF link follows.
 
-## Open questions (to confirm before/at implementation)
+## Resolved details
 
-1. Exact Fumigasa start month (currently "2024 – Present").
-2. Exact Mediacor Plus engagement dates.
-3. UAS licence year and issuing authority (DGAC Ecuador?).
-4. A photo file for the ES/DE versions (none currently in the repo besides the
-   one embedded in the old PDF).
+1. Fumigasa: May 2024 – Present.
+2. Mediacor Plus: 2025, commissioned work.
+3. UAS licence: DGAC Ecuador, 2025.
+4. Photo for ES/DE: extract the photo embedded in the old
+   `Curriculum Ochoa.pdf` and save it as `cv/photo.jpg`.
 
 ## Out of scope
 
