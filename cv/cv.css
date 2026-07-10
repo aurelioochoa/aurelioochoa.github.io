@@ -1,0 +1,82 @@
+@font-face {
+  font-family: "Fraunces";
+  src: url("../assets/fonts/FrauncesSOFT,WONK,opsz,wght.ttf") format("truetype-variations");
+  font-weight: 100 1000;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2") format("woff2-variations");
+  font-weight: 100 900;
+}
+
+:root {
+  --accent: #0f6d6a;
+  --ink: #1c1c1c;
+  --muted: #5a5a5a;
+  --rail-bg: #f0f6f5;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+@page { size: A4; margin: 0; }
+
+body {
+  width: 210mm;
+  min-height: 297mm;
+  display: flex;
+  flex-direction: column;
+  font: 9.5pt/1.45 "Inter", sans-serif;
+  color: var(--ink);
+  -webkit-print-color-adjust: exact;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9mm 12mm 5mm;
+}
+h1 {
+  font-family: "Fraunces", serif;
+  font-size: 24pt;
+  font-weight: 560;
+}
+.tagline { color: var(--accent); font-size: 11pt; margin-top: 1mm; }
+.photo { width: 25mm; height: 25mm; object-fit: cover; border-radius: 3mm; }
+
+.columns { display: grid; grid-template-columns: 60mm 1fr; flex: 1; }
+
+aside { background: var(--rail-bg); padding: 4mm 6mm 8mm 12mm; }
+main { padding: 4mm 12mm 8mm 7mm; }
+
+section { margin-bottom: 4.5mm; }
+
+h2 {
+  font-family: "Fraunces", serif;
+  font-size: 10.5pt;
+  font-weight: 620;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  border-bottom: 0.4mm solid var(--accent);
+  padding-bottom: 0.8mm;
+  margin-bottom: 2.5mm;
+}
+
+aside h3 { font-size: 9.5pt; font-weight: 650; margin-top: 2mm; }
+.skill-items { color: var(--muted); }
+.cert { margin-bottom: 2mm; }
+
+ul.contact, ul.languages { list-style: none; }
+ul.contact li { margin-bottom: 1mm; overflow-wrap: anywhere; }
+ul.languages li { display: flex; justify-content: space-between; margin-bottom: 1mm; }
+.level { color: var(--muted); }
+
+article { margin-bottom: 3.5mm; }
+.role-line { display: flex; justify-content: space-between; align-items: baseline; }
+.role-line h3 { font-size: 10.5pt; font-weight: 650; }
+.dates { color: var(--muted); font-size: 8.5pt; white-space: nowrap; margin-left: 4mm; }
+.company { color: var(--accent); font-size: 9pt; margin-bottom: 1mm; }
+article ul { list-style: disc outside; padding-left: 4.5mm; }
+article li { margin-bottom: 0.6mm; }
+.edu { margin-bottom: 2mm; }

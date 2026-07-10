@@ -1,0 +1,112 @@
+{
+  "meta": {
+    "outputFile": "Resume Ochoa.pdf",
+    "lang": "en",
+    "photo": false,
+    "dob": false
+  },
+  "name": "Aurelio Ochoa Gomez",
+  "title": "Software Developer & Certified UAS Pilot",
+  "contact": {
+    "location": "Guayaquil, Ecuador",
+    "email": "aurelioochoagomez@hotmail.com",
+    "phone": "+593 978 674 056",
+    "linkedin": "aurelioochoa",
+    "website": "aurelioochoa.github.io"
+  },
+  "labels": {
+    "contact": "Contact",
+    "profile": "Profile",
+    "experience": "Experience",
+    "education": "Education",
+    "certifications": "Certifications",
+    "skills": "Skills",
+    "languages": "Languages",
+    "dob": "Date of birth"
+  },
+  "profile": "Versatile technology professional combining full-stack web development with certified UAS operations. Three years of experience across front-end development, systems administration, and cloud infrastructure — now flying precision-agriculture drone missions while delivering freelance web and automation projects.",
+  "experience": [
+    {
+      "role": "Agricultural Drone Pilot",
+      "company": "Fumigasa",
+      "location": "Ecuador",
+      "dates": "May 2024 – Present",
+      "bullets": [
+        "Fly precision agricultural spraying missions with DJI Agras T50 and, currently, DJI Agras T100 drones.",
+        "Plan and execute flight missions, including field mapping and route planning.",
+        "Maintain and calibrate UAS and spraying equipment."
+      ]
+    },
+    {
+      "role": "Freelance Web Developer & Automation Engineer",
+      "company": "Mediacor Plus",
+      "location": "Remote",
+      "dates": "2025",
+      "bullets": [
+        "Designed and built the company website, mediacorplus.com.",
+        "Developed mail-server automations delivering subscription-based updates from the company's media monitoring services."
+      ]
+    },
+    {
+      "role": "Systems Administrator Intern",
+      "company": "European University of the Atlantic",
+      "location": "Santander, Spain",
+      "dates": "Sep 2023 – Feb 2024",
+      "bullets": [
+        "Managed on-site Linux servers and databases.",
+        "Maintained infrastructure and implemented automated testing and deployment with Jenkins.",
+        "Built cloud infrastructure and automated deployments on Google Cloud Platform.",
+        "Containerized developer projects with Docker."
+      ]
+    },
+    {
+      "role": "Front-end Web Development Intern",
+      "company": "European University of the Atlantic",
+      "location": "Santander, Spain",
+      "dates": "Sep 2022 – Sep 2023",
+      "bullets": [
+        "Published, edited, and managed content for all university partners.",
+        "Maintained and extended custom WordPress themes in PHP.",
+        "Automated processes with Google AppScript and Gmail integration."
+      ]
+    },
+    {
+      "role": "Front-end Software Developer",
+      "company": "Just Click Media",
+      "location": "Guayaquil, Ecuador",
+      "dates": "May 2021 – May 2022",
+      "bullets": [
+        "Tested and debugged one of the company's main custom platforms as part of the QC team.",
+        "Implemented designs and features for multiple web stores using WordPress and Elementor.",
+        "Created and maintained features for the company's e-commerce platform, Publifyer."
+      ]
+    },
+    {
+      "role": "High School Professional Intern",
+      "company": "Just Click Media",
+      "location": "Guayaquil, Ecuador",
+      "dates": "Feb 2020 – Mar 2020",
+      "bullets": [
+        "Learned HTML, CSS, and JavaScript fundamentals by building real projects in a collaborative team."
+      ]
+    }
+  ],
+  "certifications": [
+    { "name": "Certified UAS Pilot", "issuer": "DGAC Ecuador", "year": "2025" }
+  ],
+  "education": [
+    { "degree": "High School Diploma", "school": "German Humboldt School of Guayaquil, Ecuador" }
+  ],
+  "skills": [
+    { "group": "Web", "items": "HTML, CSS, Sass, JavaScript, React, Vue, Angular, Node.js, Express, Laravel, PHP, Bootstrap, WordPress" },
+    { "group": "Systems & DevOps", "items": "Linux administration, Docker, Jenkins, Google Cloud Platform" },
+    { "group": "Databases", "items": "MySQL, MongoDB" },
+    { "group": "UAS", "items": "DJI Agras T50/T100, flight planning, precision spraying" },
+    { "group": "Other", "items": "Python, Java, Lua, Google AppScript" }
+  ],
+  "languages": [
+    { "name": "Spanish", "level": "Native" },
+    { "name": "English", "level": "Native-level fluency" },
+    { "name": "German", "level": "B2" }
+  ]
+}

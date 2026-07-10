@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="{{meta.lang}}">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="cv.css">
+  <title>{{name}}</title>
+</head>
+<body>
+  <header>
+    <div class="header-text">
+      <h1>{{name}}</h1>
+      <p class="tagline">{{title}}</p>
+    </div>
+    {{#if meta.photo}}<img class="photo" src="photo.jpg" alt="">{{/if}}
+  </header>
+  <div class="columns">
+    <aside>
+      <section>
+        <h2>{{labels.contact}}</h2>
+        <ul class="contact">
+          <li>{{contact.location}}</li>
+          <li>{{contact.email}}</li>
+          <li>{{contact.phone}}</li>
+          <li>linkedin.com/in/{{contact.linkedin}}</li>
+          <li>{{contact.website}}</li>
+          {{#if meta.dob}}<li>{{labels.dob}}: {{meta.dob}}</li>{{/if}}
+        </ul>
+      </section>
+      <section>
+        <h2>{{labels.skills}}</h2>
+        {{#each skills}}
+        <h3>{{this.group}}</h3>
+        <p class="skill-items">{{this.items}}</p>
+        {{/each}}
+      </section>
+      <section>
+        <h2>{{labels.certifications}}</h2>
+        {{#each certifications}}
+        <p class="cert"><strong>{{this.name}}</strong><br>{{this.issuer}} · {{this.year}}</p>
+        {{/each}}
+      </section>
+      <section>
+        <h2>{{labels.languages}}</h2>
+        <ul class="languages">
+          {{#each languages}}<li><span>{{this.name}}</span><span class="level">{{this.level}}</span></li>{{/each}}
+        </ul>
+      </section>
+    </aside>
+    <main>
+      <section>
+        <h2>{{labels.profile}}</h2>
+        <p>{{profile}}</p>
+      </section>
+      <section>
+        <h2>{{labels.experience}}</h2>
+        {{#each experience}}
+        <article>
+          <div class="role-line">
+            <h3>{{this.role}}</h3>
+            <span class="dates">{{this.dates}}</span>
+          </div>
+          <p class="company">{{this.company}} · {{this.location}}</p>
+          <ul>
+            {{#each this.bullets}}<li>{{this}}</li>{{/each}}
+          </ul>
+        </article>
+        {{/each}}
+      </section>
+      <section>
+        <h2>{{labels.education}}</h2>
+        {{#each education}}
+        <p class="edu"><strong>{{this.degree}}</strong><br>{{this.school}}</p>
+        {{/each}}
+      </section>
+    </main>
+  </div>
+</body>
+</html>
