@@ -1,0 +1,112 @@
+{
+  "meta": {
+    "outputFile": "Lebenslauf Ochoa.pdf",
+    "lang": "de",
+    "photo": true,
+    "dob": "14.05.2002"
+  },
+  "name": "Aurelio Ochoa Gomez",
+  "title": "Softwareentwickler & zertifizierter UAS-Pilot",
+  "contact": {
+    "location": "Guayaquil, Ecuador",
+    "email": "aurelioochoagomez@hotmail.com",
+    "phone": "+593 978 674 056",
+    "linkedin": "aurelioochoa",
+    "website": "aurelioochoa.github.io"
+  },
+  "labels": {
+    "contact": "Kontakt",
+    "profile": "Profil",
+    "experience": "Berufserfahrung",
+    "education": "Ausbildung",
+    "certifications": "Zertifikate",
+    "skills": "Kenntnisse",
+    "languages": "Sprachen",
+    "dob": "Geburtsdatum"
+  },
+  "profile": "Vielseitiger Technologie-Profi, der Full-Stack-Webentwicklung mit zertifiziertem Drohnenbetrieb (UAS) verbindet. Drei Jahre Erfahrung in Frontend-Entwicklung, Systemadministration und Cloud-Infrastruktur; derzeit Präzisionslandwirtschafts-Flugeinsätze sowie freiberufliche Web- und Automatisierungsprojekte.",
+  "experience": [
+    {
+      "role": "Agrardrohnen-Pilot",
+      "company": "Fumigasa",
+      "location": "Ecuador",
+      "dates": "Mai 2024 – heute",
+      "bullets": [
+        "Präzise landwirtschaftliche Sprühflüge mit DJI Agras T50 und aktuell DJI Agras T100.",
+        "Flugplanung und Missionsdurchführung, einschließlich Feldkartierung und Routenplanung.",
+        "Wartung und Kalibrierung der UAS und der Sprühausrüstung."
+      ]
+    },
+    {
+      "role": "Freiberuflicher Web- & Automatisierungsentwickler",
+      "company": "Mediacor Plus",
+      "location": "Remote",
+      "dates": "2025",
+      "bullets": [
+        "Konzeption und Entwicklung der Unternehmenswebsite mediacorplus.com.",
+        "Entwicklung von Mailserver-Automatisierungen für abonnementbasierte Updates der Medienbeobachtungsdienste."
+      ]
+    },
+    {
+      "role": "Praktikant Systemadministration",
+      "company": "Universidad Europea del Atlántico",
+      "location": "Santander, Spanien",
+      "dates": "Sep 2023 – Feb 2024",
+      "bullets": [
+        "Verwaltung von Linux-Servern und Datenbanken vor Ort.",
+        "Wartung der Infrastruktur sowie automatisierte Tests und Deployments mit Jenkins.",
+        "Aufbau von Cloud-Infrastruktur und automatisierten Deployments auf der Google Cloud Platform.",
+        "Containerisierung der Entwicklerprojekte mit Docker."
+      ]
+    },
+    {
+      "role": "Praktikant Frontend-Webentwicklung",
+      "company": "Universidad Europea del Atlántico",
+      "location": "Santander, Spanien",
+      "dates": "Sep 2022 – Sep 2023",
+      "bullets": [
+        "Veröffentlichung, Bearbeitung und Verwaltung von Inhalten für alle Universitätspartner.",
+        "Wartung und Erweiterung individueller WordPress-Themes in PHP.",
+        "Prozessautomatisierung mit Google AppScript und Gmail-Integration."
+      ]
+    },
+    {
+      "role": "Frontend-Softwareentwickler",
+      "company": "Just Click Media",
+      "location": "Guayaquil, Ecuador",
+      "dates": "Mai 2021 – Mai 2022",
+      "bullets": [
+        "Testen und Debuggen einer der wichtigsten unternehmenseigenen Plattformen im Qualitätssicherungsteam.",
+        "Umsetzung von Designs und Funktionen für mehrere Webshops mit WordPress und Elementor.",
+        "Entwicklung und Pflege von Funktionen für die E-Commerce-Plattform Publifyer."
+      ]
+    },
+    {
+      "role": "Schülerpraktikum",
+      "company": "Just Click Media",
+      "location": "Guayaquil, Ecuador",
+      "dates": "Feb 2020 – Mär 2020",
+      "bullets": [
+        "Grundlagen von HTML, CSS und JavaScript durch reale Projekte im Team erlernt."
+      ]
+    }
+  ],
+  "certifications": [
+    { "name": "Zertifizierter UAS-Pilot", "issuer": "DGAC Ecuador", "year": "2025" }
+  ],
+  "education": [
+    { "degree": "Schulabschluss (Bachillerato)", "school": "Deutsche Schule Humboldt Guayaquil, Ecuador" }
+  ],
+  "skills": [
+    { "group": "Web", "items": "HTML, CSS, Sass, JavaScript, React, Vue, Angular, Node.js, Express, Laravel, PHP, Bootstrap, WordPress" },
+    { "group": "Systeme & DevOps", "items": "Linux-Administration, Docker, Jenkins, Google Cloud Platform" },
+    { "group": "Datenbanken", "items": "MySQL, MongoDB" },
+    { "group": "UAS", "items": "DJI Agras T50/T100, Flugplanung, Präzisionssprühen" },
+    { "group": "Weitere", "items": "Python, Java, Lua, Google AppScript" }
+  ],
+  "languages": [
+    { "name": "Spanisch", "level": "Muttersprache" },
+    { "name": "Englisch", "level": "Verhandlungssicher" },
+    { "name": "Deutsch", "level": "B2" }
+  ]
+}

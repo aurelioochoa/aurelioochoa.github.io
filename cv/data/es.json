@@ -1,0 +1,112 @@
+{
+  "meta": {
+    "outputFile": "Curriculum Ochoa.pdf",
+    "lang": "es",
+    "photo": true,
+    "dob": false
+  },
+  "name": "Aurelio Ochoa Gomez",
+  "title": "Desarrollador de Software y Piloto de UAS Certificado",
+  "contact": {
+    "location": "Guayaquil, Ecuador",
+    "email": "aurelioochoagomez@hotmail.com",
+    "phone": "+593 978 674 056",
+    "linkedin": "aurelioochoa",
+    "website": "aurelioochoa.github.io"
+  },
+  "labels": {
+    "contact": "Contacto",
+    "profile": "Perfil",
+    "experience": "Experiencia",
+    "education": "Formación",
+    "certifications": "Certificaciones",
+    "skills": "Aptitudes",
+    "languages": "Idiomas",
+    "dob": "Fecha de nacimiento"
+  },
+  "profile": "Profesional de tecnología versátil que combina el desarrollo web full-stack con operaciones certificadas de drones (UAS). Tres años de experiencia en desarrollo front-end, administración de sistemas e infraestructura en la nube; actualmente vuelo misiones de agricultura de precisión mientras desarrollo proyectos freelance de web y automatización.",
+  "experience": [
+    {
+      "role": "Piloto de Dron Agrícola",
+      "company": "Fumigasa",
+      "location": "Ecuador",
+      "dates": "May 2024 – Actualidad",
+      "bullets": [
+        "Vuelo misiones de fumigación agrícola de precisión con drones DJI Agras T50 y, actualmente, DJI Agras T100.",
+        "Planifico y ejecuto misiones de vuelo, incluyendo mapeo de campos y planificación de rutas.",
+        "Mantengo y calibro los UAS y el equipo de fumigación."
+      ]
+    },
+    {
+      "role": "Desarrollador Web y de Automatizaciones Freelance",
+      "company": "Mediacor Plus",
+      "location": "Remoto",
+      "dates": "2025",
+      "bullets": [
+        "Diseñé y construí el sitio web de la empresa, mediacorplus.com.",
+        "Desarrollé automatizaciones de servidor de correo que envían actualizaciones por suscripción de sus servicios de monitoreo de medios."
+      ]
+    },
+    {
+      "role": "Becario en Administración de Sistemas",
+      "company": "Universidad Europea del Atlántico",
+      "location": "Santander, España",
+      "dates": "Sep 2023 – Feb 2024",
+      "bullets": [
+        "Gestión de servidores Linux y bases de datos en sitio.",
+        "Mantenimiento de infraestructura e implementación de pruebas y despliegues automatizados con Jenkins.",
+        "Creación de infraestructura en la nube y despliegues automatizados en Google Cloud Platform.",
+        "Contenerización de los proyectos de los desarrolladores con Docker."
+      ]
+    },
+    {
+      "role": "Becario en Desarrollo Web Front-end",
+      "company": "Universidad Europea del Atlántico",
+      "location": "Santander, España",
+      "dates": "Sep 2022 – Sep 2023",
+      "bullets": [
+        "Publicación, edición y gestión de contenido para todos los socios universitarios.",
+        "Mantenimiento y ampliación de temas personalizados de WordPress en PHP.",
+        "Automatización de procesos con Google AppScript e integración con Gmail."
+      ]
+    },
+    {
+      "role": "Desarrollador de Software Front-end",
+      "company": "Just Click Media",
+      "location": "Guayaquil, Ecuador",
+      "dates": "May 2021 – May 2022",
+      "bullets": [
+        "Probé y depuré una de las principales plataformas personalizadas de la empresa como parte del equipo de control de calidad.",
+        "Implementé diseños y funciones para múltiples tiendas web con WordPress y Elementor.",
+        "Creé y mantuve funciones para la plataforma de comercio electrónico de la empresa, Publifyer."
+      ]
+    },
+    {
+      "role": "Prácticas Profesionales de Secundaria",
+      "company": "Just Click Media",
+      "location": "Guayaquil, Ecuador",
+      "dates": "Feb 2020 – Mar 2020",
+      "bullets": [
+        "Aprendí los fundamentos de HTML, CSS y JavaScript construyendo proyectos reales en un equipo colaborativo."
+      ]
+    }
+  ],
+  "certifications": [
+    { "name": "Piloto de UAS Certificado", "issuer": "DGAC Ecuador", "year": "2025" }
+  ],
+  "education": [
+    { "degree": "Bachillerato", "school": "Colegio Alemán Humboldt de Guayaquil, Ecuador" }
+  ],
+  "skills": [
+    { "group": "Web", "items": "HTML, CSS, Sass, JavaScript, React, Vue, Angular, Node.js, Express, Laravel, PHP, Bootstrap, WordPress" },
+    { "group": "Sistemas y DevOps", "items": "Administración de Linux, Docker, Jenkins, Google Cloud Platform" },
+    { "group": "Bases de datos", "items": "MySQL, MongoDB" },
+    { "group": "UAS", "items": "DJI Agras T50/T100, planificación de vuelo, fumigación de precisión" },
+    { "group": "Otros", "items": "Python, Java, Lua, Google AppScript" }
+  ],
+  "languages": [
+    { "name": "Español", "level": "Nativo" },
+    { "name": "Inglés", "level": "Nivel nativo" },
+    { "name": "Alemán", "level": "B2" }
+  ]
+}
