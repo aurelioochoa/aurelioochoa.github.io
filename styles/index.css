@@ -5,3 +5,26 @@
 @import url(styles.css) layer(styles);
 
 @layer fonts, variables, reset, bento, styles;
+
+.lang-toggle {
+  position: fixed;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 10;
+  display: flex;
+  gap: 0.25rem;
+}
+.lang-toggle button {
+  font: inherit;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid currentColor;
+  border-radius: 0.35rem;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  opacity: 0.6;
+}
+.lang-toggle button.active {
+  opacity: 1;
+  font-weight: 700;
+}

@@ -1,3 +1,5 @@
+import { detectLanguage, applyLanguage, buildToggle } from './i18n.js';
+
 // import data from "./assets/technologies.json" assert { type: "json" };
 
 function fade(element) {
@@ -150,6 +152,16 @@ function timeline () {
   nextTimelineItem(timeline, timelineArray, 5000);
 }
 
-getUselessFact();
-iconShelfModal();
-timeline();
+async function main() {
+  const lang = detectLanguage();
+  try {
+    await applyLanguage(lang);
+  } catch (err) {
+    console.error(err); // fall back to the static English markup
+  }
+  buildToggle(lang);
+  getUselessFact();
+  iconShelfModal();
+  timeline();
+}
+main();
