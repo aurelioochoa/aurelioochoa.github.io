@@ -1,0 +1,13 @@
+{
+  "name": "cv-builder",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@fontsource-variable/inter": "^5.2.5",
+    "puppeteer": "^24.0.0"
+  }
+}
