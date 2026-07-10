@@ -14,7 +14,7 @@ function lookup(data, path) {
 }
 
 function escapeHtml(s) {
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
 
 function interpolate(text, data) {
@@ -30,14 +30,27 @@ export function render(template, data) {
     out += interpolate(rest.slice(0, m.index), data);
     const [open, kind, path] = m;
     const bodyStart = m.index + open.length;
-    const tagRe = /{{#(?:each|if) [\w.]+}}|{{\/(?:each|if)}}/g;
+    const tagRe = /{{#(each|if) [\w.]+}}|{{\/(?:each|if)}}/g;
     tagRe.lastIndex = bodyStart;
     let depth = 1;
     let bodyEnd = -1;
     let closeEnd = -1;
     let tag;
+    const stack = [kind];
     while ((tag = tagRe.exec(rest))) {
-      depth += tag[0][2] === '#' ? 1 : -1;
+      if (tag[0][2] === '#') {
+        const openKind = tag[1];
+        stack.push(openKind);
+        depth += 1;
+      } else {
+        const closeKind = tag[0].slice(3, -2);
+        const openKind = stack[stack.length - 1];
+        if (closeKind !== openKind) {
+          throw new Error(`Mismatched closing tag {{/${closeKind}}}`);
+        }
+        stack.pop();
+        depth -= 1;
+      }
       if (depth === 0) {
         bodyEnd = tag.index;
         closeEnd = tagRe.lastIndex;

@@ -24,3 +24,11 @@ test('if blocks include or omit content', () => {
 test('throws on unclosed block', () => {
   assert.throws(() => render('{{#each xs}}<li>', { xs: [] }), /Unclosed/);
 });
+
+test('throws on mismatched closing tags', () => {
+  assert.throws(() => render('{{#each a}}{{#if b}}z{{/each}}{{/if}}', { a: [1], b: true }), /Mismatched/);
+});
+
+test('escapes quotes in HTML attributes', () => {
+  assert.equal(render('{{x}}', { x: '"quoted" & \'single\'' }), '&quot;quoted&quot; &amp; &#39;single&#39;');
+});
