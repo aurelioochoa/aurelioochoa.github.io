@@ -1,6 +1,7 @@
 // Minimal mustache-style renderer for the CV template.
 // Supports {{path.to.key}} (HTML-escaped), {{#each path}}...{{/each}}
-// (current item bound to "this"), and {{#if path}}...{{/if}}.
+// (current item bound to "this"), {{#if path}}...{{/if}} and its inverse
+// {{#unless path}}...{{/unless}}.
 // Any missing key throws, so a data file that drifts from the
 // template fails the build loudly instead of printing blanks.
 
@@ -22,7 +23,7 @@ function interpolate(text, data) {
 }
 
 export function render(template, data) {
-  const openRe = /{{#(each|if) ([\w.]+)}}/;
+  const openRe = /{{#(each|if|unless) ([\w.]+)}}/;
   let out = '';
   let rest = template;
   let m;
@@ -30,7 +31,7 @@ export function render(template, data) {
     out += interpolate(rest.slice(0, m.index), data);
     const [open, kind, path] = m;
     const bodyStart = m.index + open.length;
-    const tagRe = /{{#(each|if) [\w.]+}}|{{\/(?:each|if)}}/g;
+    const tagRe = /{{#(each|if|unless) [\w.]+}}|{{\/(?:each|if|unless)}}/g;
     tagRe.lastIndex = bodyStart;
     let depth = 1;
     let bodyEnd = -1;
@@ -62,7 +63,7 @@ export function render(template, data) {
     const value = lookup(data, path);
     if (kind === 'each') {
       for (const item of value) out += render(body, { ...data, this: item });
-    } else if (value) {
+    } else if (kind === 'unless' ? !value : value) {
       out += render(body, data);
     }
     rest = rest.slice(closeEnd);

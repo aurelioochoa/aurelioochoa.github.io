@@ -3,10 +3,11 @@
     "outputFile": "Lebenslauf Ochoa.pdf",
     "lang": "de",
     "photo": true,
-    "dob": "14.05.2002"
+    "dob": "14.05.2002",
+    "compact": true
   },
   "name": "Aurelio Ochoa Gomez",
-  "title": "Softwareentwickler & zertifizierter UAS-Pilot",
+  "title": "Softwareentwickler",
   "contact": {
     "location": "Guayaquil, Ecuador",
     "email": "aurelioochoagomez@hotmail.com",
@@ -15,36 +16,79 @@
     "website": "aurelioochoa.github.io"
   },
   "labels": {
-    "contact": "Kontakt",
     "profile": "Profil",
+    "skills": "Fachkenntnisse",
     "experience": "Berufserfahrung",
     "education": "Ausbildung",
     "certifications": "Zertifikate",
-    "skills": "Kenntnisse",
     "languages": "Sprachen",
     "dob": "Geburtsdatum"
   },
-  "profile": "Vielseitiger Technologie-Profi, der Full-Stack-Webentwicklung mit zertifiziertem Drohnenbetrieb (UAS) verbindet. Drei Jahre Erfahrung in Frontend-Entwicklung, Systemadministration und Cloud-Infrastruktur; derzeit fliege ich Präzisionseinsätze in der Landwirtschaft und entwickle freiberuflich Web- und Automatisierungsprojekte.",
+  "profile": [
+    {
+      "text": "Entwickler mit ",
+      "strong": false
+    },
+    {
+      "text": "drei Jahren Erfahrung",
+      "strong": true
+    },
+    {
+      "text": " in Frontend, Systemadministration und Cloud-Infrastruktur: Websites und Funktionen im Produktivbetrieb, Verwaltung von Linux-Servern und Datenbanken sowie automatisierte Tests und Deployments mit Jenkins, Docker und Google Cloud Platform. Täglich arbeite ich mit ",
+      "strong": false
+    },
+    {
+      "text": "KI und agentischen Workflows",
+      "strong": true
+    },
+    {
+      "text": " (Claude Code, OpenCode) in Entwicklung und Automatisierung. Derzeit verbinde ich freiberufliche Web- und Automatisierungsprojekte mit zertifiziertem Drohnenbetrieb (UAS) in der Präzisionslandwirtschaft.",
+      "strong": false
+    }
+  ],
+  "skills": [
+    {
+      "group": "Frontend",
+      "items": "HTML, CSS, Sass, JavaScript, React, Vue, Angular, Bootstrap"
+    },
+    {
+      "group": "Backend & Daten",
+      "items": "Node.js, Express, PHP, Laravel, WordPress, MySQL, MongoDB"
+    },
+    {
+      "group": "Systeme & DevOps",
+      "items": "Linux, Docker, Jenkins, Google Cloud Platform, CI/CD"
+    },
+    {
+      "group": "KI & Agenten",
+      "items": "Claude Code, OpenCode, Design agentischer Workflows, KI-gestützte Automatisierung"
+    },
+    {
+      "group": "Weitere",
+      "items": "Python, Java, Lua, Google Apps Script · UAS-Betrieb (DJI Agras T50/T100) · Professionelle Gastronomie"
+    }
+  ],
   "experience": [
+    {
+      "role": "Web- & Automatisierungsentwickler · Freiberuflich",
+      "company": "Mediacor Plus",
+      "location": "Remote",
+      "dates": "2025 – heute",
+      "note": "",
+      "bullets": [
+        "Konzeption und Entwicklung der Unternehmenswebsite mediacorplus.com.",
+        "Entwicklung von Mailserver-Automatisierungen, die abonnementbasierte Updates der Medienbeobachtungsdienste versenden."
+      ]
+    },
     {
       "role": "Agrardrohnen-Pilot",
       "company": "Fumigasa",
       "location": "Ecuador",
       "dates": "Mai 2024 – heute",
+      "note": "",
       "bullets": [
-        "Präzise landwirtschaftliche Sprühflüge mit DJI Agras T50 und aktuell DJI Agras T100.",
-        "Flugplanung und Missionsdurchführung, einschließlich Feldkartierung und Routenplanung.",
+        "Planung und Durchführung von Präzisionssprühflügen mit DJI Agras T50 und T100, einschließlich Feldkartierung und Routenplanung.",
         "Wartung und Kalibrierung der UAS und der Sprühausrüstung."
-      ]
-    },
-    {
-      "role": "Freiberuflicher Web- & Automatisierungsentwickler",
-      "company": "Mediacor Plus",
-      "location": "Remote",
-      "dates": "2025",
-      "bullets": [
-        "Konzeption und Entwicklung der Unternehmenswebsite mediacorplus.com.",
-        "Entwicklung von Mailserver-Automatisierungen für abonnementbasierte Updates der Medienbeobachtungsdienste."
       ]
     },
     {
@@ -52,11 +96,11 @@
       "company": "Universidad Europea del Atlántico",
       "location": "Santander, Spanien",
       "dates": "Sep 2023 – Feb 2024",
+      "note": "",
       "bullets": [
         "Verwaltung von Linux-Servern und Datenbanken vor Ort.",
-        "Wartung der Infrastruktur sowie automatisierte Tests und Deployments mit Jenkins.",
-        "Aufbau von Cloud-Infrastruktur und automatisierten Deployments auf der Google Cloud Platform.",
-        "Containerisierung der Entwicklerprojekte mit Docker."
+        "Umsetzung automatisierter Tests und Deployments mit Jenkins sowie Containerisierung der Teamprojekte mit Docker.",
+        "Aufbau von Cloud-Infrastruktur und automatisierten Deployments auf der Google Cloud Platform."
       ]
     },
     {
@@ -64,10 +108,11 @@
       "company": "Universidad Europea del Atlántico",
       "location": "Santander, Spanien",
       "dates": "Sep 2022 – Sep 2023",
+      "note": "",
       "bullets": [
-        "Veröffentlichung, Bearbeitung und Verwaltung von Inhalten für alle Universitätspartner.",
         "Wartung und Erweiterung individueller WordPress-Themes in PHP.",
-        "Prozessautomatisierung mit Google AppScript und Gmail-Integration."
+        "Prozessautomatisierung mit Google Apps Script und Gmail-Integration.",
+        "Veröffentlichung und Bearbeitung von Inhalten für alle Universitätspartner."
       ]
     },
     {
@@ -75,38 +120,53 @@
       "company": "Just Click Media",
       "location": "Guayaquil, Ecuador",
       "dates": "Mai 2021 – Mai 2022",
+      "note": "",
       "bullets": [
-        "Testen und Debuggen einer der wichtigsten unternehmenseigenen Plattformen im Qualitätssicherungsteam.",
+        "Entwicklung und Pflege von Funktionen für Publifyer, die E-Commerce-Plattform des Unternehmens.",
         "Umsetzung von Designs und Funktionen für mehrere Webshops mit WordPress und Elementor.",
-        "Entwicklung und Pflege von Funktionen für die E-Commerce-Plattform Publifyer."
+        "Testen und Debuggen einer der Hauptplattformen des Unternehmens im Qualitätssicherungsteam."
       ]
     },
     {
       "role": "Schülerpraktikum",
       "company": "Just Click Media",
       "location": "Guayaquil, Ecuador",
-      "dates": "Feb 2020 – Mär 2020",
-      "bullets": [
-        "Grundlagen von HTML, CSS und JavaScript durch reale Projekte im Team erlernt."
-      ]
+      "dates": "Feb – Mär 2020",
+      "note": "erste reale Projekte in HTML, CSS und JavaScript",
+      "bullets": []
+    }
+  ],
+  "education": [
+    {
+      "degree": "Ausbildung Gastronomie · Kochkunst",
+      "school": "Escuela Culinaria de las Américas · Guayaquil",
+      "year": "Feb 2026"
+    },
+    {
+      "degree": "Schulabschluss (Bachillerato)",
+      "school": "Deutsche Schule Humboldt · Guayaquil, Ecuador",
+      "year": ""
     }
   ],
   "certifications": [
-    { "name": "Zertifizierter UAS-Pilot", "issuer": "DGAC Ecuador", "year": "2025" }
-  ],
-  "education": [
-    { "degree": "Schulabschluss (Bachillerato)", "school": "Deutsche Schule Humboldt Guayaquil, Ecuador" }
-  ],
-  "skills": [
-    { "group": "Web", "items": "HTML, CSS, Sass, JavaScript, React, Vue, Angular, Node.js, Express, Laravel, PHP, Bootstrap, WordPress" },
-    { "group": "Systeme & DevOps", "items": "Linux-Administration, Docker, Jenkins, Google Cloud Platform" },
-    { "group": "Datenbanken", "items": "MySQL, MongoDB" },
-    { "group": "UAS", "items": "DJI Agras T50/T100, Flugplanung, Präzisionssprühen" },
-    { "group": "Weitere", "items": "Python, Java, Lua, Google AppScript" }
+    {
+      "name": "Zertifizierter UAS-Pilot",
+      "issuer": "DGAC Ecuador",
+      "year": "2025"
+    }
   ],
   "languages": [
-    { "name": "Spanisch", "level": "Muttersprache" },
-    { "name": "Englisch", "level": "Verhandlungssicher" },
-    { "name": "Deutsch", "level": "B2" }
+    {
+      "name": "Spanisch",
+      "level": "Muttersprache"
+    },
+    {
+      "name": "Englisch",
+      "level": "Verhandlungssicher"
+    },
+    {
+      "name": "Deutsch",
+      "level": "B2"
+    }
   ]
 }

@@ -1,3 +1,5 @@
-node_modules/
 .build-*.html
+lab/
+node_modules/
 old-photo*
+.pdfs.stamp

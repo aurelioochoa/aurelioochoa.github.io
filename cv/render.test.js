@@ -32,3 +32,18 @@ test('throws on mismatched closing tags', () => {
 test('escapes quotes in HTML attributes', () => {
   assert.equal(render('{{x}}', { x: '"quoted" & \'single\'' }), '&quot;quoted&quot; &amp; &#39;single&#39;');
 });
+
+test('unless blocks invert if blocks', () => {
+  assert.equal(render('{{#unless photo}}<em>{{/unless}}ok', { photo: false }), '<em>ok');
+  assert.equal(render('{{#unless photo}}<em>{{/unless}}ok', { photo: true }), 'ok');
+});
+
+test('unless nests inside each and binds this', () => {
+  const tpl = '{{#each runs}}{{#if this.strong}}<b>{{this.text}}</b>{{/if}}{{#unless this.strong}}{{this.text}}{{/unless}}{{/each}}';
+  const data = { runs: [{ text: 'a', strong: false }, { text: 'b', strong: true }] };
+  assert.equal(render(tpl, data), 'a<b>b</b>');
+});
+
+test('throws on mismatched unless closing tag', () => {
+  assert.throws(() => render('{{#unless a}}z{{/if}}', { a: false }), /Mismatched/);
+});
