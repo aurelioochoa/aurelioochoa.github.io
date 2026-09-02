@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Woven cloth</title>
+<style>
+@font-face {
+  font-family: "Emotional";
+  src: url("/assets/fonts/emotional-VF.ttf") format("truetype-variations");
+  font-weight: 400; font-display: block;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/jetbrains-mono.woff2") format("woff2");
+  font-weight: 100 800; font-display: block;
+}
+</style>
+</head>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; overflow: hidden; }
+  body { background: radial-gradient(120% 100% at 50% 30%, #2a1113 0%, #1a0a0c 55%, #0f0607 100%); }
+  .stage { position: fixed; inset: 0; overflow: hidden; }
+  #cloth { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; }
+  .vignette {
+    position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(90% 80% at 50% 46%, transparent 55%, rgba(10,5,6,.72) 100%);
+  }
+</style>
+</head>
+<body>
+    <div class="stage">
+        <canvas id="cloth"></canvas>
+        <div class="vignette"></div>
+    </div>
+
+    <script type="module">
+        import * as THREE from '/js/vendor/three/three.module.js';
+        window.THREE = THREE;
+
+        // --- Three cloths: a noren, a banner, an Otavalo weave ---
+        (async () => {
+            try { await document.fonts.load('400 118px "Emotional"'); await document.fonts.ready; } catch {}
+            const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+            const canvas = document.getElementById('cloth');
+            if (!window.THREE) return;
+
+            /* ---------------------------------------------------- shared cloth */
+
+            function plate(W, H) {
+                const c = document.createElement('canvas');
+                c.width = W; c.height = H;
+                return [c, c.getContext('2d')];
+            }
+
+            // The thread grid and the fabric slub, applied to all three so they read as one
+            // bolt of cloth rather than three unrelated pictures. Upstream drew this once,
+            // inline; it is a function here because there are three of them now.
+            function weave(x, W, H, warp) {
+                for (let yy = 0; yy < H; yy += 3) {
+                    x.strokeStyle = 'rgba(60,30,20,0.05)';
+                    x.lineWidth = 1;
+                    x.beginPath(); x.moveTo(0, yy + 0.5); x.lineTo(W, yy + 0.5); x.stroke();
+                }
+                for (let xx = 0; xx < W; xx += 3) {
+                    x.strokeStyle = warp;
+                    x.lineWidth = 1;
+                    x.beginPath(); x.moveTo(xx + 0.5, 0); x.lineTo(xx + 0.5, H); x.stroke();
+                }
+                const id = x.getImageData(0, 0, W, H), d = id.data;
+                for (let i = 0; i < d.length; i += 4) {
+                    const n = (Math.random() * 2 - 1) * 10;
+                    d[i] += n; d[i + 1] += n; d[i + 2] += n;
+                }
+                x.putImageData(id, 0, 0);
+            }
+
+            function texture(c) {
+                const t = new THREE.CanvasTexture(c);
+                t.anisotropy = 4;
+                t.colorSpace = THREE.SRGBColorSpace;
+                return t;
+            }
+
+            // The side cloths hang at the banner's width, so their plates carry the banner's
+            // proportions: 4.40 by 3.05 world units is 1.443, and so is this. Every pattern
+            // below loops against W, so widening the plate lays down more of the motif rather
+            // than stretching what was there.
+            const SIDE = [1160, 804];
+
+            /* -------------------------------------------------- kitchen marks */
+
+            // Four marks from the line: a knife, a flame, a whisk, a pot. Each is drawn in a
+            // 100 by 100 box so the banner's hem can place them at any size, and each is one
+            // filled silhouette, because at hem scale an outline is mud.
+            const MARKS = [
+                function knife(x) {
+                    x.beginPath();
+                    x.moveTo(10, 78); x.lineTo(54, 30); x.lineTo(66, 40); x.lineTo(22, 88);
+                    x.closePath(); x.fill();
+                    x.beginPath();
+                    x.moveTo(56, 26); x.lineTo(82, 6); x.lineTo(92, 18); x.lineTo(66, 38);
+                    x.closePath(); x.fill();
+                },
+                function flame(x) {
+                    // Three tongues at the foot. A plain teardrop reads as a raindrop, which
+                    // is not the mark this hem is after.
+                    x.beginPath();
+                    x.moveTo(50, 8);
+                    x.bezierCurveTo(74, 34, 82, 56, 68, 74);
+                    x.lineTo(60, 62); x.lineTo(50, 82); x.lineTo(40, 62); x.lineTo(32, 74);
+                    x.bezierCurveTo(18, 56, 28, 34, 50, 8);
+                    x.closePath(); x.fill();
+                },
+                function whisk(x) {
+                    x.fillRect(46, 68, 8, 28);
+                    x.fillRect(38, 62, 24, 8);          // the ferrule, so the loops have a foot
+                    x.lineWidth = 4;
+                    x.lineCap = 'round';
+                    // Wide, and only three, because four at this size close into one blob.
+                    for (const spread of [40, 0, -40]) {
+                        x.beginPath();
+                        x.moveTo(50, 62);
+                        x.bezierCurveTo(50 + spread, 52, 50 + spread * 0.8, 20, 50, 8);
+                        x.stroke();
+                    }
+                },
+                function pot(x) {
+                    x.beginPath();
+                    x.moveTo(26, 46); x.lineTo(74, 46); x.lineTo(68, 88); x.lineTo(32, 88);
+                    x.closePath(); x.fill();
+                    x.fillRect(18, 34, 64, 9);
+                    x.beginPath(); x.arc(50, 28, 6, 0, Math.PI * 2); x.fill();
+                    x.fillRect(6, 52, 16, 9);
+                    x.fillRect(78, 52, 16, 9);
+                },
+            ];
+
+            // One row of marks across a width, alternating through the set.
+            function markRow(x, y, W, size, gap, colour) {
+                x.fillStyle = colour;
+                x.strokeStyle = colour;
+                const stride = size + gap;
+                const count = Math.floor((W - gap) / stride);
+                const start = (W - (count * stride - gap)) / 2;
+                for (let i = 0; i < count; i++) {
+                    x.save();
+                    x.translate(start + i * stride, y);
+                    x.scale(size / 100, size / 100);
+                    MARKS[i % MARKS.length](x);
+                    x.restore();
+                }
+            }
+
+            /* ------------------------------------------------------ the banner */
+
+            // Upstream's ivory banner, still carrying his name, now with the kitchen marks
+            // running along the inside of both hems.
+            function bannerTexture() {
+                const W = 1280, H = 800;
+                const [c, x] = plate(W, H);
+
+                const g = x.createLinearGradient(0, 0, 0, H);
+                g.addColorStop(0, '#efe6d4');
+                g.addColorStop(0.5, '#e9dfca');
+                g.addColorStop(1, '#e3d7bf');
+                x.fillStyle = g;
+                x.fillRect(0, 0, W, H);
+
+                x.strokeStyle = '#a5202c'; x.lineWidth = 10;
+                x.strokeRect(46, 46, W - 92, H - 92);
+                x.strokeStyle = '#7c1622'; x.lineWidth = 3;
+                x.strokeRect(66, 66, W - 132, H - 132);
+
+                markRow(x, 78, W, 52, 46, 'rgba(124,22,34,0.62)');
+                markRow(x, 672, W, 52, 46, 'rgba(124,22,34,0.62)');
+
+                x.textAlign = 'center';
+                x.textBaseline = 'middle';
+                x.fillStyle = '#a5202c';
+                x.font = 'bold 78px "Emotional", sans-serif';
+                x.fillText('AO', W / 2, 214);
+                x.font = 'normal 20px "Emotional", sans-serif';
+                x.fillStyle = '#7c1622';
+                x.fillText('· GUAYAQUIL ·', W / 2, 266);
+                x.fillStyle = '#9e1e2a';
+                x.font = 'bold 112px "Emotional", sans-serif';
+                x.fillText('AURELIO', W / 2, 400);
+                x.fillText('OCHOA', W / 2, 512);
+                x.fillStyle = '#7c1622';
+                x.font = '600 30px "Emotional", sans-serif';
+                x.fillText('C O C I N A   ·   2 0 2 6', W / 2, 604);
+
+                weave(x, W, H, 'rgba(255,250,235,0.06)');
+                return c;
+            }
+
+            /* ------------------------------------------------------- the noren */
+
+            // A Japanese noren: the split curtain that hangs in a kitchen doorway. Indigo,
+            // seigaiha waves across the body, an enso brushed near the top, and the vertical
+            // slits that make it a noren and not a flag.
+            function norenTexture() {
+                const [W, H] = SIDE;
+                const [c, x] = plate(W, H);
+
+                const g = x.createLinearGradient(0, 0, 0, H);
+                g.addColorStop(0, '#1d3a58');
+                g.addColorStop(0.55, '#193149');
+                g.addColorStop(1, '#132537');
+                x.fillStyle = g;
+                x.fillRect(0, 0, W, H);
+
+                // The sleeve the pole runs through, and the hem at the foot.
+                x.fillStyle = '#e8ecef';
+                x.fillRect(0, 0, W, 34);
+                x.fillStyle = 'rgba(232,236,239,0.5)';
+                x.fillRect(0, H - 16, W, 6);
+
+                // Seigaiha: overlapping concentric arcs, offset every other row. The pattern
+                // is a wave and it is why this panel reads as water even at 0.42 opacity.
+                const R = 62, rows = Math.ceil(H / (R * 0.62)) + 1;
+                x.lineWidth = 3;
+                for (let row = 0; row < rows; row++) {
+                    const cy = 300 + row * R * 0.62;
+                    const shift = (row % 2) * R;
+                    for (let cx = -R; cx < W + R * 2; cx += R * 2) {
+                        for (let k = 0; k < 3; k++) {
+                            x.strokeStyle = k === 0
+                                ? 'rgba(232,236,239,0.34)'
+                                : 'rgba(140,182,204,0.24)';
+                            x.beginPath();
+                            x.arc(cx + shift, cy, R - k * 18, Math.PI, Math.PI * 2);
+                            x.stroke();
+                        }
+                    }
+                }
+
+                // The enso, brushed open the way it is always brushed open.
+                x.strokeStyle = 'rgba(240,244,247,0.86)';
+                x.lineWidth = 15;
+                x.lineCap = 'round';
+                x.beginPath();
+                x.arc(W / 2, 190, 108, Math.PI * 0.30, Math.PI * 2.12);
+                x.stroke();
+
+                // The seal, the one warm mark on a cold panel.
+                x.fillStyle = '#9e1e2a';
+                x.fillRect(W / 2 - 38, 322, 76, 76);
+                x.strokeStyle = 'rgba(240,236,228,0.9)';
+                x.lineWidth = 6;
+                x.strokeRect(W / 2 - 24, 336, 48, 48);
+                x.beginPath();
+                x.moveTo(W / 2 - 24, 360); x.lineTo(W / 2 + 24, 360);
+                x.moveTo(W / 2, 336); x.lineTo(W / 2, 384);
+                x.stroke();
+
+                // The slits. A noren is cut, and the cuts are what you walk through.
+                x.fillStyle = 'rgba(10,16,24,0.92)';
+                for (const at of [0.34, 0.66]) {
+                    x.fillRect(W * at - 4, 430, 8, H - 430);
+                }
+
+                weave(x, W, H, 'rgba(180,214,232,0.05)');
+                return c;
+            }
+
+            /* ------------------------------------------------ the Otavalo weave */
+
+            // An Ecuadorian backstrap weave off the Otavalo looms: horizontal bands, a
+            // stepped-fret chain, a row of rombos, and the warp showing through all of it.
+            function otavaloTexture() {
+                const [W, H] = SIDE;
+                const [c, x] = plate(W, H);
+
+                x.fillStyle = '#2a1512';
+                x.fillRect(0, 0, W, H);
+
+                const BANDS = [
+                    ['#e9dfca', 46], ['#9e1e2a', 96], ['#2a1512', 26], ['#c9852e', 74],
+                    ['#e9dfca', 118], ['#2a1512', 26], ['#9e1e2a', 108], ['#c9852e', 40],
+                    ['#e9dfca', 92], ['#2a1512', 30], ['#9e1e2a', 70],
+                ];
+                let y = 0;
+                const at = {};
+                for (const [colour, height] of BANDS) {
+                    x.fillStyle = colour;
+                    x.fillRect(0, y, W, height);
+                    at[colour + y] = y;
+                    y += height;
+                }
+
+                // The greca escalonada, stepped up and down across the first crimson band.
+                x.fillStyle = '#e9dfca';
+                const step = 16, base = 46;
+                for (let sx = 0; sx < W; sx += step * 4) {
+                    for (let k = 0; k < 4; k++) {
+                        x.fillRect(sx + k * step, base + 20 + (k < 2 ? k : 3 - k) * -14, step, 14);
+                    }
+                }
+
+                // Rombos on the ivory, the motif every Otavalo blanket carries somewhere.
+                x.strokeStyle = '#9e1e2a';
+                x.lineWidth = 5;
+                const rowY = 264 + 59;
+                for (let cx = 46; cx < W; cx += 92) {
+                    for (const r of [40, 22]) {
+                        x.beginPath();
+                        x.moveTo(cx, rowY - r); x.lineTo(cx + r, rowY);
+                        x.lineTo(cx, rowY + r); x.lineTo(cx - r, rowY);
+                        x.closePath(); x.stroke();
+                    }
+                }
+
+                // A second fret, running the other way, on the lower crimson.
+                x.fillStyle = '#c9852e';
+                for (let sx = 0; sx < W; sx += step * 4) {
+                    for (let k = 0; k < 4; k++) {
+                        x.fillRect(sx + k * step, 470 + (k < 2 ? k : 3 - k) * 14, step, 14);
+                    }
+                }
+
+                // The fringe: this cloth is cut off a loom, not hemmed.
+                x.strokeStyle = 'rgba(233,223,202,0.75)';
+                x.lineWidth = 3;
+                for (let fx = 6; fx < W; fx += 11) {
+                    x.beginPath();
+                    x.moveTo(fx, H - 34);
+                    x.lineTo(fx + (fx % 22 === 6 ? 3 : -3), H);
+                    x.stroke();
+                }
+
+                weave(x, W, H, 'rgba(255,238,206,0.07)');
+                return c;
+            }
+
+            /* --------------------------------------------------------- the scene */
+
+            const scene = new THREE.Scene();
+            const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            let camera;
+
+            scene.add(new THREE.AmbientLight(0xffe9d0, 0.62));
+            const key = new THREE.DirectionalLight(0xfff0dc, 1.15);
+            key.position.set(-3, 3.5, 3.2);
+            scene.add(key);
+            const rim = new THREE.DirectionalLight(0xb02330, 0.42);
+            rim.position.set(3, -1.5, 2.0);
+            scene.add(rim);
+
+            // Three cloths of one width, hung 0.22 units apart: the banner's right edge is at
+            // 2.20 and the right cloth's left edge is at 2.42. The side panels still hang a
+            // little further back and a little lower, which is what keeps the banner reading
+            // as the front one rather than as the middle of a triptych.
+            const SPECS = [
+                { draw: norenTexture,   x: -4.62, y: 0.16, z: -0.62, w: 4.40, h: 3.05, gx: 32, gy: 24, phase: 1.7 },
+                { draw: bannerTexture,  x:  0.00, y: 0.00, z:  0.00, w: 4.40, h: 2.75, gx: 40, gy: 26, phase: 0.0 },
+                { draw: otavaloTexture, x:  4.62, y: 0.16, z: -0.62, w: 4.40, h: 3.05, gx: 32, gy: 24, phase: 3.4 },
+            ];
+
+            const GRAV = -3.1, DAMP = 0.985, DT = 0.016;
+
+            function makePanel(spec) {
+                const geo = new THREE.PlaneGeometry(spec.w, spec.h, spec.gx, spec.gy);
+                const mesh = new THREE.Mesh(geo, new THREE.MeshPhongMaterial({
+                    map: texture(spec.draw()),
+                    side: THREE.DoubleSide,
+                    shininess: 6,
+                    specular: 0x2a1410,
+                    color: 0xffffff,
+                }));
+                mesh.position.set(spec.x, spec.y, spec.z);
+                scene.add(mesh);
+
+                const pos = geo.attributes.position;
+                const N = (spec.gx + 1) * (spec.gy + 1);
+                const cur = new Float32Array(N * 3);
+                const prev = new Float32Array(N * 3);
+                const rest = new Float32Array(N * 3);
+                const pinned = new Uint8Array(N);
+                for (let i = 0; i < N; i++) {
+                    const ax = pos.getX(i), ay = pos.getY(i);
+                    cur[i * 3] = prev[i * 3] = rest[i * 3] = ax;
+                    cur[i * 3 + 1] = prev[i * 3 + 1] = rest[i * 3 + 1] = ay;
+                    cur[i * 3 + 2] = prev[i * 3 + 2] = rest[i * 3 + 2] = 0;
+                }
+                // The top row is the pole. PlaneGeometry emits row 0 at +h/2, so this is it.
+                for (let ix = 0; ix <= spec.gx; ix++) pinned[ix] = 1;
+
+                return {
+                    spec, geo, pos, N, cur, prev, rest, pinned,
+                    restH: spec.w / spec.gx,
+                    restV: spec.h / spec.gy,
+                    idx: (ix, iy) => ix + iy * (spec.gx + 1),
+                };
+            }
+
+            function wind(p, ix, iy, t) {
+                const cx = ix / p.spec.gx, cy = iy / p.spec.gy;
+                const travel = (t + p.spec.phase) * 1.7 - cy * 4.2;
+                const gust = 0.6 + 0.42 * Math.sin(t * 0.6 + p.spec.phase)
+                                 + 0.18 * Math.sin(t * 1.9 + 1.3);
+                const amp = 4.3 * cy;
+                const fz = (Math.sin(travel + cx * 3.3) + 0.5 * Math.sin(travel * 1.7 + cx * 6.0)) * amp * gust;
+                const fx = Math.sin(t * 0.9 + cy * 2.2 + p.spec.phase) * 0.6 * cy;
+                const fy = -0.4 * cy;
+                return [fx, fy, fz];
+            }
+
+            function solve(p, a, b, rl) {
+                const cur = p.cur;
+                const ax = cur[a * 3], ay = cur[a * 3 + 1], az = cur[a * 3 + 2];
+                const bx = cur[b * 3], by = cur[b * 3 + 1], bz = cur[b * 3 + 2];
+                let dx = bx - ax, dy = by - ay, dz = bz - az;
+                const d = Math.sqrt(dx * dx + dy * dy + dz * dz) || 1e-6;
+                const diff = (d - rl) / d * 0.5;
+                dx *= diff; dy *= diff; dz *= diff;
+                const pa = p.pinned[a], pb = p.pinned[b];
+                if (!pa && !pb) {
+                    cur[a * 3] += dx; cur[a * 3 + 1] += dy; cur[a * 3 + 2] += dz;
+                    cur[b * 3] -= dx; cur[b * 3 + 1] -= dy; cur[b * 3 + 2] -= dz;
+                } else if (pa && !pb) {
+                    cur[b * 3] -= dx * 2; cur[b * 3 + 1] -= dy * 2; cur[b * 3 + 2] -= dz * 2;
+                } else if (!pa && pb) {
+                    cur[a * 3] += dx * 2; cur[a * 3 + 1] += dy * 2; cur[a * 3 + 2] += dz * 2;
+                }
+            }
+
+            function step(p, t) {
+                const { spec, cur, prev, rest, pinned, idx } = p;
+                for (let iy = 0; iy <= spec.gy; iy++) {
+                    for (let ix = 0; ix <= spec.gx; ix++) {
+                        const i = idx(ix, iy);
+                        if (pinned[i]) continue;
+                        const [fx, fy, fz] = wind(p, ix, iy, t);
+                        for (let k = 0; k < 3; k++) {
+                            const j = i * 3 + k;
+                            const a = (k === 0 ? fx : k === 1 ? (fy + GRAV) : fz);
+                            const v = (cur[j] - prev[j]) * DAMP;
+                            prev[j] = cur[j];
+                            cur[j] = cur[j] + v + a * DT * DT;
+                        }
+                    }
+                }
+                for (let it = 0; it < 3; it++) {
+                    for (let iy = 0; iy <= spec.gy; iy++) {
+                        for (let ix = 0; ix < spec.gx; ix++) solve(p, idx(ix, iy), idx(ix + 1, iy), p.restH);
+                    }
+                    for (let iy = 0; iy < spec.gy; iy++) {
+                        for (let ix = 0; ix <= spec.gx; ix++) solve(p, idx(ix, iy), idx(ix, iy + 1), p.restV);
+                    }
+                }
+                for (let ix = 0; ix <= spec.gx; ix++) {
+                    for (let k = 0; k < 3; k++) {
+                        cur[ix * 3 + k] = rest[ix * 3 + k];
+                        prev[ix * 3 + k] = rest[ix * 3 + k];
+                    }
+                }
+            }
+
+            function commit(p) {
+                for (let i = 0; i < p.N; i++) {
+                    p.pos.setXYZ(i, p.cur[i * 3], p.cur[i * 3 + 1], p.cur[i * 3 + 2]);
+                }
+                p.pos.needsUpdate = true;
+                p.geo.computeVertexNormals();
+            }
+
+            const panels = SPECS.map(makePanel);
+
+            // Wide enough to hold all three, and the side cloths are allowed to bleed off the
+            // frame edges the way hanging cloth does. On a portrait viewport the frame drops
+            // back to the banner alone rather than shrinking every panel to fit three across.
+            function fit() {
+                const w = innerWidth, h = innerHeight;
+                renderer.setSize(w, h, false);
+                const aspect = w / h;
+                camera = new THREE.PerspectiveCamera(42, aspect, 0.1, 100);
+                const FRAME_W = aspect > 1 ? 13.8 : 4.6;
+                const FRAME_H = 3.4;
+                const k = Math.tan(42 * Math.PI / 360);
+                const vFit = (FRAME_H / 2) / k;
+                const hFit = (FRAME_W / 2) / k / aspect;
+                camera.position.set(0, 0.05, Math.max(vFit, hFit) + 0.35);
+                camera.lookAt(0, 0, 0);
+            }
+            addEventListener('resize', fit);
+            fit();
+
+            let running = false, raf = 0, t = 0;
+            function frame() {
+                if (!running) return;
+                t += DT;
+                for (const p of panels) { step(p, t); commit(p); }
+                renderer.render(scene, camera);
+                raf = requestAnimationFrame(frame);
+            }
+            function start() { if (running) return; running = true; raf = requestAnimationFrame(frame); }
+            function stop() { running = false; cancelAnimationFrame(raf); }
+
+            if (reduce) {
+                for (let s = 0; s < 220; s++) for (const p of panels) step(p, s * DT);
+                for (const p of panels) commit(p);
+                renderer.render(scene, camera);
+            } else {
+                for (let s = 0; s < 40; s++) for (const p of panels) step(p, s * DT);
+                t = 40 * DT;
+                start();
+                document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
+            }
+        })();
+
+    </script>
+</body>
+</html>

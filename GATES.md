@@ -49,6 +49,9 @@ OWNS: index.html styles/ js/ tools/ assets/languages/ assets/img/ assets/fonts/ 
         3. 23.59 was illegible at label size and Oceanus unusable. Both cut, JetBrains Mono
            vendored for labels, Emotional promoted to display.
         4. The drone flew over headlines and made them unreadable. Camera pulled back and
-           the autopilot confined to the top band, above where headlines sit.
+           the autopilot confined to the top band, above where headlines sit. It crosses
+           headlines again now, and only because it can go BEHIND one: copy marked
+           data-drone="cross" occludes it glyph by glyph, which G6 asserts by parking the
+           aircraft on a headline and counting its pixels on each side of the copy's plane.
         5. The peak was not the longest act on mobile: the blanket .act rule in the phone
            media query was overriding it on source order.

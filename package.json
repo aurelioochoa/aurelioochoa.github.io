@@ -1,0 +1,17 @@
+{
+  "name": "aurelioochoa-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build/bundle.mjs"
+  },
+  "dependencies": {
+    "@designcodeio/threeui": "^1.1.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
+  }
+}

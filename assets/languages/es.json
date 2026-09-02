@@ -8,7 +8,9 @@
     "skip": "Saltar al contenido"
   },
   "chrome": {
-    "cv": "Currículum"
+    "cv": "Currículum",
+    "sound": "Sonido",
+    "spray": "Fumigación"
   },
   "hero": {
     "where": "Guayaquil, Ecuador"
@@ -44,6 +46,10 @@
     "publifyer": "Funciones para la plataforma de comercio electrónico de Just Click Media, además de tiendas web y el control de calidad que las mantuvo en pie.",
     "uneatlantico": "Temas de WordPress en PHP, automatizaciones con Apps Script y después pipelines de Jenkins e infraestructura en GCP."
   },
+  "shelf": {
+    "head": "En abierto",
+    "body": "Diez repositorios públicos, en un estante. Baja uno y lee su lomo."
+  },
   "sky": {
     "head": "Desde 2024 la oficina es un campo.",
     "body": "Misiones de fumigación de precisión sobre campos ecuatorianos. Mapeo de terreno, planificación de rutas, y el mantenimiento y la calibración que tienen que pasar antes de que algo despegue."
@@ -52,8 +58,18 @@
     "head": "Ahora es tuyo.",
     "body": "Lleva volando solo desde que llegaste. Tómalo.",
     "cta": "Toma los controles",
-    "hint": "Arrástralo, o vuela con W A S D.",
-    "fallback": "Tu navegador no puede ejecutar el dron, así que este se queda en tierra."
+    "fallback": "Tu navegador no puede ejecutar el dron, así que este se queda en tierra.",
+    "spray": "Fumigar"
+  },
+  "rc": {
+    "off": "Control apagado",
+    "press": "Pulsa el encendido",
+    "standby": "En espera",
+    "hold": "Mantén pulsado dos segundos",
+    "on": "Enlazado",
+    "fly": "Vuela con W A S D, fumiga con F",
+    "linking": "Enlazando",
+    "selftest": "Autodiagnóstico y calentamiento"
   },
   "creds": {
     "certValue": "Piloto de UAS certificado",
@@ -67,11 +83,29 @@
     "body": "Arte culinario en la Escuela Culinaria de las Américas, en Guayaquil. No es una línea de pasatiempos en un CV. Es una carrera terminada, y las mismas ganas por un proceso que tiene que salir bien en cada servicio."
   },
   "skull": {
-    "line": "El único sobreviviente del sitio anterior. Conservó su puesto.",
+    "watch": "Mira la historia de dónde salió",
+    "facts": [
+      "Un día en Venus dura más que un año en Venus.",
+      "Un recién nacido tiene unos 300 huesos. Un adulto tiene 206.",
+      "Una trompeta son 1,4 metros de tubería enrollada.",
+      "El banano es una baya. La fresa no.",
+      "El pulpo tiene tres corazones, y dos se detienen cuando nada.",
+      "Un rayo es cinco veces más caliente que la superficie del sol.",
+      "El wómbat es el único animal que hace excrementos cúbicos."
+    ],
+    "another": "Otro dato",
     "by": "por"
   },
   "close": {
     "head": "Construyamos algo.",
-    "cta": "Escríbeme"
+    "line": "Código, un campo o una cocina. La dirección es la misma.",
+    "cta": "Escríbeme",
+    "emailLabel": "Correo",
+    "copy": "Copiar",
+    "copied": "Copiado",
+    "whereLabel": "Dónde",
+    "where": "Guayaquil, Ecuador",
+    "langLabel": "Escríbeme en",
+    "lang": "Español, inglés o alemán"
   }
 }

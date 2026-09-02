@@ -8,7 +8,9 @@
     "skip": "Zum Inhalt springen"
   },
   "chrome": {
-    "cv": "Lebenslauf"
+    "cv": "Lebenslauf",
+    "sound": "Ton",
+    "spray": "Sprühen"
   },
   "hero": {
     "where": "Guayaquil, Ecuador"
@@ -44,6 +46,10 @@
     "publifyer": "Funktionen für die E-Commerce-Plattform von Just Click Media, dazu Webshops und die Qualitätssicherung, die sie am Laufen hielt.",
     "uneatlantico": "WordPress-Themes in PHP, Automatisierungen mit Apps Script, danach Jenkins-Pipelines und Cloud-Infrastruktur auf GCP."
   },
+  "shelf": {
+    "head": "Offen entwickelt",
+    "body": "Zehn öffentliche Repositories im Regal. Nimm eines heraus und lies den Rücken."
+  },
   "sky": {
     "head": "Seit 2024 ist das Büro ein Feld.",
     "body": "Präzisionssprühflüge über ecuadorianischen Feldern. Feldkartierung, Routenplanung, und die Wartung und Kalibrierung, die passieren muss, bevor überhaupt etwas abhebt."
@@ -52,8 +58,18 @@
     "head": "Jetzt gehört sie dir.",
     "body": "Sie fliegt schon allein, seit du hier bist. Nimm sie.",
     "cta": "Übernimm die Steuerung",
-    "hint": "Zieh sie, oder flieg mit W A S D.",
-    "fallback": "Dein Browser kann die Drohne nicht ausführen, also bleibt sie am Boden."
+    "fallback": "Dein Browser kann die Drohne nicht ausführen, also bleibt sie am Boden.",
+    "spray": "Sprühen"
+  },
+  "rc": {
+    "off": "Fernsteuerung aus",
+    "press": "Einschalter drücken",
+    "standby": "Bereitschaft",
+    "hold": "Zwei Sekunden gedrückt halten",
+    "on": "Verbunden",
+    "fly": "Flieg mit W A S D, sprühen mit F",
+    "linking": "Verbindet",
+    "selftest": "Selbsttest, dann Aufwärmen"
   },
   "creds": {
     "certValue": "Zertifizierter UAS-Pilot",
@@ -67,11 +83,29 @@
     "body": "Kochkunst an der Escuela Culinaria de las Américas in Guayaquil. Keine Hobbyzeile im Lebenslauf. Eine abgeschlossene Ausbildung, und derselbe Appetit auf einen Prozess, der in jedem Service funktionieren muss."
   },
   "skull": {
-    "line": "Der einzige Überlebende der alten Seite. Er durfte bleiben.",
+    "watch": "Sieh dir an, woher er kommt",
+    "facts": [
+      "Ein Tag auf der Venus dauert länger als ein Jahr auf der Venus.",
+      "Ein Neugeborenes hat rund 300 Knochen. Ein Erwachsener hat 206.",
+      "Eine Trompete sind 1,4 Meter aufgerolltes Rohr.",
+      "Bananen sind Beeren. Erdbeeren nicht.",
+      "Ein Krake hat drei Herzen, zwei davon stoppen beim Schwimmen.",
+      "Ein Blitz ist fünfmal heißer als die Oberfläche der Sonne.",
+      "Wombats sind das einzige Tier mit würfelförmigem Kot."
+    ],
+    "another": "Noch ein Fakt",
     "by": "von"
   },
   "close": {
     "head": "Lass uns etwas bauen.",
-    "cta": "Schreib mir"
+    "line": "Code, ein Feld oder eine Küche. Die Adresse ist dieselbe.",
+    "cta": "Schreib mir",
+    "emailLabel": "E-Mail",
+    "copy": "Kopieren",
+    "copied": "Kopiert",
+    "whereLabel": "Wo",
+    "where": "Guayaquil, Ecuador",
+    "langLabel": "Schreib auf",
+    "lang": "Spanisch, Englisch oder Deutsch"
   }
 }

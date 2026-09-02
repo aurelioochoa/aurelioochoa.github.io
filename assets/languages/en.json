@@ -8,7 +8,9 @@
     "skip": "Skip to the content"
   },
   "chrome": {
-    "cv": "Résumé"
+    "cv": "Résumé",
+    "sound": "Sound",
+    "spray": "Spray"
   },
   "hero": {
     "where": "Guayaquil, Ecuador"
@@ -44,6 +46,10 @@
     "publifyer": "Features for Just Click Media's e-commerce platform, plus storefronts and the QA that kept them upright.",
     "uneatlantico": "WordPress themes in PHP, Apps Script automations, then Jenkins pipelines and cloud infrastructure on GCP."
   },
+  "shelf": {
+    "head": "In the open",
+    "body": "Ten public repositories, on a shelf. Pull one down and read its spine."
+  },
   "sky": {
     "head": "Since 2024 the office has been a field.",
     "body": "Precision spray missions over Ecuadorian farmland. Field mapping, route planning, and the maintenance and calibration that has to happen before any of it flies."
@@ -52,8 +58,18 @@
     "head": "Your drone now.",
     "body": "It has been flying itself since you got here. Take it.",
     "cta": "Take the controls",
-    "hint": "Drag it, or fly with W A S D.",
-    "fallback": "Your browser cannot run the drone, so it is sitting this one out."
+    "fallback": "Your browser cannot run the drone, so it is sitting this one out.",
+    "spray": "Spray"
+  },
+  "rc": {
+    "off": "Controller off",
+    "press": "Press power",
+    "standby": "Standby",
+    "hold": "Hold power for two seconds",
+    "on": "Linked",
+    "fly": "Fly with W A S D, spray with F",
+    "linking": "Linking",
+    "selftest": "Self test, then warm up"
   },
   "creds": {
     "certValue": "Certified UAS pilot",
@@ -67,11 +83,29 @@
     "body": "Culinary arts at the Escuela Culinaria de las Américas in Guayaquil. Not a hobby line on a CV. A finished program, and the same appetite for a process that has to work every single service."
   },
   "skull": {
-    "line": "The last survivor of the old site. He kept his job.",
+    "watch": "Watch the story of where he came from",
+    "facts": [
+      "A day on Venus is longer than a year on Venus.",
+      "A newborn has about 300 bones. An adult has 206.",
+      "A trumpet is 1.4 metres of tubing, coiled up.",
+      "Bananas are berries. Strawberries are not.",
+      "An octopus has three hearts, and two of them stop when it swims.",
+      "Lightning is five times hotter than the surface of the sun.",
+      "Wombats are the only animal that produces cube shaped droppings."
+    ],
+    "another": "Another fact",
     "by": "by"
   },
   "close": {
     "head": "Let's build something.",
-    "cta": "Email me"
+    "line": "Code, a field, or a kitchen. The address is the same.",
+    "cta": "Email me",
+    "emailLabel": "Email",
+    "copy": "Copy",
+    "copied": "Copied",
+    "whereLabel": "Where",
+    "where": "Guayaquil, Ecuador",
+    "langLabel": "Write in",
+    "lang": "Spanish, English or German"
   }
 }

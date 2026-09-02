@@ -22,16 +22,17 @@ function leaves(obj, prefix = '', out = new Set()) {
 }
 
 const LANGS = ['en', 'es', 'de'];
-// cvFile is consumed by the CV-link code, not by a data-i18n node, so it is expected to be
-// present in the data and absent from the markup.
-const DATA_ONLY = new Set(['meta.cvFile']);
+// Consumed by code rather than by a data-i18n node, so expected to be present in the data
+// and absent from the markup: cvFile by the CV-link code, and the skull's facts by the
+// footer button, which picks one of them at random rather than rendering a fixed node.
+const DATA_ONLY = new Set(['meta.cvFile', 'skull.facts']);
 
 // Keys whose value is legitimately the same in every language: a person's name, a place, a
 // list of technology proper nouns, an issuing authority. Comparing these across languages
 // proves nothing, so they are excluded from the untranslated-string check by name rather
 // than by loosening its threshold.
 const INVARIANT = new Set([
-  'meta.title', 'hero.where',
+  'meta.title', 'hero.where', 'close.where',
   'stack.front', 'stack.back', 'stack.ops', 'stack.ai',
   'stack.frontLabel', 'stack.backLabel',
   'creds.certLabel',
@@ -59,11 +60,28 @@ for (const lang of LANGS) {
     const enLeaves = leaves(en);
     const get = (o, p) => p.split('.').reduce((x, k) => x?.[k], o);
     const repeated = [];
+    // A single short word can coincide across languages ("Pilot", "Code" in German), so
+    // only multi-word values count as evidence that copy was never written.
+    const same = (a, b) => a === b && String(b).split(/\s+/).length > 1;
     for (const k of enLeaves) {
-      if (DATA_ONLY.has(k) || INVARIANT.has(k)) continue;
-      // A single short word can coincide across languages ("Pilot", "Code" in German).
+      // Only INVARIANT is exempt here. DATA_ONLY says a key has no node in the markup,
+      // which is a statement about where the string is rendered and none at all about
+      // whether it was translated: the skull's facts are read by script and still have to
+      // be written in three languages.
+      if (INVARIANT.has(k)) continue;
       const v = get(data, k);
-      if (get(en, k) === v && String(v).split(/\s+/).length > 1) repeated.push(k);
+      // A list is compared element by element. Compared whole it is compared by reference,
+      // which is never equal across two parsed files, so every array silently passed.
+      if (Array.isArray(v)) {
+        const enList = get(en, k);
+        if (!Array.isArray(enList) || enList.length !== v.length) {
+          repeated.push(`${k} (list shape differs)`);
+        } else {
+          v.forEach((item, i) => { if (same(enList[i], item)) repeated.push(`${k}[${i}]`); });
+        }
+      } else if (same(get(en, k), v)) {
+        repeated.push(k);
+      }
     }
     if (repeated.length) {
       failures.push(`${lang}.json leaves untranslated: ${repeated.join(', ')}`);

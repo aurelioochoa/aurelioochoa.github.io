@@ -42,7 +42,7 @@ try {
         const text = a.innerText.trim().length;
         const hasMedia = !!a.querySelector('img');
         return {
-          act: +a.dataset.act, ground: a.dataset.ground,
+          act: +a.dataset.act, ground: a.dataset.ground, peak: a.dataset.peak !== undefined,
           vh: Math.round((r.height / innerHeight) * 100) / 100,
           top: Math.round(r.top + scrollY), height: Math.round(r.height),
           chars: text, hasMedia,
@@ -74,14 +74,20 @@ try {
       if (isCard && a.chars === 0) failures.push(`${vp.name}: title card ${a.act} is empty`);
     }
 
-    // The peak must be the longest act by a visible margin.
-    const peak = report.acts.find((a) => a.act === 9);
-    const others = report.acts.filter((a) => a.act !== 9);
-    const longestOther = Math.max(...others.map((a) => a.vh));
-    if (peak.vh <= longestOther) {
-      failures.push(`${vp.name}: the peak (${peak.vh}vh) is not the longest act (${longestOther}vh)`);
+    // The peak must be the longest act by a visible margin. Which act that is comes from
+    // the markup's own `data-peak`, not a number written here: acts get inserted, and a
+    // gate that hardcodes the index silently starts measuring the wrong section.
+    const peak = report.acts.find((a) => a.peak);
+    if (!peak) {
+      failures.push(`${vp.name}: no act carries data-peak`);
     } else {
-      console.log(`    peak act 9: ${peak.vh}vh vs next longest ${longestOther}vh`);
+      const others = report.acts.filter((a) => !a.peak);
+      const longestOther = Math.max(...others.map((a) => a.vh));
+      if (peak.vh <= longestOther) {
+        failures.push(`${vp.name}: the peak (${peak.vh}vh) is not the longest act (${longestOther}vh)`);
+      } else {
+        console.log(`    peak act ${peak.act}: ${peak.vh}vh vs next longest ${longestOther}vh`);
+      }
     }
 
     // Contact sheet: one frame per act, plus the seams between worlds.

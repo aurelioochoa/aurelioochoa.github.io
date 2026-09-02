@@ -7,7 +7,7 @@
 <meta name="description" data-i18n-attr="content" data-i18n="meta.description"
       content="Aurelio Ochoa: software developer, certified agricultural drone pilot, trained cook. Guayaquil, Ecuador.">
 <link rel="icon" href="assets/gif/jazzskull.gif">
-<link rel="preload" href="assets/fonts/emotional-VF.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="assets/fonts/emotional.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles/site.css">
 </head>
 <body>
@@ -16,34 +16,80 @@
 
 <!-- The chrome. Loud by grammar: full width, high contrast, CTA at the same weight as the
      wordmark. It does not belong to any act, which is what lets it hold the peak. -->
-<header class="chrome">
+<header class="chrome" data-drone="behind">
   <a class="chrome__mark" href="#top">
     <span class="chrome__name">Aurelio Ochoa</span>
   </a>
   <div class="chrome__right">
     <a class="chrome__cv" href="assets/pdf/Resume Ochoa.pdf" target="_blank" rel="noopener"
        data-cv-link data-i18n="chrome.cv">Résumé</a>
+    <!-- The two switches for the page's toys. They live in the chrome because the chrome is
+         the one bar that outlives every act, and both are things a visitor may want to start
+         or stop from wherever they happen to be standing: the sound, and the spray the
+         aircraft paints the glass with. Neither holds its own state. The sound switch draws
+         the audio engine's and the spray switch draws the aircraft's, so what they say and
+         what is happening cannot come apart. Both carry aria-pressed, so the state is in the
+         accessibility tree rather than only in the icon, and js/main.js removes either one
+         when there is nothing for it to switch. -->
+    <div class="switches">
+      <button class="switch" type="button" data-sound-toggle aria-pressed="false">
+        <svg class="switch__icon" viewBox="0 0 24 24" aria-hidden="true" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="square">
+          <path d="M4 9.5h3.5L12 6v12L7.5 14.5H4z"/>
+          <path class="switch__yes" d="M15.5 9.5a4 4 0 0 1 0 5M18.5 7a8 8 0 0 1 0 10"/>
+          <path class="switch__no" d="M15.5 9.5l5 5M20.5 9.5l-5 5"/>
+        </svg>
+        <span class="sr-only" data-i18n="chrome.sound">Sound</span>
+      </button>
+      <button class="switch" type="button" data-spray-toggle aria-pressed="false">
+        <svg class="switch__icon" viewBox="0 0 24 24" aria-hidden="true" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="square">
+          <path d="M7.5 9.5h6V20h-6z"/>
+          <path d="M9 4.5h3v5h-3z"/>
+          <path class="switch__yes" d="M16 5.5h2M16 9.5h3.5M17 13.5h2"/>
+          <path class="switch__no" d="M4.5 4.5l15 15"/>
+        </svg>
+        <span class="sr-only" data-i18n="chrome.spray">Spray</span>
+      </button>
+    </div>
     <nav class="langs" aria-label="Language"></nav>
   </div>
 </header>
 
-<!-- The signature move lives here: one canvas, above every act, owned by none of them. -->
+<!-- The signature move lives here: one canvas, above every act, owned by none of them. It
+     passes in front of every ground and behind the objects marked data-drone="behind",
+     which it occludes against in its own depth buffer. Only opaque rectangles may opt in
+     that way. Copy carries data-drone="cross" instead: the drone rasterises the element's
+     own glyphs into the same depth buffer, so it flies both over and under a headline
+     depending on which side of the copy's plane its depth drift has it. -->
 <canvas id="drone" class="drone" aria-hidden="true"></canvas>
 
 <main id="top">
 
   <!-- 1 ................................................. jolt -->
+  <!-- The hero's ground is ThreeUI's warp field on its keycaps variant: keycaps drifting
+       past the camera at speed. It sits behind the name, the drone still flies above it. -->
   <section class="act act--name" data-act="1" data-ground="code">
-    <h1 class="name" aria-label="Aurelio Ochoa">
-      <span class="name__line"><span class="w">Aurelio</span></span>
-      <span class="name__line"><span class="w">Ochoa</span></span>
-    </h1>
-    <p class="name__where" data-i18n="hero.where">Guayaquil, Ecuador</p>
+    <!-- tileOpacity and streakOpacity are the only two dials this renderer actually reads.
+         `brightness`, `hue` and `saturation` are declared in its defaults and never used, so
+         they were three numbers in this markup that did nothing and one of them claimed to
+         set a colour: the palette is hardcoded per variant, and the keycaps variant ships
+         Tailwind emerald. It is patched to the CODE world's own ladder in build/bundle.mjs.
+         At 0.72 and 0.5 the field read as dust and the hero was a flat black rectangle. -->
+    <div class="act__scene" aria-hidden="true" data-scene="warp"
+         data-props='{"variant":"keycaps","speed":11,"fov":82,"tileOpacity":0.95,"streakOpacity":0.8}'></div>
+    <div class="act__fore">
+      <h1 class="name" data-drone="cross" aria-label="Aurelio Ochoa">
+        <span class="name__line"><span class="w">Aurelio</span></span>
+        <span class="name__line"><span class="w">Ochoa</span></span>
+      </h1>
+      <p class="name__where" data-i18n="hero.where">Guayaquil, Ecuador</p>
+    </div>
   </section>
 
   <!-- 2 ............................................. curiosity -->
   <section class="act act--three" data-act="2" data-ground="code">
-    <ul class="three">
+    <ul class="three" data-drone="cross">
       <li class="three__item"><span data-i18n="three.one">Developer.</span></li>
       <li class="three__item"><span data-i18n="three.two">Pilot.</span></li>
       <li class="three__item three__item--turn"><span data-i18n="three.three">Cook.</span></li>
@@ -53,17 +99,17 @@
 
   <!-- 3 .......................................... anticipation -->
   <section class="act act--card" data-act="3" data-ground="card" id="act-code">
-    <p class="card__word" data-i18n="card.code">Code</p>
+    <p class="card__word" data-drone="cross" data-i18n="card.code">Code</p>
   </section>
 
   <!-- 4 ........................................... competence -->
   <section class="act act--wide" data-act="4" data-ground="code">
-    <figure class="plate">
+    <figure class="plate" data-drone="behind">
       <img src="assets/img/world-code.webp" alt="" width="1344" height="768" loading="lazy"
            data-replace="his own workspace or a real screenshot of something he shipped">
     </figure>
-    <div class="prose">
-      <h2 data-i18n="code.head">Three years of things that stayed built.</h2>
+    <div class="prose" data-drone="cross">
+      <h2 data-article-heading data-i18n="code.head">Three years of things that stayed built.</h2>
       <p data-i18n="code.body">Front-end, systems administration and cloud infrastructure. Sites and
         features running in production, Linux servers and databases kept alive, tests and deployments
         automated with Jenkins, Docker and Google Cloud Platform.</p>
@@ -72,7 +118,10 @@
 
   <!-- 5 .............................................. density -->
   <section class="act act--stack" data-act="5" data-ground="code">
-    <dl class="stack">
+    <iframe class="act__scene act__scene--wash act__scene--crown" aria-hidden="true"
+            tabindex="-1" loading="lazy"
+            title="" data-frame-src="scenes/elemental-marks.html?fx=lightning&amp;word=STACK"></iframe>
+    <dl class="stack act__fore" data-drone="cross">
       <div class="stack__row">
         <dt data-i18n="stack.frontLabel">Front-end</dt>
         <dd data-i18n="stack.front">HTML, CSS, Sass, JavaScript, React, Vue, Angular</dd>
@@ -95,7 +144,7 @@
   <!-- 6 ................................................ proof -->
   <section class="act act--shipped" data-act="6" data-ground="code">
     <h2 class="sr-only" data-i18n="shipped.head">Shipped</h2>
-    <ol class="shipped">
+    <ol class="shipped" data-drone="cross">
       <li class="shipped__item">
         <h3>Mediacor Plus</h3>
         <p data-i18n="shipped.mediacor">Built their corporate site, then the mail-server automations
@@ -114,43 +163,100 @@
     </ol>
   </section>
 
-  <!-- 7 ................................................. lift -->
-  <section class="act act--card act--card-light" data-act="7" data-ground="card-light">
-    <p class="card__word" data-i18n="card.sky">Sky</p>
+  <!-- 7 ............................................... the shelf -->
+  <!-- ThreeUI's Complete Shelf, rebuilt from its own BOOKS data to hold the ten public
+       repositories. The scene generates every cover from colour, foil and motif, so this
+       act carries real work and no placeholder artwork. Built by build/shelf.mjs. -->
+  <section class="act act--shelf" data-act="7" data-ground="code">
+    <div class="shelf__intro" data-drone="cross">
+      <h2 data-article-heading data-i18n="shelf.head">In the open</h2>
+      <p data-i18n="shelf.body">Ten public repositories, on a shelf. Pull one down and read
+        its spine.</p>
+    </div>
+    <iframe class="shelf" data-drone="behind" data-frame-content data-frame-src="landing-pages/complete-shelf.html" loading="lazy"
+            title="Ten public repositories, on a shelf"></iframe>
   </section>
 
-  <!-- 8 .................................................. awe -->
-  <section class="act act--field" data-act="8" data-ground="sky">
-    <figure class="plate plate--bleed">
+  <!-- 8 ................................................. lift -->
+  <!-- The card that announces the sky world gets an actual sky: spite's CSS3DClouds, with
+       the puff drawn on a canvas here instead of fetched, and no mouse look. -->
+  <section class="act act--card act--card-light" data-act="8" data-ground="card-light">
+    <div class="act__scene clouds" aria-hidden="true" data-clouds></div>
+    <p class="card__word act__fore" data-drone="cross" data-i18n="card.sky">Sky</p>
+  </section>
+
+  <!-- 9 .................................................. awe -->
+  <section class="act act--field" data-act="9" data-ground="sky">
+    <div class="act__scene" aria-hidden="true" data-scene="condensation"
+         data-props='{"speed":1,"dropAmount":1,"opacity":0.55}'></div>
+    <figure class="plate plate--bleed act__fore" data-drone="behind">
       <img src="assets/img/world-sky.webp" alt="" width="1344" height="768" loading="lazy"
            data-replace="his own aerial footage still from a real spray mission">
     </figure>
-    <div class="prose prose--over">
-      <h2 data-i18n="sky.head">Since 2024 the office has been a field.</h2>
+    <div class="prose prose--over" data-drone="cross">
+      <h2 data-article-heading data-i18n="sky.head">Since 2024 the office has been a field.</h2>
       <p data-i18n="sky.body">Precision spray missions over Ecuadorian farmland. Field mapping, route
         planning, and the maintenance and calibration that has to happen before any of it flies.</p>
     </div>
   </section>
 
-  <!-- 9 ........................................ THE PEAK ...... -->
-  <section class="act act--handover" data-act="9" data-ground="sky" data-peak>
-    <h2 class="handover__head" data-i18n="fly.head">Your drone now.</h2>
-    <p class="handover__body" data-i18n="fly.body">It has been flying itself since you got here.
-      Take it.</p>
-    <button class="fly" type="button" data-fly>
-      <span data-i18n="fly.cta">Take the controls</span>
-    </button>
-    <p class="handover__hint" data-hint hidden>
-      <span data-i18n="fly.hint">Drag it, or fly with W A S D.</span>
-    </p>
-    <p class="handover__fallback" data-fallback hidden data-i18n="fly.fallback">
-      Your browser cannot run the drone, so it is sitting this one out.
-    </p>
+  <!-- 10 ........................................ THE PEAK ...... -->
+  <!-- The handover is the controller he actually flies, and the power-on is the real one:
+       press once, then press and hold. The line art is authored UI, not a photo placeholder,
+       which is why it lives in assets/art and carries no data-replace slot. -->
+  <section class="act act--handover" data-act="10" data-ground="sky" data-peak>
+    <div class="handover__copy" data-drone="cross">
+      <h2 class="handover__head" data-i18n="fly.head">Your drone now.</h2>
+      <p class="handover__body" data-i18n="fly.body">It has been flying itself since you got here.
+        Take it.</p>
+      <p class="handover__fallback" data-fallback hidden data-i18n="fly.fallback">
+        Your browser cannot run the drone, so it is sitting this one out.
+      </p>
+    </div>
+
+    <div class="rc" data-rc data-rc-state="off">
+      <img class="rc__art" src="assets/art/controller.webp" alt=""
+           width="1264" height="988" loading="lazy">
+      <!-- The screen is markup, not a texture: it is the only copy in this act that changes,
+           so it stays translatable and stays readable by a screen reader. All three readouts
+           ship in the page and CSS shows the one matching the controller's state, which is
+           also what keeps every string of it inside the i18n gate's reach. -->
+      <output class="rc__screen">
+        <span class="rc__line" data-rc-when="off">
+          <span class="rc__state" data-i18n="rc.off">Controller off</span>
+          <span class="rc__cue" data-i18n="rc.press">Press power</span>
+        </span>
+        <span class="rc__line" data-rc-when="primed">
+          <span class="rc__state" data-i18n="rc.standby">Standby</span>
+          <span class="rc__cue" data-i18n="rc.hold">Hold power for two seconds</span>
+        </span>
+        <span class="rc__line" data-rc-when="linking">
+          <span class="rc__state" data-i18n="rc.linking">Linking</span>
+          <span class="rc__cue" data-i18n="rc.selftest">Self test, then warm up</span>
+        </span>
+        <span class="rc__line" data-rc-when="on">
+          <span class="rc__state" data-i18n="rc.on">Linked</span>
+          <span class="rc__cue" data-i18n="rc.fly">Fly with W A S D, spray with F</span>
+        </span>
+        <span class="rc__track" aria-hidden="true"><span class="rc__fill"></span></span>
+      </output>
+      <button class="rc__power" type="button" data-fly>
+        <span class="sr-only" data-i18n="fly.cta">Take the controls</span>
+      </button>
+      <!-- On an RC Plus the spray is a dial: you turn it for rate and press it to start and
+           stop. There is no rate to set here, so what is left is the press. It is dead until
+           the controller is on, for the same reason the real one is. -->
+      <button class="rc__spray" type="button" data-spray disabled aria-pressed="false">
+        <span class="sr-only" data-i18n="fly.spray">Spray</span>
+      </button>
+    </div>
   </section>
 
-  <!-- 10 ....................................... grounded pride -->
-  <section class="act act--creds" data-act="10" data-ground="sky">
-    <ul class="creds">
+  <!-- 11 ....................................... grounded pride -->
+  <section class="act act--creds" data-act="11" data-ground="sky">
+    <iframe class="act__scene act__scene--wash" aria-hidden="true" tabindex="-1" loading="lazy"
+            title="" data-frame-src="scenes/elemental-marks.html?fx=water&amp;word=CERTIFIED"></iframe>
+    <ul class="creds act__fore" data-drone="cross">
       <li><b data-i18n="creds.certValue">Certified UAS pilot</b>
           <span data-i18n="creds.certLabel">DGAC Ecuador, 2025</span></li>
       <li><b>DJI Agras T50, T100</b>
@@ -160,54 +266,134 @@
     </ul>
   </section>
 
-  <!-- 11 ............................................... warmth -->
-  <section class="act act--card act--card-warm" data-act="11" data-ground="card">
-    <p class="card__word" data-i18n="card.kitchen">Kitchen</p>
+  <!-- 12 ............................................... warmth -->
+  <section class="act act--card act--card-warm" data-act="12" data-ground="card">
+    <iframe class="act__scene act__scene--behind" aria-hidden="true" tabindex="-1" loading="lazy"
+            title="" data-frame-src="scenes/woven-cloth.html"></iframe>
+    <p class="card__word act__fore" data-drone="cross" data-i18n="card.kitchen">Kitchen</p>
   </section>
 
-  <!-- 12 ............................................ surprise -->
-  <section class="act act--wide act--wide-flip" data-act="12" data-ground="kitchen">
-    <figure class="plate">
+  <!-- 13 ............................................ surprise -->
+  <section class="act act--wide act--wide-flip" data-act="13" data-ground="kitchen">
+    <iframe class="act__scene act__scene--wash" aria-hidden="true" tabindex="-1" loading="lazy"
+            title="" data-frame-src="scenes/elemental-marks.html?fx=fire&amp;word=COCINA"></iframe>
+    <figure class="plate act__fore" data-drone="behind">
       <img src="assets/img/world-kitchen.webp" alt="" width="1344" height="768" loading="lazy"
            data-replace="his own plated dish or prep-line photo from culinary school">
+      <!-- The same fire, on a burner instead of a word, licking up the front of the stove. -->
+      <iframe class="plate__fire" aria-hidden="true" tabindex="-1" loading="lazy" title=""
+              data-frame-src="scenes/elemental-marks.html?fx=fire&amp;shape=bar"></iframe>
     </figure>
-    <div class="prose">
-      <h2 data-i18n="kitchen.head">In February 2026 he finished culinary school.</h2>
+    <div class="prose" data-drone="cross">
+      <h2 data-article-heading data-i18n="kitchen.head">In February 2026 he finished culinary school.</h2>
       <p data-i18n="kitchen.body">Culinary arts at the Escuela Culinaria de las Américas in Guayaquil.
         Not a hobby line on a CV. A finished program, and the same appetite for a process that has to
         work every single service.</p>
     </div>
   </section>
 
-  <!-- 13 .................................................. joy -->
-  <section class="act act--skull" data-act="13" data-ground="kitchen">
-    <div class="skull">
-      <img src="assets/gif/jazzskull.gif" alt="A skeleton playing a double bass"
-           width="220" height="220">
-    </div>
-    <p class="skull__line" data-i18n="skull.line">The last survivor of the old site. He kept his job.</p>
-    <p class="skull__credit">jazzskull <span data-i18n="skull.by">by</span>
-      <a href="https://www.cathyjarboe.com/" target="_blank" rel="noopener">Cathy Jarboe</a></p>
-  </section>
-
   <!-- 14 .............................................. resolve -->
+  <!-- The one act that asks the visitor for something, so it is the one act that has to
+       hand over everything needed to answer: the address in plain text, where he is, and
+       what he can be written in. Fourteen acts of story and then a lone mailto was the
+       page asking without telling.
+
+       The jazzskull ends the page rather than getting an act of its own: he is the last
+       survivor of the old site, so he sees the visitor out. -->
   <section class="act act--close" data-act="14" data-ground="close">
-    <h2 class="close__head" data-i18n="close.head">Let's build something.</h2>
-    <a class="close__cta" href="mailto:aurelioochoagomez@hotmail.com" data-i18n="close.cta">
-      Email me
-    </a>
-    <ul class="close__links">
-      <li><a href="https://github.com/aurelioochoa" target="_blank" rel="noopener">GitHub</a></li>
-      <li><a href="https://www.linkedin.com/in/aurelioochoa/" target="_blank" rel="noopener">LinkedIn</a></li>
-      <li><a href="https://www.instagram.com/aurelioochoa/" target="_blank" rel="noopener">Instagram</a></li>
-      <li><a href="assets/pdf/Resume Ochoa.pdf" target="_blank" rel="noopener"
-             data-cv-link data-i18n="chrome.cv">Résumé</a></li>
-    </ul>
+    <h2 class="close__head" data-drone="cross" data-i18n="close.head">Let's build something.</h2>
+
+    <div class="close__ask">
+      <p class="close__line" data-drone="cross" data-i18n="close.line">Code, a field, or a
+        kitchen. The address is the same.</p>
+      <!-- The liquid metal button is a sandboxed frame: it cannot carry an href and it
+           cannot navigate the page itself, so it reports its press and the link below it is
+           what a visitor without JavaScript gets. The link is also what holds the space:
+           the frame is laid over it rather than stacked above it, so the pill arriving does
+           not move the act and the wait for it is not a hole in the page. -->
+      <div class="close__go">
+        <iframe class="close__metal" title="Email me" loading="lazy"
+                data-frame-src="scenes/liquid-metal-button.html?text=Email%20me"
+                data-frame-href="mailto:aurelioochoagomez@hotmail.com"></iframe>
+        <a class="close__cta" href="mailto:aurelioochoagomez@hotmail.com" data-i18n="close.cta">
+          Email me
+        </a>
+      </div>
+    </div>
+
+    <!-- Rows and rules, the same grammar act 5 and act 11 state their data in, rather than
+         a card: this page has no card component and does not need one to say three things.
+         The address takes the heavy rule for the reason the daily stack row does, since the
+         accent that would normally mark it is the ground here. -->
+    <dl class="close__card" data-drone="cross">
+      <div class="close__row close__row--hot">
+        <dt data-i18n="close.emailLabel">Email</dt>
+        <dd>
+          <a class="close__addr" href="mailto:aurelioochoagomez@hotmail.com">aurelioochoagomez@hotmail.com</a>
+          <!-- Wired in js/main.js, and removed there when the clipboard is not available,
+               so the control is never present without the thing it does. -->
+          <button class="close__copy" type="button" hidden
+                  data-copy="aurelioochoagomez@hotmail.com"
+                  data-i18n-attr="data-copied" data-i18n="close.copied" data-copied="Copied">
+            <span data-i18n="close.copy">Copy</span>
+          </button>
+        </dd>
+      </div>
+      <div class="close__row">
+        <dt data-i18n="close.whereLabel">Where</dt>
+        <dd data-i18n="close.where">Guayaquil, Ecuador</dd>
+      </div>
+      <div class="close__row">
+        <dt data-i18n="close.langLabel">Write in</dt>
+        <dd data-i18n="close.lang">Spanish, English or German</dd>
+      </div>
+    </dl>
+
+    <!-- He signs the page: the badge and what it is doing there on one side, where else to
+         find him on the other, under one rule. Two loose blocks at the foot of the act was
+         the signature arriving twice. -->
+    <div class="close__foot">
+      <div class="close__sign">
+        <!-- The badge is a link now. The GIF went around the internet for twenty-four years
+             with nobody's name on it, and the video is the search that traced it back to
+             her in 2023. The credit under it already links to her, so the badge points at
+             the story and the credit points at the person. -->
+        <a class="skull" href="https://www.youtube.com/watch?v=ZYcHOEjGzPA"
+           target="_blank" rel="noopener"
+           data-i18n-attr="aria-label" data-i18n="skull.watch"
+           aria-label="Watch the story of where he came from">
+          <img src="assets/gif/jazzskull.gif" alt="A skeleton playing a trumpet"
+               width="220" height="220" loading="lazy" decoding="async">
+        </a>
+        <div class="close__sign-text">
+          <!-- He says a fact, and pressing him gives another one. The old footer asked a
+               third-party API for that fact on every load; the facts ship in the language
+               files instead, so they are translated like everything else and the page still
+               reaches no host but its own. Empty and hidden in the markup because the copy
+               only exists once a language has been applied: a button with nothing in it and
+               nothing to do is worse than no button. -->
+          <button class="skull__fact" type="button" hidden data-facts>
+            <span class="skull__fact-text" data-fact aria-live="polite"></span>
+            <span class="skull__fact-more" data-i18n="skull.another">Another fact</span>
+          </button>
+          <p class="skull__credit">jazzskull <span data-i18n="skull.by">by</span>
+            <a href="https://www.cathyjarboe.com/" target="_blank" rel="noopener">Cathy Jarboe</a></p>
+        </div>
+      </div>
+      <ul class="close__links">
+        <li><a href="https://github.com/aurelioochoa" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/aurelioochoa/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://www.instagram.com/aurelioochoa/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="assets/pdf/Resume Ochoa.pdf" target="_blank" rel="noopener"
+               data-cv-link data-i18n="chrome.cv">Résumé</a></li>
+      </ul>
+    </div>
   </section>
 
 </main>
 
 <script type="module" src="js/main.js"></script>
+<script type="module" src="js/vendor/scenes/scenes.js"></script>
 <noscript>
   <p class="noscript">This page uses JavaScript for its language switcher and its drone. The
     writing is all here without it.</p>
