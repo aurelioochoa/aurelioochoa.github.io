@@ -222,21 +222,22 @@ outlives the act that started it.
 
 ### The aircraft is the one he flies
 
-It is an Agras, and specifically the octo-quad shape of the T40 / T50 / T100: four arms in an
-X, **two coaxial counter-rotating rotors on each**, the tank as the central mass, a pair of
-spray booms ending in centrifugal nozzles, phased-array radar pods fore and aft, and a wide
-fore-aft skid. Eight rotors and not four is the whole silhouette, so it is worth the
-triangles. The skids stay Signal Red and remain the only colour on it that is not hull grey.
+The procedural model follows the [DJI Agras T50](https://ag.dji.com/t50): four folding
+arms in an X, two coaxial counter-rotating rotors on each, a pale removable tank behind an
+upright battery, and an open graphite landing frame. It remains a stylised WebGL model,
+not a dimensional CAD replica. The original red landing rails and pale rectangular arms
+have been replaced by thin carbon-coloured tubes; Signal Red is confined to small arm tabs.
 
-It is built out of four primitives and not one. The box was the whole vocabulary at first,
-and a sprayer built only out of boxes is a parcel with propellers: the hull is now a stack of
-**rectangular frusta** with a chamfered belly and shoulders the arms bolt into, the motor
-cans, masts, radar pods, gimbal and nozzle bodies are **tapered prisms**, the arms are
-**beams that taper** from the shoulder to the motor, and the blades have a planform — widest
-at 40 percent of span, almost nothing at the tip, and coned upward the way a loaded prop is.
-The parts that were missing are there too: the swappable battery on the spine with its
-handle, the telemetry antennas at the tail, the chin gimbal, the pump, and struts that splay
-outward to the skids instead of dropping straight down into the spray fan.
+The tank uses stacked rectangular frusta, with a tapered sump, sloping shoulders, recessed
+side ribs and a filler cap. The battery has an open carrying handle. Folding hinges,
+arm collars, motor cooling fins, front binocular sensor windows, radar housings, pump and
+atomisers give the aircraft readable mechanical detail. A general tube primitive builds
+the diagonal carbon arms, plumbing and the two fore-aft landing loops. The nozzles remain
+aligned with the spray simulation's emission points.
+
+Each rotor has two tapered blades. Opaque swept discs have been removed so the space
+between the coaxial pairs stays visible. Camera framing, flight limits, keyboard controls,
+reduced-motion behaviour and the page's depth masks retain their existing contracts.
 
 The banded light was retuned with it. The key used to sit high and BEHIND the aircraft, and
 the view matrix is a bare translation, so the faces the visitor actually sees — the ones
@@ -572,3 +573,13 @@ same mistake the drone's drag was.
   running animation frame, and browsers cap contexts at around sixteen.
 - A scene never loads while the act above it is still entering: an iframe shares this main
   thread, and a scene build lands squarely in the neighbouring act's entrance transition.
+
+### Portada navigation refinement
+
+The name, local fonts, three colour worlds and fourteen-act sequence are preserved
+(design variance 8, motion 7, density 3). A quieter keyboard field and a dark fade beneath
+the name improve reading contrast. The location and three translated world links share
+one ruled footer; the links stack below the location on phones and work as native anchors
+without JavaScript. Anchor targets clear the fixed chrome. Project descriptions use brighter
+ink and more line spacing for easier reading. No runtime dependency or external asset was
+added.

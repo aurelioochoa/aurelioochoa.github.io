@@ -279,6 +279,29 @@ a { color: inherit; }
 /* 1 ---------------------------------------------------------- name */
 
 .act--name { min-height: 100svh; justify-content: flex-end; }
+.act[id] { scroll-margin-top: var(--chrome-h); }
+/* Keep the keyboard field luminous above and quiet underneath the name. */
+.act--name::after {
+  content: "";
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, transparent 20%, rgb(11 13 20 / 0.24) 50%, var(--code-ground));
+}
+.name__footer {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1.25rem; margin-top: 2rem;
+  border-top: 1px solid rgb(232 234 242 / 0.3); padding-top: 1rem;
+}
+.world-links { display: flex; gap: clamp(0.8rem, 2.5vw, 2.5rem); }
+.world-links a {
+  display: inline-flex; align-items: center; min-height: 44px;
+  font-family: var(--label); font-size: 0.8rem;
+  text-decoration-thickness: 1px; text-underline-offset: 0.45em;
+}
+.world-links a:hover { color: var(--code-amber); }
+@media (max-width: 520px) {
+  .name__footer { align-items: flex-start; flex-direction: column; gap: 0.5rem; }
+  .world-links { width: 100%; justify-content: space-between; }
+}
 .name {
   font-family: var(--display);
   font-size: clamp(3.2rem, 15.5vw, 13rem);
@@ -298,9 +321,7 @@ a { color: inherit; }
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--soft);
-  margin-top: 1.6rem;
-  padding-top: 1.1rem;
-  border-top: 2px solid currentColor;
+  margin: 0;
   /* Sized to the line itself: letter-spaced mono runs wider than its ch count, so a
      ch-based max-width wraps a short place name onto two lines. */
   width: fit-content;
@@ -476,7 +497,7 @@ a { color: inherit; }
   line-height: 1.08;
   margin-bottom: 0.7rem;
 }
-.shipped__item p { color: var(--soft); font-size: 1rem; line-height: 1.5; }
+.shipped__item p { color: var(--ink); opacity: 0.82; font-size: 1rem; line-height: 1.65; max-width: 52ch; }
 
 /* 8 --------------------------------------------------------- field */
 

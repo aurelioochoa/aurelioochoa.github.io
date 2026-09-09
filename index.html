@@ -77,13 +77,20 @@
          Tailwind emerald. It is patched to the CODE world's own ladder in build/bundle.mjs.
          At 0.72 and 0.5 the field read as dust and the hero was a flat black rectangle. -->
     <div class="act__scene" aria-hidden="true" data-scene="warp"
-         data-props='{"variant":"keycaps","speed":11,"fov":82,"tileOpacity":0.95,"streakOpacity":0.8}'></div>
+         data-props='{"variant":"keycaps","speed":7,"fov":82,"tileOpacity":0.95,"streakOpacity":0.8}'></div>
     <div class="act__fore">
       <h1 class="name" data-drone="cross" aria-label="Aurelio Ochoa">
         <span class="name__line"><span class="w">Aurelio</span></span>
         <span class="name__line"><span class="w">Ochoa</span></span>
       </h1>
-      <p class="name__where" data-i18n="hero.where">Guayaquil, Ecuador</p>
+      <div class="name__footer">
+        <p class="name__where" data-i18n="hero.where">Guayaquil, Ecuador</p>
+        <div class="world-links">
+          <a href="#act-code" data-i18n="card.code">Code</a>
+          <a href="#act-sky" data-i18n="card.sky">Sky</a>
+          <a href="#act-kitchen" data-i18n="card.kitchen">Kitchen</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -180,7 +187,7 @@
   <!-- 8 ................................................. lift -->
   <!-- The card that announces the sky world gets an actual sky: spite's CSS3DClouds, with
        the puff drawn on a canvas here instead of fetched, and no mouse look. -->
-  <section class="act act--card act--card-light" data-act="8" data-ground="card-light">
+  <section class="act act--card act--card-light" data-act="8" data-ground="card-light" id="act-sky">
     <div class="act__scene clouds" aria-hidden="true" data-clouds></div>
     <p class="card__word act__fore" data-drone="cross" data-i18n="card.sky">Sky</p>
   </section>
@@ -267,7 +274,7 @@
   </section>
 
   <!-- 12 ............................................... warmth -->
-  <section class="act act--card act--card-warm" data-act="12" data-ground="card">
+  <section class="act act--card act--card-warm" data-act="12" data-ground="card" id="act-kitchen">
     <iframe class="act__scene act__scene--behind" aria-hidden="true" tabindex="-1" loading="lazy"
             title="" data-frame-src="scenes/woven-cloth.html"></iframe>
     <p class="card__word act__fore" data-drone="cross" data-i18n="card.kitchen">Kitchen</p>

@@ -22,7 +22,7 @@
 // drawn into the same depth buffer, with the element's own text rasterised onto the quad
 // as a coverage mask so the aircraft is cut out on the letterforms and nowhere else.
 //
-// Written against raw WebGL on purpose: the whole scene is a few hundred triangles, so a
+// Written against raw WebGL on purpose: the aircraft is lightweight procedural geometry, so a
 // 700KB engine would cost more than it returns, and the repo stays buildless.
 
 const VERT = `
@@ -451,14 +451,11 @@ const HALF_SPAN_Y = 0.55;
 
 const SHELL = [0.93, 0.93, 0.95];
 const SHELL_MID = [0.74, 0.76, 0.82];
-const SHELL_DARK = [0.42, 0.45, 0.55];
+const SHELL_DARK = [0.30, 0.32, 0.33];
 const SIGNAL = [0.839, 0.157, 0.133]; // the page accent, the one colour that never varies
-const ROTOR = [0.20, 0.22, 0.30];
-const BLADE = [0.30, 0.32, 0.40];
-// Darker than the blades on purpose: the swept disc is the shadow the pair leaves in the
-// air, and the blades have to read as objects passing over it.
-const ROTOR_BLUR = [0.17, 0.19, 0.26];
-const TANK = [0.16, 0.18, 0.26];
+const ROTOR = [0.115, 0.125, 0.135];
+const BLADE = [0.24, 0.255, 0.265];
+const TANK = [0.18, 0.195, 0.20];
 
 // The two centrifugal nozzles, under the atomiser discs at the ends of the booms. Emission
 // points, not geometry: the fan leaves from just below each head.
@@ -493,78 +490,85 @@ for (const sx of [1, -1]) {
   }
 }
 
+// Tubular frame members in any direction, with a stable orthonormal cross section.
+// The Agras silhouette depends on the open space between these thin carbon tubes.
+function pushTube(g, a, b, radius, color, segments = 10) {
+  const d = b.map((v, i) => v - a[i]);
+  const len = Math.hypot(...d);
+  const n = d.map(v => v / len);
+  const ref = Math.abs(n[1]) > 0.9 ? [1, 0, 0] : [0, 1, 0];
+  const u = [n[1]*ref[2]-n[2]*ref[1], n[2]*ref[0]-n[0]*ref[2], n[0]*ref[1]-n[1]*ref[0]];
+  const ul = Math.hypot(...u);
+  for (let i = 0; i < 3; i++) u[i] /= ul;
+  const v = [n[1]*u[2]-n[2]*u[1], n[2]*u[0]-n[0]*u[2], n[0]*u[1]-n[1]*u[0]];
+  const point = (p, angle) => p.map((x, i) => x + radius * (u[i]*Math.cos(angle) + v[i]*Math.sin(angle)));
+  for (let i = 0; i < segments; i++) {
+    const t = i * Math.PI * 2 / segments, next = (i + 1) * Math.PI * 2 / segments;
+    pushQuad(g, point(a,t), point(a,next), point(b,next), point(b,t), color);
+  }
+}
+
 function buildDrone() {
   const g = { pos: [], nrm: [], col: [] };
 
-  // The tank is the mass, and on a real sprayer everything else is hung off it. It is a
-  // stack of frusta rather than a box: a chamfered belly for the drain, the barrel itself,
-  // the collar the arms and the gear bolt into, and shoulders tapering up to the battery.
-  pushFrustum(g, 0, -0.235, 0, 0.34, 0.30, 0.56, 0.48, 0.11, SHELL);      // belly chamfer
-  pushFrustum(g, 0, -0.100, 0, 0.56, 0.48, 0.60, 0.52, 0.16, SHELL);      // tank barrel
-  pushFrustum(g, 0,  0.020, 0, 0.60, 0.52, 0.58, 0.50, 0.08, TANK);       // collar
-  pushFrustum(g, 0,  0.115, 0, 0.58, 0.50, 0.40, 0.34, 0.11, SHELL);      // shoulders
-  pushBox(g, 0, -0.10, 0.265, 0.30, 0.10, 0.02, SHELL_MID);               // level window
-
-  // The battery, on the spine where it is swapped between loads, with its handle.
-  pushFrustum(g, 0, 0.235, -0.02, 0.36, 0.30, 0.32, 0.26, 0.13, SHELL_DARK);
-  pushBox(g, 0, 0.315, -0.02, 0.20, 0.03, 0.06, ROTOR);
-  for (const sz of [1, -1]) pushBox(g, 0, 0.235, sz * 0.145, 0.26, 0.06, 0.012, TANK);
-
-  // Avionics cowl over the nose, the two phased-array radar pods fore and aft, the terrain
-  // lidar under the belly and the gimbal camera hanging off the chin.
-  pushFrustum(g, 0, 0.155, 0.20, 0.34, 0.22, 0.22, 0.12, 0.12, SHELL_DARK);
-  for (const sz of [1, -1]) {
-    pushFrustum(g, 0, 0.02, sz * 0.345, 0.30, 0.10, 0.22, 0.06, 0.10, SHELL_DARK);
-    pushBox(g, 0, 0.02, sz * 0.395, 0.24, 0.07, 0.02, TANK);
-  }
-  pushBox(g, 0, -0.305, -0.16, 0.14, 0.05, 0.11, SHELL_DARK);
-  pushCyl(g, 0, -0.315, 0.20, 0.075, 0.070, 0.10, 8, SHELL_DARK);
-  pushBox(g, 0, -0.325, 0.255, 0.08, 0.08, 0.04, TANK);
-
-  // Two telemetry antennas at the tail, out of the props and out of the battery.
-  for (const sx of [1, -1]) {
-    pushBox(g, sx * 0.17, 0.24, -0.26, 0.022, 0.17, 0.022, ROTOR);
-    pushBox(g, sx * 0.17, 0.335, -0.26, 0.04, 0.035, 0.04, SHELL_DARK);
+  // T50 reference: pale removable tank behind the upright battery, graphite chassis,
+  // four folding carbon arms and eight coaxial propellers. No external model or textures.
+  pushFrustum(g, 0, -0.225, -0.045, 0.29, 0.27, 0.46, 0.44, 0.13, SHELL_MID);
+  pushFrustum(g, 0, -0.085, -0.065, 0.46, 0.44, 0.52, 0.48, 0.15, SHELL);
+  pushFrustum(g, 0, 0.075, -0.105, 0.52, 0.44, 0.49, 0.40, 0.17, SHELL);
+  pushFrustum(g, 0, 0.185, -0.105, 0.49, 0.40, 0.34, 0.32, 0.05, SHELL);
+  pushCyl(g, 0, 0.223, -0.19, 0.06, 0.055, 0.025, 12, TANK);
+  // Recessed tank ribs, visible on both flanks.
+  for (const sx of [-1, 1]) {
+    for (const z of [-0.19, -0.07, 0.05]) {
+      pushBeam(g, sx*0.237, -0.16, z, sx*0.264, -0.005, z-0.025, 0.013, 0.016, SHELL_MID);
+    }
   }
 
-  // The four arms. Each is a shoulder hard point at the hull, a tapered arm out to the
-  // motor, and the coaxial tower itself: yoke, two bells back to back, the spacer between
-  // them and the mast the upper prop turns on.
-  for (const sx of [1, -1]) {
-    for (const sz of [1, -1]) {
+  pushFrustum(g, 0, 0.025, 0.13, 0.54, 0.29, 0.48, 0.27, 0.12, SHELL_DARK);
+  pushFrustum(g, 0, 0.105, 0.145, 0.48, 0.27, 0.32, 0.23, 0.04, SHELL_MID);
+  // Tall battery and a genuinely open carrying handle.
+  pushFrustum(g, 0, 0.215, 0.105, 0.20, 0.20, 0.16, 0.17, 0.20, SHELL_DARK);
+  pushBox(g, 0, 0.32, 0.105, 0.18, 0.022, 0.18, TANK);
+  for (const x of [-0.06, 0.06]) pushBox(g, x, 0.343, 0.105, 0.018, 0.045, 0.025, ROTOR);
+  pushBox(g, 0, 0.365, 0.105, 0.138, 0.018, 0.025, ROTOR);
+  // Front radar, binocular camera windows and downward sensor.
+  pushFrustum(g, 0, 0.005, 0.292, 0.25, 0.06, 0.28, 0.05, 0.08, TANK);
+  for (const x of [-0.15, 0.15]) {
+    pushBox(g, x, 0.071, 0.274, 0.075, 0.04, 0.015, ROTOR);
+    for (const dx of [-0.018, 0.018]) pushBox(g, x+dx, 0.073, 0.284, 0.018, 0.017, 0.005, SHELL_MID);
+  }
+  pushBox(g, 0, -0.27, 0.15, 0.12, 0.05, 0.09, TANK);
+  pushBox(g, 0, 0.05, -0.335, 0.22, 0.07, 0.06, TANK);
+
+  for (const sx of [-1, 1]) {
+    for (const sz of [-1, 1]) {
       const tx = sx * ARM, tz = sz * ARM;
-      pushBeam(g, sx * 0.13, 0.02, sz * 0.13, sx * 0.30, 0.035, sz * 0.30, 0.18, 0.13, SHELL, 0.15, 0.105);
-      pushBeam(g, sx * 0.28, 0.035, sz * 0.28, tx, 0.05, tz, 0.15, 0.105, SHELL, 0.10, 0.075);
-      pushCyl(g, tx, 0.075, tz, 0.075, 0.088, 0.07, 8, SHELL_DARK);       // yoke
-      pushCyl(g, tx, 0.145, tz, 0.086, 0.086, 0.075, 8, SHELL_DARK);      // lower can
-      pushCyl(g, tx, 0.186, tz, 0.064, 0.064, 0.02, 8, ROTOR);            // spacer
-      pushCyl(g, tx, 0.226, tz, 0.086, 0.076, 0.075, 8, SHELL_DARK);      // upper can
-      pushCyl(g, tx, 0.278, tz, 0.034, 0.034, 0.05, 8, ROTOR);            // mast
-      pushCyl(g, tx, 0.040, tz, 0.052, 0.062, 0.05, 8, ROTOR);            // lower hub
-      pushBox(g, tx, -0.015, tz, 0.07, 0.05, 0.07, TANK);                 // nav housing
+      pushBeam(g, sx*0.18, 0.035, sz*0.16, sx*0.32, 0.045, sz*0.30, 0.105, 0.08, TANK);
+      pushCyl(g, sx*0.30, 0.05, sz*0.28, 0.045, 0.045, 0.105, 12, ROTOR);
+      pushTube(g, [sx*0.30, 0.05, sz*0.29], [tx, 0.07, tz], 0.029, ROTOR);
+      pushTube(g, [sx*0.32, 0.05, sz*0.31], [sx*0.39, 0.054, sz*0.38], 0.034, SHELL_MID);
+      pushCyl(g, tx, 0.17, tz, 0.068, 0.073, 0.15, 12, TANK);
+      pushCyl(g, tx, 0.25, tz, 0.073, 0.046, 0.025, 12, ROTOR);
+      pushCyl(g, tx, 0.279, tz, 0.026, 0.026, 0.04, 12, SHELL_MID);
+      pushCyl(g, tx, 0.074, tz, 0.044, 0.062, 0.042, 12, ROTOR);
+      pushBox(g, tx, -0.015, tz, 0.05, 0.05, 0.05, TANK);
+      // Fine cooling fins distinguish the motor cans from the arm tubes.
+      for (const y of [0.12, 0.15, 0.18, 0.21]) pushCyl(g, tx, y, tz, 0.075, 0.075, 0.006, 12, SHELL_DARK);
     }
+    // Open tubular landing loops, fore-aft, with raised ends and broad stance.
+    const points = [[sx*0.22,-0.06,-0.25], [sx*0.35,-0.38,-SKID_Z],
+      [sx*0.34,-0.425,-0.35], [sx*0.34,-0.425,0.35],
+      [sx*0.35,-0.38,SKID_Z], [sx*0.22,-0.06,0.25]];
+    for (let i=0; i<points.length-1; i++) pushTube(g, points[i], points[i+1], 0.018, ROTOR);
+    pushTube(g, [sx*0.34,-0.425,-0.26], [sx*0.34,-0.425,0.26], 0.023, TANK);
+    // Pump, plumbing and centrifugal atomiser at the actual particle origin.
+    pushTube(g, [sx*0.13,-0.25,0.02], [sx*0.66,-0.27,0.06], 0.015, ROTOR);
+    pushCyl(g, sx*0.66, -0.305, 0.06, 0.045, 0.039, 0.10, 12, SHELL_DARK);
+    pushDisc(g, sx*0.66, -0.358, 0.06, 0.061, 16, ROTOR, -1);
+    pushBox(g, sx*0.29, 0.09, 0.28, 0.035, 0.012, 0.05, SIGNAL);
   }
-
-  // The pump on the belly, the booms out to the nozzles, and the heads themselves: a body
-  // and the atomiser disc that throws the fan.
-  pushBox(g, 0, -0.305, -0.02, 0.18, 0.07, 0.16, SHELL_DARK);
-  for (const sx of [1, -1]) {
-    pushBeam(g, sx * 0.16, -0.27, 0.02, sx * 0.62, -0.27, 0.06, 0.055, 0.055, SHELL_DARK, 0.045, 0.045);
-    pushCyl(g, sx * 0.66, -0.305, 0.06, 0.058, 0.048, 0.10, 8, TANK);
-    pushDisc(g, sx * 0.66, -0.358, 0.06, 0.066, 8, ROTOR, -1);
-  }
-
-  // Landing gear: two long fore-aft skids on four splayed struts, and the one red element.
-  // The splay is what the struts do on the real airframe, and it is also what keeps them
-  // out of the spray fan.
-  for (const sz of [1, -1]) {
-    pushBox(g, 0, -0.425, sz * SKID_Z, 1.28, 0.07, 0.09, SIGNAL);
-    for (const sx of [1, -1]) {
-      pushBeam(g, sx * 0.21, -0.15, sz * 0.30, sx * 0.42, -0.40, sz * SKID_Z,
-               0.075, 0.075, SHELL_DARK, 0.06, 0.06);
-    }
-  }
-
+  pushBox(g, 0, -0.295, -0.015, 0.18, 0.045, 0.12, TANK);
   return g;
 }
 
@@ -599,9 +603,7 @@ function pushBlade(g, s, color) {
 // anyone notices.
 function buildRotor() {
   const g = { pos: [], nrm: [], col: [] };
-  // The swept disc, inside the blades so their tips still break its edge. It turns with
-  // them, so its eight facets are what gives the rotation away at the size this is drawn.
-  pushDisc(g, 0, -0.016, 0, ROTOR_R * 0.74, 8, ROTOR_BLUR);
+  // Open propeller silhouette: an opaque swept disc hides the coaxial airframe.
   pushCyl(g, 0, 0.005, 0, 0.058, 0.044, 0.05, 8, ROTOR);
   for (const s of [1, -1]) pushBlade(g, s, BLADE);
   return g;
