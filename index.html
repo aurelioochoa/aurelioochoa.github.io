@@ -20,6 +20,12 @@
   <a class="chrome__mark" href="#top">
     <span class="chrome__name">Aurelio Ochoa</span>
   </a>
+  <nav class="chrome__nav" aria-label="Sections" data-i18n="chrome.sections" data-i18n-attr="aria-label">
+    <a href="#act-code" data-i18n="card.code">Code</a>
+    <a href="#act-sky" data-i18n="card.sky">Sky</a>
+    <a href="#act-kitchen" data-i18n="card.kitchen">Kitchen</a>
+    <a href="#contact" data-i18n="chrome.contact">Contact</a>
+  </nav>
   <div class="chrome__right">
     <a class="chrome__cv" href="assets/pdf/Resume Ochoa.pdf" target="_blank" rel="noopener"
        data-cv-link data-i18n="chrome.cv">Résumé</a>
@@ -287,7 +293,7 @@
 
        The jazzskull ends the page rather than getting an act of its own: he is the last
        survivor of the old site, so he sees the visitor out. -->
-  <section class="act act--close" data-act="14" data-ground="close">
+  <section class="act act--close" data-act="14" data-ground="close" id="contact">
     <h2 class="close__head" data-drone="cross" data-i18n="close.head">Let's build something.</h2>
 
     <div class="close__ask">
@@ -338,7 +344,7 @@
     <!-- He signs the page: the badge and what it is doing there on one side, where else to
          find him on the other, under one rule. Two loose blocks at the foot of the act was
          the signature arriving twice. -->
-    <div class="close__foot">
+    <footer class="close__foot">
       <div class="close__sign">
         <!-- The badge is a link now. The GIF went around the internet for twenty-four years
              with nobody's name on it, and the video is the search that traced it back to
@@ -373,7 +379,11 @@
         <li><a href="assets/pdf/Resume Ochoa.pdf" target="_blank" rel="noopener"
                data-cv-link data-i18n="chrome.cv">Résumé</a></li>
       </ul>
-    </div>
+      <div class="close__end">
+        <span class="close__signature">Aurelio Ochoa</span>
+        <a href="#top" data-back-top data-i18n="close.top">Back to top</a>
+      </div>
+    </footer>
   </section>
 
 </main>

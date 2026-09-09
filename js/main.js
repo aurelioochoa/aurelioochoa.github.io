@@ -268,6 +268,15 @@ async function main() {
   buildToggle(lang);
   wireReveal();
   wireCopy();
+  // A full-page smooth scroll crosses every lazy scene and can be interrupted by layout
+  // changes. Return immediately and move keyboard focus to the visible header instead.
+  document.querySelector('[data-back-top]')?.addEventListener('click', event => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    history.pushState(null, '', '#top');
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    document.querySelector('.chrome__mark')?.focus({ preventScroll: true });
+  });
   wireDrone();
   wireClouds();
   wireSectionEffects();

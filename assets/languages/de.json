@@ -10,7 +10,9 @@
   "chrome": {
     "cv": "Lebenslauf",
     "sound": "Ton",
-    "spray": "Sprühen"
+    "spray": "Sprühen",
+    "sections": "Abschnitte",
+    "contact": "Kontakt"
   },
   "hero": {
     "where": "Guayaquil, Ecuador"
@@ -106,6 +108,7 @@
     "whereLabel": "Wo",
     "where": "Guayaquil, Ecuador",
     "langLabel": "Schreib auf",
-    "lang": "Spanisch, Englisch oder Deutsch"
+    "lang": "Spanisch, Englisch oder Deutsch",
+    "top": "Zum Seitenanfang"
   }
 }

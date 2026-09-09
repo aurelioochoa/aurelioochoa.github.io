@@ -10,7 +10,9 @@
   "chrome": {
     "cv": "Currículum",
     "sound": "Sonido",
-    "spray": "Fumigación"
+    "spray": "Fumigación",
+    "sections": "Secciones",
+    "contact": "Contacto"
   },
   "hero": {
     "where": "Guayaquil, Ecuador"
@@ -106,6 +108,7 @@
     "whereLabel": "Dónde",
     "where": "Guayaquil, Ecuador",
     "langLabel": "Escríbeme en",
-    "lang": "Español, inglés o alemán"
+    "lang": "Español, inglés o alemán",
+    "top": "Volver al inicio"
   }
 }

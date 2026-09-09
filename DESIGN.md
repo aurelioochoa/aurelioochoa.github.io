@@ -585,3 +585,16 @@ one ruled footer; the links stack below the location on phones and work as nativ
 without JavaScript. Anchor targets clear the fixed chrome. Project descriptions use brighter
 ink and more line spacing for easier reading. No runtime dependency or external asset was
 added.
+
+### Header and footer navigation
+
+The fixed header now includes native anchors for the three worlds and Contact, alongside
+the CV, sound/spray switches and language selector. A segmented language control reduces
+visual clutter. At 1180px and below, section navigation moves into a dedicated second row;
+the shared chrome-height token keeps content, anchors and drone framing aligned.
+
+The close retains its red ground, metal email button and jazzskull. The email occupies its
+own full-width row, profile links form two columns with generous hit areas, and a signature
+line includes a translated back-to-top link. On phones the skull sits beside its fact to
+keep the contact section compact. Contact navigation and footer labels ship in all three
+languages and native anchors work without JavaScript.

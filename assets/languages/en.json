@@ -10,7 +10,9 @@
   "chrome": {
     "cv": "Résumé",
     "sound": "Sound",
-    "spray": "Spray"
+    "spray": "Spray",
+    "sections": "Sections",
+    "contact": "Contact"
   },
   "hero": {
     "where": "Guayaquil, Ecuador"
@@ -106,6 +108,7 @@
     "whereLabel": "Where",
     "where": "Guayaquil, Ecuador",
     "langLabel": "Write in",
-    "lang": "Spanish, English or German"
+    "lang": "Spanish, English or German",
+    "top": "Back to top"
   }
 }
