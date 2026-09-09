@@ -499,12 +499,17 @@ would leave both worse. What is held instead is the boundary:
 - The stack and kitchen effects are part of their content geometry, implemented in
   `js/section-effects.js`. There are no separate STACK or COCINA effect titles. Lightning
   follows each real table separator, with brighter arcs and category text on pointer hover
-  or a short touch. Warm flame rises from the kitchen photograph's lower edge and the
-  rule beneath its prose. These transparent 2D canvases do not capture input or add labels.
+  or a short touch. Seeded midpoint displacement produces branching electrical discharges
+  with a short decay and residual contact light, rather than continuously waving lines.
+  Fire rises from the photograph using upward-advected, domain-warped fractal noise and
+  a temperature-based colour ramp. The prose receives reflected warm light, not a second
+  strip of flames. Transparent canvases do not capture input or add labels.
   ResizeObserver tracks reflow and translated row heights; IntersectionObserver and page
   visibility stop animation when it cannot be seen. A 30 fps cap and DPR cap of 2 bound
   rendering cost. Reduced motion, including preference changes during the visit, leaves
-  the static rules and semantic content. No additional WebGL contexts are required.
+  the static rules and semantic content. The fire uses one temporary WebGL context,
+  created on entry and explicitly released offscreen; the table and reflected light use
+  Canvas 2D. If WebGL is unavailable, the kitchen keeps the warm edge-light fallback.
 
 - Scenes carry this site's words, never a vendor's. The cloth is woven with `AURELIO OCHOA`, not the studio it came from. The shelf no longer
   titles itself either: act 7 already carries "In the open" in the page, in the page's own

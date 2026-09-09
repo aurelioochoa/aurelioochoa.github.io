@@ -38,7 +38,7 @@
     "opsLabel": "Systems",
     "ops": "Linux, Docker, Jenkins, Google Cloud Platform, CI/CD",
     "aiLabel": "AI and agents",
-    "ai": "Claude Code, OpenCode, agentic workflow design, daily"
+    "ai": "Codex, Claude Code, OpenCode, agentic workflow design, daily"
   },
   "shipped": {
     "head": "Shipped",

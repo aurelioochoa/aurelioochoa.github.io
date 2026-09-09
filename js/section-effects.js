@@ -1,4 +1,6 @@
-// Elemental effects follow real content edges. No duplicated text, iframe or WebGL context.
+import { createFireEdge } from './fire-edge.js';
+
+// Elemental effects follow real content edges. No duplicated text or iframe. The flame context exists only while visible.
 // Layout is measured only on resize/content changes, never in the animation loop.
 export function wireSectionEffects() {
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
@@ -13,7 +15,9 @@ export function wireSectionEffects() {
     host.append(canvas);
     const rows = [...host.querySelectorAll('.stack__row')];
     let width = 0, height = 0, edges = [], active = -1, visible = false;
-    let frame = 0, last = 0, clock = 0, touchTimer = 0;
+    let frame = 0, last = 0, clock = 0, touchTimer = 0, flame = null;
+    const reflection = host.classList.contains('kitchen-heat--copy');
+    const charges = new Map();
     const pad = kind === 'lightning' ? 18 : 0;
 
     const measure = () => {
@@ -28,76 +32,66 @@ export function wireSectionEffects() {
       if (motion.matches) ctx.clearRect(0, 0, width, height);
     };
 
-    const bolt = (y, index, t) => {
-      const hot = active === index || active + 1 === index && active >= 0;
-      const amplitude = hot ? 6 : 2.8;
-      const points = [];
-      const count = Math.max(12, Math.ceil(width / 12));
-      for (let i = 0; i <= count; i++) {
-        const envelope = Math.sin(i / count * Math.PI);
-        const jitter = Math.sin(i * 2.73 + t * 9 + index * 4) * Math.cos(i * 1.37 - t * 6);
-        points.push([i / count * width, y + jitter * amplitude * envelope]);
+    // Seeded midpoint displacement gives each discharge a persistent branching shape.
+    // It fades before the next shape arrives, rather than morphing like a sine wave.
+    const random = seed => {
+      let state = seed | 0;
+      return () => { state ^= state << 13; state ^= state >>> 17; state ^= state << 5; return (state >>> 0) / 4294967296; };
+    };
+    const branch = (a,b,spread,rng,depth=0) => {
+      if (depth===6) return [a,b];
+      const mid=[(a[0]+b[0])/2,(a[1]+b[1])/2+(rng()-.5)*spread];
+      return [...branch(a,mid,spread*.68,rng,depth+1).slice(0,-1),...branch(mid,b,spread*.68,rng,depth+1)];
+    };
+    const bolt = (y,index,t) => {
+      const hot = active===index || (active>=0 && active+1===index);
+      const cycle = Math.floor((t+index*.47)/1.65);
+      const age = (t+index*.47)%1.65;
+      const strength = hot ? .32 + .65 * Math.exp(-age*3.7) : .035 + .40 * Math.exp(-age*3.7);
+      let charge=charges.get(index);
+      if(!charge || charge.cycle!==cycle || charge.width!==width || charge.hot!==hot) {
+        const rng=random((cycle+1)*7919+(index+1)*104729);
+        const span=width*(hot?.92:.45), x=rng()*(width-span);
+        const points=branch([x,y],[x+span,y],hot?24:15,rng);
+        const forks=[];
+        for(let i=0;i<4;i++) {
+          const start=points[8+Math.floor(rng()*45)];
+          const end=[Math.min(width,start[0]+18+rng()*42),y+(rng()>.5?1:-1)*(8+rng()*8)];
+          forks.push(branch(start,end,9,rng));
+        }
+        charge={cycle,width,hot,points,forks}; charges.set(index,charge);
       }
-      const path = () => {
-        ctx.beginPath();
-        points.forEach(([x, yy], i) => i ? ctx.lineTo(x, yy) : ctx.moveTo(x, yy));
+      // Residual charge lives in the divider; the bright discharge occupies only a span.
+      ctx.strokeStyle='rgba(102,155,207,0.23)'; ctx.lineWidth=.7;
+      ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(width,y);ctx.stroke();
+      const stroke=(points,lineWidth,color,alpha) => {
+        ctx.globalAlpha=alpha;ctx.strokeStyle=color;ctx.lineWidth=lineWidth;
+        ctx.beginPath();points.forEach(([x,yy],i)=>i?ctx.lineTo(x,yy):ctx.moveTo(x,yy));ctx.stroke();
       };
-      ctx.lineJoin = 'round';
-      ctx.shadowColor = '#68aaff';
-      ctx.shadowBlur = hot ? 15 : 7;
-      ctx.strokeStyle = hot ? 'rgba(92,161,255,0.6)' : 'rgba(68,128,230,0.3)';
-      ctx.lineWidth = hot ? 4 : 2.5;
-      path(); ctx.stroke();
-      ctx.shadowBlur = 0;
-      ctx.strokeStyle = hot ? '#e1f6ff' : 'rgba(142,199,255,0.66)';
-      ctx.lineWidth = hot ? 1.2 : 0.7;
-      path(); ctx.stroke();
-      // A travelling charge and short forks attach to the actual separator.
-      const travel = (t * (hot ? 0.24 : 0.10) + index * 0.27) % 1;
-      const p = points[Math.floor(travel * count)];
-      ctx.strokeStyle = hot ? 'rgba(186,226,255,0.8)' : 'rgba(105,172,255,0.35)';
-      ctx.beginPath(); ctx.moveTo(p[0],p[1]);
-      ctx.lineTo(p[0]+8,p[1]-5); ctx.lineTo(p[0]+13,p[1]-3); ctx.lineTo(p[0]+22,p[1]-11);
-      ctx.stroke();
+      ctx.lineJoin='round';ctx.lineCap='round';
+      stroke(charge.points,9,'#427ccd',strength*.09);
+      stroke(charge.points,4,'#63a5ef',strength*.28);
+      stroke(charge.points,1.7,'#94d5ff',strength*.8);
+      stroke(charge.points,.65,'#f1fcff',strength);
+      charge.forks.forEach(points=>stroke(points,.55,'#acdfff',strength*.65));
+      ctx.globalAlpha=1;
+      // Contact light fades onto the row, tying the discharge to the table surface.
+      const p=charge.points[32];
+      const glow=ctx.createRadialGradient(p[0],y,0,p[0],y,45);
+      glow.addColorStop(0,`rgba(82,145,236,${strength*.13})`);glow.addColorStop(1,'rgba(82,145,236,0)');
+      ctx.fillStyle=glow;ctx.fillRect(p[0]-45,y-18,90,36);
     };
 
     const fire = t => {
-      const base = height - 2;
-      const heat = ctx.createLinearGradient(0, height, 0, 0);
-      heat.addColorStop(0, 'rgba(255,88,12,0.32)');
-      heat.addColorStop(0.5, 'rgba(218,49,8,0.06)');
-      heat.addColorStop(1, 'rgba(218,49,8,0)');
-      ctx.fillStyle = heat; ctx.fillRect(0,0,width,height);
-      ctx.globalCompositeOperation = 'lighter';
-      ctx.filter = 'blur(1.4px)';
-      const count = Math.max(8, Math.ceil(width / 19));
-      for (let i = 0; i < count; i++) {
-        const phase = i * 2.39996;
-        const x = (i + 0.5 + Math.sin(phase) * 0.35) * width / count;
-        const sway = Math.sin(t * 2.4 + phase) * 9;
-        const envelope = 0.55 + 0.45 * Math.sin((i + 0.5) / count * Math.PI);
-        const h = height * (0.30 + 0.34 * (0.5 + 0.5 * Math.sin(t * 2.8 + phase))) * envelope;
-        const w = width / count * (0.7 + 0.45 * Math.sin(phase + t));
-        const gradient = ctx.createLinearGradient(x,base,x,base-h);
-        gradient.addColorStop(0,'rgba(255,170,48,0.45)');
-        gradient.addColorStop(0.25,'rgba(255,101,18,0.32)');
-        gradient.addColorStop(0.7,'rgba(240,48,8,0.22)');
-        gradient.addColorStop(1,'rgba(218,40,5,0)');
-        ctx.fillStyle = gradient;
-        ctx.beginPath(); ctx.moveTo(x-w,base);
-        ctx.bezierCurveTo(x-w*0.65,base-h*0.4,x+sway-w*0.6,base-h*0.65,x+sway,base-h);
-        ctx.bezierCurveTo(x+sway-w*0.2,base-h*0.45,x+w,base-h*0.35,x+w,base);
-        ctx.closePath(); ctx.fill();
+      if(flame && !reflection) flame.draw(ctx,width,height,t);
+      else {
+        // Reflected firelight warms the text block's edge without a second row of flames.
+        const heat=ctx.createLinearGradient(0,height,0,0);
+        const pulse=.15+Math.sin(t*2.1)*.025+Math.sin(t*3.7)*.015;
+        heat.addColorStop(0,`rgba(255,111,30,${pulse})`);
+        heat.addColorStop(.35,'rgba(205,59,12,0.045)');heat.addColorStop(1,'rgba(205,59,12,0)');
+        ctx.fillStyle=heat;ctx.fillRect(0,0,width,height);
       }
-      ctx.filter = 'none';
-      // Sparse rising embers, bounded to this edge rather than scattered over the copy.
-      for (let i=0; i<12; i++) {
-        const life = (t * 0.19 + i * 0.618) % 1;
-        const x = ((i * 0.38197) % 1) * width + Math.sin(t+i)*6;
-        ctx.fillStyle = `rgba(255,174,66,${(1-life)*0.6})`;
-        ctx.fillRect(x,base-life*height,1.3,2.2);
-      }
-      ctx.globalCompositeOperation = 'source-over';
     };
 
     const tick = now => {
@@ -111,8 +105,14 @@ export function wireSectionEffects() {
     const sync = () => {
       cancelAnimationFrame(frame); frame = 0;
       if (visible && !document.hidden && !motion.matches) {
+        if (kind === 'fire' && !reflection && !flame) {
+          try { flame = createFireEdge(); } catch { flame = null; }
+        }
         last = performance.now(); frame = requestAnimationFrame(tick);
-      } else ctx.clearRect(0,0,width,height);
+      } else {
+        ctx.clearRect(0,0,width,height);
+        flame?.dispose(); flame = null;
+      }
     };
     const resize = new ResizeObserver(measure);
     resize.observe(host);
