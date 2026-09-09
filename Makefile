@@ -28,7 +28,7 @@ NPM  ?= npm
 # node_modules in this repo and nothing to install at the root.
 PUPPETEER := cv/node_modules/puppeteer
 
-SITE_GATES := old-site-gone links-resolve i18n-complete tells drone e2e shoot no-network
+SITE_GATES := old-site-gone links-resolve i18n-complete tells drone e2e shoot no-network section-effects
 CV_GATES   := no-old-design render-all fonts-exist pdf-pages
 
 # The three PDFs have spaces in their names, which Make cannot carry through a target list

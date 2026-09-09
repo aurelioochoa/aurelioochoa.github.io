@@ -507,9 +507,11 @@ would leave both worse. What is held instead is the boundary:
   ResizeObserver tracks reflow and translated row heights; IntersectionObserver and page
   visibility stop animation when it cannot be seen. A 30 fps cap and DPR cap of 2 bound
   rendering cost. Reduced motion, including preference changes during the visit, leaves
-  the static rules and semantic content. The fire uses one temporary WebGL context,
-  created on entry and explicitly released offscreen; the table and reflected light use
-  Canvas 2D. If WebGL is unavailable, the kitchen keeps the warm edge-light fallback.
+  the static rules and semantic content. Fire now uses a CPU heat texture capped at
+  300 by 88 pixels, smoothly enlarged through Canvas 2D. It renders full flames even when
+  WebGL is unavailable, rather than silently degrading to a faint line. The electrical
+  afterglow maintains visible contrast between discharges. The section-effects gate checks
+  flame coverage, animation, touch, re-entry and motion preferences with WebGL blocked.
 
 - Scenes carry this site's words, never a vendor's. The cloth is woven with `AURELIO OCHOA`, not the studio it came from. The shelf no longer
   titles itself either: act 7 already carries "In the open" in the page, in the page's own

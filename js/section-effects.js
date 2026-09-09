@@ -1,6 +1,6 @@
 import { createFireEdge } from './fire-edge.js';
 
-// Elemental effects follow real content edges. No duplicated text or iframe. The flame context exists only while visible.
+// Elemental effects follow real content edges. No duplicated text or iframe. The heat texture exists only while visible.
 // Layout is measured only on resize/content changes, never in the animation loop.
 export function wireSectionEffects() {
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
@@ -47,9 +47,9 @@ export function wireSectionEffects() {
       const hot = active===index || (active>=0 && active+1===index);
       const cycle = Math.floor((t+index*.47)/1.65);
       const age = (t+index*.47)%1.65;
-      const strength = hot ? .32 + .65 * Math.exp(-age*3.7) : .035 + .40 * Math.exp(-age*3.7);
+      const strength = hot ? .78 + .22 * Math.exp(-age*3.7) : .28 + .35 * Math.exp(-age*3.7);
       let charge=charges.get(index);
-      if(!charge || charge.cycle!==cycle || charge.width!==width || charge.hot!==hot) {
+      if(!charge || charge.cycle!==cycle || charge.width!==width || charge.y!==y || charge.hot!==hot) {
         const rng=random((cycle+1)*7919+(index+1)*104729);
         const span=width*(hot?.92:.45), x=rng()*(width-span);
         const points=branch([x,y],[x+span,y],hot?24:15,rng);
@@ -59,7 +59,7 @@ export function wireSectionEffects() {
           const end=[Math.min(width,start[0]+18+rng()*42),y+(rng()>.5?1:-1)*(8+rng()*8)];
           forks.push(branch(start,end,9,rng));
         }
-        charge={cycle,width,hot,points,forks}; charges.set(index,charge);
+        charge={cycle,width,y,hot,points,forks}; charges.set(index,charge);
       }
       // Residual charge lives in the divider; the bright discharge occupies only a span.
       ctx.strokeStyle='rgba(102,155,207,0.23)'; ctx.lineWidth=.7;
@@ -71,8 +71,8 @@ export function wireSectionEffects() {
       ctx.lineJoin='round';ctx.lineCap='round';
       stroke(charge.points,9,'#427ccd',strength*.09);
       stroke(charge.points,4,'#63a5ef',strength*.28);
-      stroke(charge.points,1.7,'#94d5ff',strength*.8);
-      stroke(charge.points,.65,'#f1fcff',strength);
+      stroke(charge.points,2.2,'#94d5ff',strength*.9);
+      stroke(charge.points,1.1,'#f1fcff',strength);
       charge.forks.forEach(points=>stroke(points,.55,'#acdfff',strength*.65));
       ctx.globalAlpha=1;
       // Contact light fades onto the row, tying the discharge to the table surface.
@@ -106,7 +106,7 @@ export function wireSectionEffects() {
       cancelAnimationFrame(frame); frame = 0;
       if (visible && !document.hidden && !motion.matches) {
         if (kind === 'fire' && !reflection && !flame) {
-          try { flame = createFireEdge(); } catch { flame = null; }
+          flame = createFireEdge();
         }
         last = performance.now(); frame = requestAnimationFrame(tick);
       } else {
