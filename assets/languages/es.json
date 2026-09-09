@@ -19,7 +19,7 @@
     "one": "Desarrollador.",
     "two": "Piloto.",
     "three": "Cocinero.",
-    "note": "Los tres al mismo tiempo. De eso se trata."
+    "note": "Mi trabajo se mueve entre la tecnología, el campo y la cocina."
   },
   "card": {
     "code": "Código",
@@ -27,8 +27,8 @@
     "kitchen": "Cocina"
   },
   "code": {
-    "head": "Tres años de cosas que siguen en pie.",
-    "body": "Front-end, administración de sistemas e infraestructura en la nube. Sitios y funciones en producción, servidores Linux y bases de datos en marcha, pruebas y despliegues automatizados con Jenkins, Docker y Google Cloud Platform."
+    "head": "Desarrollo software y lo mantengo en marcha.",
+    "body": "Tengo tres años de experiencia en desarrollo web, administración de sistemas e infraestructura en la nube. Creo sitios y funcionalidades, mantengo servidores Linux y bases de datos, y automatizo pruebas y despliegues."
   },
   "stack": {
     "frontLabel": "Front-end",
@@ -38,27 +38,27 @@
     "opsLabel": "Sistemas",
     "ops": "Linux, Docker, Jenkins, Google Cloud Platform, CI/CD",
     "aiLabel": "IA y agentes",
-    "ai": "Codex, Claude Code, OpenCode, diseño de workflows agénticos, a diario"
+    "ai": "Codex, Claude Code, OpenCode y flujos de trabajo con agentes de IA"
   },
   "shipped": {
-    "head": "Entregado",
-    "mediacor": "Construí su sitio corporativo y después las automatizaciones de servidor de correo que envían sus suscripciones de monitoreo de medios.",
-    "publifyer": "Funciones para la plataforma de comercio electrónico de Just Click Media, además de tiendas web y el control de calidad que las mantuvo en pie.",
-    "uneatlantico": "Temas de WordPress en PHP, automatizaciones con Apps Script y después pipelines de Jenkins e infraestructura en GCP."
+    "head": "Trabajo realizado",
+    "mediacor": "Desarrollé el sitio corporativo y automaticé el envío por correo de suscripciones de monitoreo de medios.",
+    "publifyer": "Desarrollé funcionalidades para la plataforma de comercio electrónico de Just Click Media, trabajé en tiendas web y realicé pruebas de calidad.",
+    "uneatlantico": "Desarrollé temas de WordPress en PHP y automatizaciones con Apps Script. También trabajé en pipelines de Jenkins e infraestructura en Google Cloud Platform."
   },
   "shelf": {
     "head": "En abierto",
-    "body": "Diez repositorios públicos, en un estante. Baja uno y lee su lomo."
+    "body": "Explora mis repositorios públicos y el código detrás de los proyectos."
   },
   "sky": {
-    "head": "Desde 2024 la oficina es un campo.",
-    "body": "Misiones de fumigación de precisión sobre campos ecuatorianos. Mapeo de terreno, planificación de rutas, y el mantenimiento y la calibración que tienen que pasar antes de que algo despegue."
+    "head": "Piloto drones agrícolas en Ecuador.",
+    "body": "Desde 2024 realizo vuelos de fumigación de precisión en Ecuador. Mapeo terrenos, planifico rutas y preparo cada operación con el mantenimiento y la calibración del equipo."
   },
   "fly": {
-    "head": "Ahora es tuyo.",
-    "body": "Lleva volando solo desde que llegaste. Tómalo.",
+    "head": "Toma los controles.",
+    "body": "El dron ha volado solo hasta aquí. Enciende el control y prueba a pilotarlo.",
     "cta": "Toma los controles",
-    "fallback": "Tu navegador no puede ejecutar el dron, así que este se queda en tierra.",
+    "fallback": "El dron no está disponible en este navegador. Puedes seguir recorriendo la página.",
     "spray": "Fumigar"
   },
   "rc": {
@@ -74,13 +74,13 @@
   "creds": {
     "certValue": "Piloto de UAS certificado",
     "certLabel": "DGAC Ecuador, 2025",
-    "airframeLabel": "Los equipos que vuela",
+    "airframeLabel": "Equipos que piloto",
     "langValue": "Español, inglés, alemán",
     "langLabel": "Nativo, nivel nativo, B2"
   },
   "kitchen": {
-    "head": "En febrero de 2026 terminó la escuela de cocina.",
-    "body": "Arte culinario en la Escuela Culinaria de las Américas, en Guayaquil. No es una línea de pasatiempos en un CV. Es una carrera terminada, y las mismas ganas por un proceso que tiene que salir bien en cada servicio."
+    "head": "También me formé en cocina.",
+    "body": "En febrero de 2026 terminé mi formación en Arte Culinario en la Escuela Culinaria de las Américas, en Guayaquil. Otra manera de trabajar con técnica, atención al detalle y coordinación en cada servicio."
   },
   "skull": {
     "watch": "Mira la historia de dónde salió",
@@ -98,7 +98,7 @@
   },
   "close": {
     "head": "Construyamos algo.",
-    "line": "Código, un campo o una cocina. La dirección es la misma.",
+    "line": "¿Tienes un proyecto en mente? Cuéntame qué quieres hacer y cómo puedo ayudarte.",
     "cta": "Escríbeme",
     "emailLabel": "Correo",
     "copy": "Copiar",

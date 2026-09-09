@@ -19,7 +19,7 @@
     "one": "Entwickler.",
     "two": "Pilot.",
     "three": "Koch.",
-    "note": "Alle drei gleichzeitig. Genau darum geht es."
+    "note": "Meine Arbeit verbindet Technik, Landwirtschaft und Küche."
   },
   "card": {
     "code": "Code",
@@ -27,8 +27,8 @@
     "kitchen": "Küche"
   },
   "code": {
-    "head": "Drei Jahre Dinge, die stehen geblieben sind.",
-    "body": "Frontend, Systemadministration und Cloud-Infrastruktur. Websites und Funktionen im Produktivbetrieb, laufende Linux-Server und Datenbanken, automatisierte Tests und Deployments mit Jenkins, Docker und Google Cloud Platform."
+    "head": "Ich entwickle Software und halte sie am Laufen.",
+    "body": "Ich habe drei Jahre Erfahrung in Webentwicklung, Systemadministration und Cloud-Infrastruktur. Ich entwickle Websites und Funktionen, betreue Linux-Server und Datenbanken und automatisiere Tests und Deployments."
   },
   "stack": {
     "frontLabel": "Frontend",
@@ -38,27 +38,27 @@
     "opsLabel": "Systeme",
     "ops": "Linux, Docker, Jenkins, Google Cloud Platform, CI/CD",
     "aiLabel": "KI und Agenten",
-    "ai": "Codex, Claude Code, OpenCode, Design agentischer Workflows, täglich"
+    "ai": "Codex, Claude Code, OpenCode und Workflows mit KI-Agenten"
   },
   "shipped": {
-    "head": "Ausgeliefert",
-    "mediacor": "Ich habe ihre Unternehmenswebsite gebaut und danach die Mailserver-Automatisierungen, die ihre Medienbeobachtungs-Abos versenden.",
-    "publifyer": "Funktionen für die E-Commerce-Plattform von Just Click Media, dazu Webshops und die Qualitätssicherung, die sie am Laufen hielt.",
-    "uneatlantico": "WordPress-Themes in PHP, Automatisierungen mit Apps Script, danach Jenkins-Pipelines und Cloud-Infrastruktur auf GCP."
+    "head": "Ausgewählte Arbeiten",
+    "mediacor": "Ich habe die Unternehmenswebsite entwickelt und den E-Mail-Versand ihrer Medienbeobachtungs-Abonnements automatisiert.",
+    "publifyer": "Ich habe Funktionen für die E-Commerce-Plattform von Just Click Media entwickelt, an Webshops gearbeitet und Qualitätstests durchgeführt.",
+    "uneatlantico": "Ich habe WordPress-Themes in PHP und Automatisierungen mit Apps Script entwickelt. Dazu kamen Jenkins-Pipelines und Infrastruktur auf Google Cloud Platform."
   },
   "shelf": {
     "head": "Offen entwickelt",
-    "body": "Zehn öffentliche Repositories im Regal. Nimm eines heraus und lies den Rücken."
+    "body": "Entdecke meine öffentlichen Repositories und den Code hinter den Projekten."
   },
   "sky": {
-    "head": "Seit 2024 ist das Büro ein Feld.",
-    "body": "Präzisionssprühflüge über ecuadorianischen Feldern. Feldkartierung, Routenplanung, und die Wartung und Kalibrierung, die passieren muss, bevor überhaupt etwas abhebt."
+    "head": "Ich fliege Agrardrohnen in Ecuador.",
+    "body": "Seit 2024 fliege ich präzise Sprüheinsätze in Ecuador. Ich kartiere Felder, plane Routen und bereite jeden Einsatz mit der Wartung und Kalibrierung der Geräte vor."
   },
   "fly": {
-    "head": "Jetzt gehört sie dir.",
-    "body": "Sie fliegt schon allein, seit du hier bist. Nimm sie.",
+    "head": "Übernimm die Steuerung.",
+    "body": "Bis hierhin ist die Drohne von allein geflogen. Schalte die Fernsteuerung ein und probiere es selbst.",
     "cta": "Übernimm die Steuerung",
-    "fallback": "Dein Browser kann die Drohne nicht ausführen, also bleibt sie am Boden.",
+    "fallback": "Die Drohne ist in diesem Browser nicht verfügbar. Du kannst die Seite trotzdem erkunden.",
     "spray": "Sprühen"
   },
   "rc": {
@@ -74,13 +74,13 @@
   "creds": {
     "certValue": "Zertifizierter UAS-Pilot",
     "certLabel": "DGAC Ecuador, 2025",
-    "airframeLabel": "Die Fluggeräte, die er fliegt",
+    "airframeLabel": "Drohnen, die ich fliege",
     "langValue": "Spanisch, Englisch, Deutsch",
     "langLabel": "Muttersprache, verhandlungssicher, B2"
   },
   "kitchen": {
-    "head": "Im Februar 2026 hat er die Kochschule abgeschlossen.",
-    "body": "Kochkunst an der Escuela Culinaria de las Américas in Guayaquil. Keine Hobbyzeile im Lebenslauf. Eine abgeschlossene Ausbildung, und derselbe Appetit auf einen Prozess, der in jedem Service funktionieren muss."
+    "head": "Ich habe auch das Kochhandwerk gelernt.",
+    "body": "Im Februar 2026 habe ich meine Kochausbildung an der Escuela Culinaria de las Américas in Guayaquil abgeschlossen. Ein weiteres Handwerk, das bei jedem Service Technik, Sorgfalt und gute Abstimmung verlangt."
   },
   "skull": {
     "watch": "Sieh dir an, woher er kommt",
@@ -98,7 +98,7 @@
   },
   "close": {
     "head": "Lass uns etwas bauen.",
-    "line": "Code, ein Feld oder eine Küche. Die Adresse ist dieselbe.",
+    "line": "Hast du ein Projekt im Kopf? Erzähl mir, was du vorhast und wie ich helfen kann.",
     "cta": "Schreib mir",
     "emailLabel": "E-Mail",
     "copy": "Kopieren",

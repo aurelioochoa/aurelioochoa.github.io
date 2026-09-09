@@ -19,7 +19,7 @@
     "one": "Developer.",
     "two": "Pilot.",
     "three": "Cook.",
-    "note": "All three are current. That is the whole point."
+    "note": "My work takes me between technology, farmland and the kitchen."
   },
   "card": {
     "code": "Code",
@@ -27,8 +27,8 @@
     "kitchen": "Kitchen"
   },
   "code": {
-    "head": "Three years of things that stayed built.",
-    "body": "Front-end, systems administration and cloud infrastructure. Sites and features running in production, Linux servers and databases kept alive, tests and deployments automated with Jenkins, Docker and Google Cloud Platform."
+    "head": "I build software and keep it running.",
+    "body": "I have three years of experience in web development, systems administration and cloud infrastructure. I build websites and features, maintain Linux servers and databases, and automate testing and deployments."
   },
   "stack": {
     "frontLabel": "Front-end",
@@ -38,27 +38,27 @@
     "opsLabel": "Systems",
     "ops": "Linux, Docker, Jenkins, Google Cloud Platform, CI/CD",
     "aiLabel": "AI and agents",
-    "ai": "Codex, Claude Code, OpenCode, agentic workflow design, daily"
+    "ai": "Codex, Claude Code, OpenCode and workflows with AI agents"
   },
   "shipped": {
-    "head": "Shipped",
-    "mediacor": "Built their corporate site, then the mail-server automations that deliver their media-monitoring subscriptions.",
-    "publifyer": "Features for Just Click Media's e-commerce platform, plus storefronts and the QA that kept them upright.",
-    "uneatlantico": "WordPress themes in PHP, Apps Script automations, then Jenkins pipelines and cloud infrastructure on GCP."
+    "head": "Selected work",
+    "mediacor": "I built the corporate website and automated email delivery for their media-monitoring subscriptions.",
+    "publifyer": "I developed features for Just Click Media’s e-commerce platform, worked on storefronts and carried out quality assurance testing.",
+    "uneatlantico": "I developed WordPress themes in PHP and automations with Apps Script. I also worked on Jenkins pipelines and infrastructure on Google Cloud Platform."
   },
   "shelf": {
     "head": "In the open",
-    "body": "Ten public repositories, on a shelf. Pull one down and read its spine."
+    "body": "Explore my public repositories and the code behind the projects."
   },
   "sky": {
-    "head": "Since 2024 the office has been a field.",
-    "body": "Precision spray missions over Ecuadorian farmland. Field mapping, route planning, and the maintenance and calibration that has to happen before any of it flies."
+    "head": "I fly agricultural drones in Ecuador.",
+    "body": "Since 2024, I have flown precision spraying missions in Ecuador. I map fields, plan routes and prepare each operation through equipment maintenance and calibration."
   },
   "fly": {
-    "head": "Your drone now.",
-    "body": "It has been flying itself since you got here. Take it.",
+    "head": "Take the controls.",
+    "body": "The drone has flown itself this far. Turn on the controller and try flying it.",
     "cta": "Take the controls",
-    "fallback": "Your browser cannot run the drone, so it is sitting this one out.",
+    "fallback": "The drone is unavailable in this browser. You can still explore the page.",
     "spray": "Spray"
   },
   "rc": {
@@ -74,13 +74,13 @@
   "creds": {
     "certValue": "Certified UAS pilot",
     "certLabel": "DGAC Ecuador, 2025",
-    "airframeLabel": "The airframes he flies",
+    "airframeLabel": "Aircraft I fly",
     "langValue": "Spanish, English, German",
     "langLabel": "Native, native-level, B2"
   },
   "kitchen": {
-    "head": "In February 2026 he finished culinary school.",
-    "body": "Culinary arts at the Escuela Culinaria de las Américas in Guayaquil. Not a hobby line on a CV. A finished program, and the same appetite for a process that has to work every single service."
+    "head": "I trained in the kitchen, too.",
+    "body": "In February 2026, I completed my culinary arts program at the Escuela Culinaria de las Américas in Guayaquil. Another craft that calls for technique, attention to detail and coordination during every service."
   },
   "skull": {
     "watch": "Watch the story of where he came from",
@@ -98,7 +98,7 @@
   },
   "close": {
     "head": "Let's build something.",
-    "line": "Code, a field, or a kitchen. The address is the same.",
+    "line": "Have a project in mind? Tell me what you want to do and how I can help.",
     "cta": "Email me",
     "emailLabel": "Email",
     "copy": "Copy",
