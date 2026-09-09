@@ -1135,17 +1135,7 @@ iframe.act__scene { display: block; }
    one CTA is never two stops. */
 .close__metal[src] ~ .close__cta { visibility: hidden; }
 
-/* The burner over the stove. Screen blending is what makes it read as flame in front of the
-   photograph rather than a panel sitting on top of it: the scene's ground is black, and
-   black is what screen leaves untouched. */
 .plate { position: relative; }
-.plate__fire {
-  position: absolute; left: 0; right: 0; bottom: 0;
-  height: 62%;
-  border: 0; display: block;
-  mix-blend-mode: screen;
-  pointer-events: none;
-}
 
 /* A scene that sits behind a title card rather than behind body copy. The card's word is the
    act, and the banner is ivory at full strength: at parity the two large light shapes read as
@@ -1161,24 +1151,33 @@ iframe.act__scene { display: block; }
    all. Screen leaves black untouched, so the ground comes back at full strength, the ink
    keeps the whole of its contrast, and the mark is left as a bloom on the paper.
 
-   It is the same reason the burner over the stove blends, and it is the honest way round:
-   the scene is decorative, the copy is not, and the scene is what gives way.
+   The scene is decorative, the copy is not, and the scene is what gives way.
 
    Opacity was the other candidate and it is the wrong one. It composites the frame's black
    ground too, so at the strength that tames the glow it also drags the bone halfway to grey
    and takes the copy's contrast down with it. */
 .act__scene--wash { mix-blend-mode: screen; }
 
-/* The mark is centred in whatever box it is given, so an act whose copy is also centred gets
-   a head-on collision rather than a ground: act 5's STACK sat straight across the Back-end
-   and Systems rows of the one list on this page a reader actually scans. Confining the frame
-   to the act's top band lifts the mark clear of the rows and turns it into a crown over them.
-
-   The bottom edge is feathered because screen still lifts #0B0D14 by the few levels of
-   #060708, and a hard-edged band of that is a seam across the act. */
-.act__scene--crown {
-  height: 52%;
-  bottom: auto;
-  -webkit-mask-image: linear-gradient(to bottom, #000 58%, transparent);
-          mask-image: linear-gradient(to bottom, #000 58%, transparent);
+/* Effects are attached to the table rules and kitchen edges, never to duplicate titles.
+   Canvases ignore pointers; semantic text and the static rules remain without JS. */
+.stack { position: relative; }
+.stack__row { position: relative; border-top-color: rgb(142 199 255 / 0.28); }
+.stack__row:last-child { border-bottom-color: rgb(142 199 255 / 0.28); }
+.stack__row--hot { border-top-width: 2px; }
+.stack__row dt { transition: color 180ms ease, text-shadow 180ms ease; }
+.stack__row.is-charged dt {
+  color: #e1f6ff;
+  text-shadow: 0 0 7px #68aaff, 0 0 18px rgb(68 128 230 / 0.8);
+}
+.section-effect { position: absolute; display: block; pointer-events: none; }
+.section-effect--lightning { left: 0; top: -18px; width: 100%; height: calc(100% + 36px); }
+.kitchen-heat { position: relative; }
+.kitchen-heat.plate { border-color: rgb(240 163 44 / 0.55); }
+.section-effect--fire { bottom: 0; left: 0; width: 100%; height: 130px; }
+.kitchen-heat--copy { padding-bottom: 34px; border-bottom: 1px solid rgb(240 163 44 / 0.55); }
+.kitchen-heat--copy .section-effect--fire { bottom: -1px; height: 34px; opacity: 0.8; }
+@media (prefers-reduced-motion: reduce) {
+  .section-effect { display: none; }
+  .stack__row dt { transition: none; }
+  .stack__row.is-charged dt { text-shadow: none; }
 }

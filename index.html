@@ -125,10 +125,7 @@
 
   <!-- 5 .............................................. density -->
   <section class="act act--stack" data-act="5" data-ground="code">
-    <iframe class="act__scene act__scene--wash act__scene--crown" aria-hidden="true"
-            tabindex="-1" loading="lazy"
-            title="" data-frame-src="scenes/elemental-marks.html?fx=lightning&amp;word=STACK"></iframe>
-    <dl class="stack act__fore" data-drone="cross">
+    <dl class="stack act__fore" data-drone="cross" data-section-effect="lightning">
       <div class="stack__row">
         <dt data-i18n="stack.frontLabel">Front-end</dt>
         <dd data-i18n="stack.front">HTML, CSS, Sass, JavaScript, React, Vue, Angular</dd>
@@ -282,16 +279,11 @@
 
   <!-- 13 ............................................ surprise -->
   <section class="act act--wide act--wide-flip" data-act="13" data-ground="kitchen">
-    <iframe class="act__scene act__scene--wash" aria-hidden="true" tabindex="-1" loading="lazy"
-            title="" data-frame-src="scenes/elemental-marks.html?fx=fire&amp;word=COCINA"></iframe>
-    <figure class="plate act__fore" data-drone="behind">
+    <figure class="plate act__fore kitchen-heat" data-drone="behind" data-section-effect="fire">
       <img src="assets/img/world-kitchen.webp" alt="" width="1344" height="768" loading="lazy"
            data-replace="his own plated dish or prep-line photo from culinary school">
-      <!-- The same fire, on a burner instead of a word, licking up the front of the stove. -->
-      <iframe class="plate__fire" aria-hidden="true" tabindex="-1" loading="lazy" title=""
-              data-frame-src="scenes/elemental-marks.html?fx=fire&amp;shape=bar"></iframe>
     </figure>
-    <div class="prose" data-drone="cross">
+    <div class="prose kitchen-heat kitchen-heat--copy" data-drone="cross" data-section-effect="fire">
       <h2 data-article-heading data-i18n="kitchen.head">In February 2026 he finished culinary school.</h2>
       <p data-i18n="kitchen.body">Culinary arts at the Escuela Culinaria de las Américas in Guayaquil.
         Not a hobby line on a CV. A finished program, and the same appetite for a process that has to

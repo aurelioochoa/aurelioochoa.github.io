@@ -469,8 +469,8 @@ better for it: a texture built from the site's own palette cannot drift from it.
 
 ## The ThreeUI scenes, and where they sit against all of the above
 
-Five surfaces are ThreeUI scenes: the hero's keycap field, the elemental marks behind acts 5,
-11 and 13, the three cloths behind the Kitchen card, the liquid metal button in the close,
+Five surfaces are ThreeUI scenes: the hero's keycap field, the elemental mark behind act
+11, the three cloths behind the Kitchen card, the liquid metal button in the close,
 and the projects shelf. They are vendored into `scenes/` and `landing-pages/` and edited by
 `build/scenes.mjs`; the engines they need are bundled into `js/vendor/scenes.bundle.js`.
 
@@ -490,28 +490,23 @@ would leave both worse. What is held instead is the boundary:
   could not be read at all. Those frames now carry `.act__scene--wash`, which is
   `mix-blend-mode: screen`: black is what screen leaves untouched, so the ground comes back
   at full strength, the ink keeps every bit of its contrast, and the mark is left as a bloom
-  on the paper. It is the same reason the burner over the stove blends, and it is the right
-  way round, because the scene is decorative and the copy is not.
+  on the paper. The scene is decorative and the copy keeps its contrast.
 
   Opacity was the other candidate and it is the wrong one: it composites the frame's black
   ground too, so at the strength that tames the glow it drags the bone halfway to grey and
   takes the copy down with it.
 
-  Act 13 gained the same class for the opposite reason. Its `#060708` was **darker** than
-  the kitchen's `#1A0F0C`, so the scene was flattening that world's warmth and swallowing
-  its own burning `COCINA`. Screened, the ground is warm again and the mark is visible for
-  the first time.
+- The stack and kitchen effects are part of their content geometry, implemented in
+  `js/section-effects.js`. There are no separate STACK or COCINA effect titles. Lightning
+  follows each real table separator, with brighter arcs and category text on pointer hover
+  or a short touch. Warm flame rises from the kitchen photograph's lower edge and the
+  rule beneath its prose. These transparent 2D canvases do not capture input or add labels.
+  ResizeObserver tracks reflow and translated row heights; IntersectionObserver and page
+  visibility stop animation when it cannot be seen. A 30 fps cap and DPR cap of 2 bound
+  rendering cost. Reduced motion, including preference changes during the visit, leaves
+  the static rules and semantic content. No additional WebGL contexts are required.
 
-- **A mark is centred in the box it is given, so the box is what keeps it off the copy.**
-  Act 5's `STACK` was centred in an act whose stack rows are also centred, and it sat
-  straight across Back-end and Systems: the one list on this page a reader actually scans.
-  `.act__scene--crown` confines that frame to the act's top band, which lifts the mark clear
-  and makes it a crown over the rows instead of a collision with them. The band's bottom
-  edge is feathered with a mask, because screen still lifts `#0B0D14` by the few levels of
-  `#060708` and a hard-edged band of that is a seam across the act.
-- Scenes carry this site's words, never a vendor's. The elemental marks burn `COCINA` and
-  electrify `STACK` where they shipped rendering the OpenAI, Anthropic and Claude logos; the
-  cloth is woven with `AURELIO OCHOA`, not the studio it came from. The shelf no longer
+- Scenes carry this site's words, never a vendor's. The cloth is woven with `AURELIO OCHOA`, not the studio it came from. The shelf no longer
   titles itself either: act 7 already carries "In the open" in the page, in the page's own
   display face, one line above the frame, and the scene was repeating it underneath in the
   largest serif on a site whose type system has no serif in it. What the scene's header

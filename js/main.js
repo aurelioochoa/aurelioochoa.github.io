@@ -1,4 +1,5 @@
 import { detectLanguage, applyLanguage, buildToggle } from './i18n.js';
+import { wireSectionEffects } from './section-effects.js';
 import { Drone } from './drone.js';
 import { wireController } from './rc.js';
 import { wireClouds } from './clouds.js';
@@ -269,6 +270,7 @@ async function main() {
   wireCopy();
   wireDrone();
   wireClouds();
+  wireSectionEffects();
   document.documentElement.dataset.ready = 'true';
 }
 
